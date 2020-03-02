@@ -332,8 +332,6 @@ Markdown - може використовуватися для ведення т�
 
 ### Огороджені блоки коду 
 
-The basic Markdown syntax allows you to create [code blocks](https://www.markdownguide.org/basic-syntax#code-blocks) by indenting lines by four spaces or one tab. If you find that  inconvenient, try using fenced code blocks. Depending on your Markdown  processor or editor, you’ll use three backticks (`````) or three tildes (`~~~`) on the lines before and after the code block. The best part? You don’t have to indent any lines!
-
 Основний синтаксис Markdown дозволяє створити кодові блоки шляхом відступу рядків на чотири пробіли або одну вкладку. Якщо вам це незручно, спробуйте використовувати огороджені кодові блоки. Залежно від процесора або редактора Markdown, ви будете використовувати три зворотні одинарні лапки ```` `або три тилди (` ~~~ `) на рядках до і після кодового блоку. Не потрібно відступати жодних рядків!
 
 ```
@@ -397,12 +395,7 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
 Це матиме вигляд:
 
-Here's a simple footnote,[^1] and here's a longer one.[^bignote]
-[^1]: This is the first footnote. 
-[^bignote]: Here’s one with multiple paragraphs and code.
-   Indent paragraphs to include them in the footnote.
-   `{ my code }`
-   Add as many paragraphs as you like. 
+![](MdMedia/Рисунок5.png)
 
 ### Ідентифікатори заголовків (Heading ID)
 

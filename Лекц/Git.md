@@ -457,7 +457,7 @@ $ git clone user@server:шлях_до_репозиторія.git.
 Коли ви довели свій проект до стану, коли хочете ним поділитись, вам треба надіслати (push) ваші зміни нагору (upstream). Це робиться простою командою:
 
 ```bash
-git push <назва сховища> <назва гілки>. 
+git push <назва сховища> <назва гілки> 
 ```
 
 Якщо ви бажаєте викласти свою гілку master до вашого серверу origin (клонування зазвичай налаштовує обидва імені для вас автоматично), ви можете виконати наступне для надсилання всіх зроблених комітів до сервера:
@@ -574,7 +574,7 @@ GitHub надає вам увесь свій функціонал безкошт
 Спосіб використання запитів на Пул залежить від типу моделі розробки, яка використовується у проекті. Є дві основні типи моделей розробки, з якими можна використовувати запити на Пул:
 
 * ***fork and pull model*** (***модель форк та пул***): кожен може зробити форк наявного сховища та надіслати (push) зміни на свій особистий форк, не потребуючи доступу до вихідного сховища; зміни можуть бути потім завантажені (puled) на вихідне сховище відповідальною за це особою; коли ви відкриєте запит на пул, пропонуючи зміни з гілки вашого форку на гілку в сховищі джерела (upstream), ви можете дозволити будь-кому, хто має push-доступ до upstream-сховища, вносити зміни у ваш запит на пул; ця модель користується популярністю у проектах з відкритим кодом, оскільки вона зменшує кількість тертя для нових учасників та дозволяє людям працювати самостійно без попередньої координації;
-* ***shared repository model***(***модель загально-доступного репозиторію***) -  співавторам надається простий доступ до одного спільного сховища, а коли потрібно внести зміни - тоді створюються  тематичні гілки; запит на пул корисний і у цій моделі, оскільки він ініціює перегляд коду та загальну дискусію про набір змін перед об'єднанням змін у основну розроблювальну гілку. Ця модель є більш поширеною для роботи невеликих команд та організацій над приватними проектами.
+* ***shared repository model***(***модель загально-доступного репозиторію***) -  співавторам надається простий доступ до одного спільного сховища, а коли потрібно внести зміни - тоді створюються  тематичні гілки; запит на пул корисний і у цій моделі, оскільки він ініціює перегляд коду та загальну дискусію про набір змін перед об'єднанням змін у основну розроблювальну гілку; ця модель є більш поширеною для роботи невеликих команд та організацій над приватними проектами.
 
 https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-collaborative-development-models
 
@@ -597,7 +597,53 @@ https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/ab
 
 Якщо ви хочете створити нове сховище зі вмісту наявного сховища, але не хочете в майбутньому обєднувати (мерджити) свої зміни з upstream-сховищем, ви можете дублювати (duplicate ) репозиторій або, якщо сховище є шаблоном, використовувати сховище як шаблон. Для отримання додаткової інформації див. [Копіювання сховища](https://help.github.com/en/articles/duplicating-a-repository) та [Створення репозиторію з шаблону](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository) 
 
+### Налаштування захисту гілок
 
+#### Про захист гілок
+
+***Захищені гілки*** (***Protected branches***) гарантують, що співавтори вашого сховища не можуть внести безповоротні зміни до гілок. Увімкнення захисту гілок також дозволяє ввімкнути інші необов'язкові перевірки та вимоги, наприклад, необхідні перевірки стану та необхідні огляди.
+
+За замовчуванням будь-який запит на Пул можна об’єднати (змерджити) в будь-який час, якщо тільки головна гілка не суперечить базовій гілці. Ви можете застосувати обмеження щодо об'єднання запиту на Пул з вашим сховищем.
+
+Власники репозиторію та люди, які мають права адміністратора для сховища, можуть забезпечити виконання певних робочих процесів або вимог, перш ніж співавтор зможе об'єднати гулку у ваше сховище, створивши правила захищеної гілки. Адміністратор може створити правило гілки у сховищі для певної гілки, усіх гілок чи будь-якої гілки, яка відповідає шаблону іменування, визначеному синтаксисом fnmatch. Наприклад, можна вимагати щоб у будь-якої гілки, що містить слово `release`, перед об'єднанням було щонайменше два огляди запиту на пул. у цьому випадку ви можете створити правило для гілки ` *release* `.  Якщо у сховищі є кілька захищених правил гілок, які впливають на одні і ті ж гілки, правила, які містять конкретну назву гілки, мають найвищий пріоритет. Якщо існує більше ніж одне правило захищеної гілки, яке посилається на те саме конкретне ім'я гілки, то сформоване спочатку правило гілки має більший пріоритет. Коли адміністратор створює правило захисту гілки в сховищі, співавтори не можуть змусити надіслати зміни (пуш) на захищену гілку або видалити гілку за замовчуванням. 
+
+Правила створюються та редагуються у налаштуваннях репозиторію Settings -> Branches. 
+
+![Налаштування правил](GitMedia/branch-rule-settings.png)
+
+#### Вимога перегляду запиту на пул перед об'єднанням гілок (required pull request reviews before merging)
+
+Вимога переглядів гарантує, що запити на пул мають певну кількість схвальних відгуків, перш ніж співавтори можуть вносити зміни до захищеної гілки. Адміністратори репозиторію можуть вимагати, щоб усі запити на пул отримували певну кількість схвальних відгуків від людей, які мають дозволи *write* або *admin* у сховищі, або від призначеного власника коду, перш ніж вони об’єднаються у захищену гілку. 
+
+When required reviews are enabled, anyone with access to the  repository can approve changes in a pull request. However, you won't be  able to merge your pull request until the required number of reviewers  with *write* or *admin* permissions in the repository  approve your pull request's changes in their review. For more  information about repository permission levels, see "[Repository permission levels for an organization](https://help.github.com/en/articles/repository-permission-levels-for-an-organization)." If review is required from a designated code owner and the pull request affects code that has a designated owner, approval from that owner is  required.
+
+
+
+If a person with *admin* permissions chooses the **Request changes** option in a review, then that person must approve the pull request  before it can be merged. If a reviewer who requests changes on a pull  request isn't available, anyone with *admin* or *write* permission for the repository can dismiss the blocking review. For more information, see "[Dismissing a pull request review](https://help.github.com/en/articles/dismissing-a-pull-request-review)."
+
+**Note:** Repository admins can restrict the ability to  dismiss pull request reviews to specific people or teams. For more  information, see "[Enabling required reviews for pull requests](https://help.github.com/en/articles/enabling-required-reviews-for-pull-requests)."
+
+If you push a code-modifying commit to the branch of an approved pull request, the approval may be dismissed if repository admins have set up stale review dismissals. For more information, see "[Enabling required reviews for pull requests](https://help.github.com/en/articles/enabling-required-reviews-for-pull-requests)." This doesn't apply if you push non-code-modifying commits, like merging the base branch into your pull request's branch. For information about  the base branch, see "[About pull requests](https://help.github.com/en/articles/about-pull-requests)."
+
+Unless required reviews have been set up to include repository admins, people with *admin* permissions can merge a pull request regardless of reviews from other admins.
+
+After all required reviewers have approved a pull request, you won't  be able to merge it if there are other open pull requests with pending  or rejected reviews and those pull requests have a head branch pointing  to the same commit. Someone with *write* or *admin* permissions will need to approve or dismiss the blocking review on the other pull requests before you can merge.
+
+You can't merge a pull request into a protected branch until someone with *write* or *admin* permissions approves it. If there are pending or rejected reviews, you'll receive an error message:
+
+
+
+Ви можете застосувати обмеження для гілок, щоб лише певні користувачі, команди чи застосунки могли переходити до захищеної гілки у сховищах, що належать вашій організації. У ліцензії GitHub Free захист гілок доступний тільки для публічних сховищ. 
+
+Ви можете надати доступ до надсилання змін (push) захищеної гілки лише користувачам, командам або встановленим застосункам GitHub Apps із доступом `write` до сховища. Люди та застосунки, що мають права адміністратора до сховища, завжди можуть перейти до захищеної гілки, за винятком, якщо в обмеженнях буде стояти "Include administrators".
+
+Додатково читати [Enabling branch restrictions](https://help.github.com/en/github/administering-a-repository/enabling-branch-restrictions)
+
+
+
+ **Restrict who can push to matching branches**.
+
+https://github.com/pupenasan/PLCFramework/settings/branch_protection_rules/new
 
 Детально про GitHub Ви можете прочитати [за посиланням](https://git-scm.com/book/uk/v2/GitHub-%D0%A1%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B0-%D0%BD%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D0%BE%D0%B1%D0%BB%D1%96%D0%BA%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%83).
 

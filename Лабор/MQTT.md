@@ -8,7 +8,7 @@
 
 Для ознайомленнями з принципами роботи MQTT скористайтеся тестовими клієнтами та брокером MQTT (рис.1).  Тестовим приладом буде [http://test.mosquitto.org/gauge](http://test.mosquitto.org/gauge/)[/](http://test.mosquitto.org/gauge/) який отримує дані через брокер test.mosquitto.org за темою (topic) “temp/random”. Для перевірки роботи MQTT скористуйтеся тестовим клієнтом http://www.hivemq.com/demos/websocket-client/  (надалі по тексту **Вебсокет-клієнт**)
 
-![ рис.1. Структура тестової установки](MQTTMedia/рисунок1.png)                               
+![ рис.1. Структура тестової установки](MQTTMedia/Рисунок1.png)                               
 
 рис.1. Структура тестової установки
 

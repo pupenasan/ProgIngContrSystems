@@ -1,9 +1,9 @@
 # **ПРОГРАМНА ІНЖЕНЕРІЯ В СИСТЕМАХ УПРАВЛІННЯ**: лабораторний практикум 
 
-- [ЛР1. Основи роботи з Node-RED](labNodeRED.md)
-- [ЛР2.1. Протоколи IoT. MQTT](MQTT.md)
-- [ЛР2.2. Використання WEB API та Web-сокетів](WEBAPI.md)
-- [ЛР3. Основи роботи з Git та GitHub](labGit.md)
+- [ЛР1. Основи роботи з Node-RED](lab1NodeRED.md)
+- [ЛР2.1. Протоколи IoT. MQTT](lab2MQTT.md)
+- [ЛР2.2. Використання WEB API та Web-сокетів](lab2WEBAPI.md)
+- [ЛР3. Основи роботи з Git та GitHub](lab3Git.md)
 - 
 
 

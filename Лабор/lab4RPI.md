@@ -200,6 +200,8 @@ sudo npm install -g npm
 sudo reboot
 ```
 
+текст якийсь
+
 ## 2. Робота з входами виходами GPIO в Raspberry Pi.
 
 ### Знайомство з редактором Fritzing

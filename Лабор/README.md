@@ -4,7 +4,9 @@
 - [ЛР2.1. Протоколи IoT. MQTT](lab2MQTT.md)
 - [ЛР2.2. Використання WEB API та Web-сокетів](lab2WEBAPI.md)
 - [ЛР3. Основи роботи з Git та GitHub](lab3Git.md)
-- 
+- ЛР4. Основи роботи з Raspberry PI3
+  - [4.1. Підготовка образу карти налаштування Raspberry Pi](lab4_1_RPIConfig.md)
+  - [4.2. Основи проектування, розробки та документація систем на базі Raspberry Pi з використанням GPIO](lab4_2_RPIProg.md)
 
 
 

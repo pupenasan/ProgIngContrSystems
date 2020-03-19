@@ -131,7 +131,68 @@ GitHub пропонує наступні основні функції (див.�
 
 ###### Для Windows (через Git Gui):     
 
- 
+1. Відкрийте Git Gui.
+2. Вкажіть новий віддалений оригніальний (*upstream* ) репозиторій  щоб можна було синхронізувати Ваш форк зі змінами в ньому, наприклад.
+
+![](GitHubMedia/10.png) 
+
+### Синхронізація локального сховища форку з оригінальним сховищем
+
+Після добавлення в конфігурації посилання на віддаленний репозиторій, можна синхронізувати з ним локальний репозиторй. У  Git Bash це робиться наступним чином                    
+
+1. Відкрийте Git Bash.
+
+2. Перейдіть на необхідну робочу директорію.
+
+3. Отримайте нові дані (комміти) з віддаленого `upstream` сховища через команду `fetch` . У результаті комміти з `master` оригінального `upstream` будуть збережені в локальній папці `upstream/master`.
+
+   ```shell
+   $ git fetch upstream
+   > remote: Counting objects: 75, done.
+   > remote: Compressing objects: 100% (53/53), done.
+   > remote: Total 62 (delta 27), reused 44 (delta 9)
+   > Unpacking objects: 100% (62/62), done.
+   > From https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY
+   >  * [new branch]      master     -> upstream/master
+   ```
+
+4. Перейдіть (Check out) на вашу локальну гілку форка `master` .
+
+   ```shell
+   $ git checkout master
+   > Switched to branch 'master'
+   ```
+
+5. Злийте (Merge) зміни з `upstream/master` у локальну гілку  `master`. Це приводить гілку  `master` вашого форка синхронізованою до оригінального сховища, не втрачаючи локальних змін.
+
+   ```shell
+   $ git merge upstream/master
+   > Updating a422352..5fdff0f
+   > Fast-forward
+   >  README                    |    9 -------
+   >  README.md                 |    7 ++++++
+   >  2 files changed, 7 insertions(+), 9 deletions(-)
+   >  delete mode 100644 README
+   >  create mode 100644 README.md
+   ```
+
+    If your local branch didn't have any unique commits, Git will instead perform a "fast-forward":  
+
+   Якщо у вашої локальної гілки не було жодних унікальних комітів, Git замість цього здійснить "швидку перемотку" ("fast-forward"):
+
+   ```shell
+   $ git merge upstream/master
+   > Updating 34e91da..16c56ad
+   > Fast-forward
+   >  README.md                 |    5 +++--
+   >  1 file changed, 3 insertions(+), 2 deletions(-)
+   ```
+
+Читайте також [Merging an upstream repository into your fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/merging-an-upstream-repository-into-your-fork) для того, щоб дізнатися, як зробити `pull` безпосередньо з оригінального сховища у вказану гілку.
+
+Читайте також [Allowing changes to a pull request branch created from a fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/allowing-changes-to-a-pull-request-branch-created-from-a-fork) для того що дізнатися, як можуть власники оригінального сховища змінювати гілки з запиту на пул з форку. 
+
+Читайте також [What happens to forks when a repository is deleted or changes visibility?](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/what-happens-to-forks-when-a-repository-is-deleted-or-changes-visibility) для того, щоб дізнатися що станеться з форками коли оригінальний репозиторій будевидалений або змінена видимість/ 
 
 ## Налаштування доступу та захисту 
 

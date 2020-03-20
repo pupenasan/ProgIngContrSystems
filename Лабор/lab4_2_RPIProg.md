@@ -112,6 +112,53 @@
 
 ###### 2.11. Створення програми та перевірка програми для Node-RED.
 
+Для запуску Node-RED на RPI3 використовується команда у вікні терміналу 
+
+```bash
+node-red-start
+```
+
+Якщо закрити вікно терміналу (або натиснути Ctrl + C), то Node-RED все одно продовжить працювати, але в фоновому режимі. Щоб зупинити Node-RED, запустіть команду 
+
+```bash
+node-red-stop
+```
+
+Також Node-RED припинить свою роботу після перезавантаження RPI3.
+
+![](RPIMedia/31.png)
+
+Щоб відкрити вікно редактора в браузері необхідно прописати IP-адресу та номер порту 127.0.0.1:1880.
+
+![](RPIMedia/32.png)
+
+Автозапуск Node-RED краще робити за допомогою вбудованого демона systemd. Попередньо встановлена версія робить це за допомогою файлу «nodered.service», а також за допомогою скриптів запуску і зупинки. Їх можна встановити за допомогою наступних команд:
+
+```bash
+sudo wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service -O /lib/systemd/system/nodered.service
+sudo wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start -O /usr/bin/node-red-start
+sudo wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-stop -O /usr/bin/node-red-stop
+sudo chmod +x /usr/bin/node-red-st*
+sudo systemctl daemon-reload
+```
+
+Ці команди запускаються користувачем «root» («sudo»). Вони завантажують три файли , роблять два скрипта виконуваними, а потім перезавантажують демона systemd. 
+
+Далі, щоб налаштувати автозапуск Node-RED при кожному завантаженні виконайте команду:
+
+```bash
+sudo systemctl enable nodered.service
+```
+
+
+Відключити автозапуск можна за допомогою такої команди:
+
+```bash
+sudo systemctl disable nodered.service
+```
+
+Перезавантажте RPI3 і переконайтесь що Node-RED запускається автоматично при старті системи. Якщо ні повторіть попередні пункти.
+
 Зайдіть на сторінку програмування Node-RED на RPI3. Створіть програму для керування діодом.
 
 ![](RPIMedia/24.png) 

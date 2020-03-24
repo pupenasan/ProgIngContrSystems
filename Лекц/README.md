@@ -7,5 +7,7 @@
 5. [Сумісна робота з віддаленими сховищами в GitHub](GitHub.md)
 6. [Створення документації на основі MarkDown](MarkDown.md)
 7. [Апаратне забезпечення Raspberry PI 3](RaspberryPi.md)
+8. [Робота з сайтами GitHub Pages](GitHubPages.md)
+9. [Проекти в GitHub](GitHubProjects.md)
 
 [<- На головну](../)

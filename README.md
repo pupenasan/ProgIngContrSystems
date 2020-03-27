@@ -21,3 +21,4 @@
 
 
 
+[Сторінка курсу на GitHub](https://pupenasan.github.io/ProgIngContrSystems)

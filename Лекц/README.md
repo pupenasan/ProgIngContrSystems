@@ -1,13 +1,14 @@
 # Програмна інженерія в системах управління: конспект лекцій
 
 1. [Вступ до програмної інженерії в системах автоматизованого керування](Intro.md)
-2. [Передача даних в архітектурі IIoT: MQTT](MQTT.md)
-3. [Передача даних в архітектурі IIoT: використання HTPP](HTTPAPI.md)
-4. [Системи керування версіями: Git, GitHub](Git.md)
-5. [Сумісна робота з віддаленими сховищами в GitHub](GitHub.md)
-6. [Створення документації на основі MarkDown](MarkDown.md)
-7. [Апаратне забезпечення Raspberry PI 3](RaspberryPi.md)
-8. [Робота з сайтами GitHub Pages](GitHubPages.md)
-9. [Проекти в GitHub](GitHubProjects.md)
+2. [Основи Інтернету Речей (зовнішнє посилання)](https://pupenasan.github.io/TI40/Лекц/intro.html)
+3. [Передача даних в архітектурі IIoT: MQTT](MQTT.md)
+4. [Передача даних в архітектурі IIoT: використання HTPP](HTTPAPI.md)
+5. [Системи керування версіями: Git, GitHub](Git.md)
+6. [Сумісна робота з віддаленими сховищами в GitHub](GitHub.md)
+7. [Створення документації на основі MarkDown](MarkDown.md)
+8. [Апаратне забезпечення Raspberry PI 3](RaspberryPi.md)
+9. [Робота з сайтами GitHub Pages](GitHubPages.md)
+10. [Проекти в GitHub](GitHubProjects.md)
 
 [<- На головну](../)

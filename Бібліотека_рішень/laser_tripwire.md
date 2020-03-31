@@ -42,9 +42,9 @@ Your first step will be to create a simple prototype on a breadboard to detect w
 
 It’s a good idea to shield your LDR to make sure that only light from the laser pointer will trigger your program. You can do this with a small roll of paper, or even more easily with a section of a drinking straw.
 
-![](/laser_tripwire/1.png)
+![](laser_tripwire/1.png)
 
-![](/laser_tripwire/2.png)
+![](laser_tripwire/2.png)
 
 ### Building and coding your light sensor
 
@@ -57,7 +57,7 @@ Now you’re going to need to do a couple of things:
 RC stands for **r**esistor and **c**apacitor. RC circuits have a variety of functions, one of which is to use them to help digital devices read analogue components.
 In the timing circuit illustrated below, a 2.2kΩ resistor has been placed in series with a 1µF capacitor. They are connected to a 3.3V power supply. The switch in the circuit can be pushed to short the circuit and thereby **earth** both the capacitor and the resistor.
 
-![](/laser_tripwire/3.png)
+![](laser_tripwire/3.png)
 
 To understand what happens in this circuit, you can watch this video, or read the explanation below.
 
@@ -75,7 +75,7 @@ If you can measure the time it takes for the capacitor to charge, you can fairly
 
 In this resource, you will learn how to build a circuit using a **l**ight-**d**ependent **r**esistor (LDR, or photoresistor) and write a script on the Raspberry Pi to detect light.
 
-![](/laser_tripwire/4.png)
+![](laser_tripwire/4.png)
 
 The resistance of an LDR changes depending on the amount of light that is falling on it. The more light hits the LDR, the lower is its resistance. If you’re interested in the physics of how this works, you can have a look at [this resource](https://projects.raspberrypi.org/en/projects/laser-tripwire/generic-rc-charging-circuit).
 
@@ -85,7 +85,7 @@ The Raspberry Pi’s [GPIO](https://projects.raspberrypi.org/en/projects/laser-t
 
 You are going to set up a **r**esistor-**c**apacitor circuit (RC circuit) using a 1µF capacitor and an LDR. The two components will need to be in series with each other. One leg of the LDR will be attached to a 3.3V pin (labeled **3V3**) of the Raspberry Pi. The negative leg of the capacitor will be attached to a ground pin (labeled **GND**). The positive leg of the capacitor will be connected to any of the standard GPIO pins on the Raspberry Pi. Here is one possible configuration of the circuit.
 
-![](/laser_tripwire/5.png)
+![](laser_tripwire/5.png)
 
 ### The script on the Raspberry Pi
 
@@ -169,7 +169,7 @@ Piezoelectric buzzers are polarised components, so it is important to place them
 
 Wiring a piezoelectric buzzer is very simple. Using a breadboard, you simply connect the positive leg of the buzzer to any **GPIO** pin on your Raspberry Pi, and the negative leg to a **Ground** pin. The positive leg is normally the longer of the two, and most buzzers are labelled to show which side is positive.
 
-![](/laser_tripwire/6.png)
+![](laser_tripwire/6.png)
 
 ### Coding your buzzer
 
@@ -242,11 +242,11 @@ Once the circuit has been tested, you can wire up the components directly to the
 1. Place one leg of the LDR and the long leg of the capacitor into a female-to-female jumper lead. Then tape it up to secure the legs.
 2. Place the remaining legs into jumper leads, then plug it all back into the Raspberry Pi.
 
-![](/laser_tripwire/7.png)
+![](laser_tripwire/7.png)
 
 You can place the Raspberry Pi and components in a housing to conceal them if you wish. Here we have used a plastic box with a hole made in it for the straw:
 
-![](/laser_tripwire/8.png)
+![](laser_tripwire/8.png)
 
 1. Place your container near a doorway. Then affix the laser pointer to the wall so the beam is focused down the straw.
 2. Now run the code and test your laser tripwire.
@@ -266,11 +266,11 @@ Sometime you don’t want to manually start a script that you have written. You 
 
 - The `-e` in this command is short for *edit*. If this is your first time opening your crontab, then you’ll be asked which text editor you would like to use.
 
-  ![](/laser_tripwire/9.png)
+  ![](laser_tripwire/9.png)
 
 - Unless you have plenty of experience using **ed** or **vim**, the simplest editor to use is **nano**, so type `2` to choose it and press `Enter`.
 
-  ![](/laser_tripwire/10.png)
+  ![](laser_tripwire/10.png)
 
 - nano is a simple command line text editor. If you want to learn more about using nano, you can have a look at [this resource](https://projects.raspberrypi.org/en/projects/laser-tripwire/nix-bash-using-nano).
 

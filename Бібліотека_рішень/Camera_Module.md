@@ -4,9 +4,9 @@
 
 Learn how to connect the Raspberry Pi Camera Module to your Raspberry Pi and take pictures, record video, and apply image effects.
 
-![](/Camera Module/1.png)
+![](/Camera_Module/1.png)
 
-![Picture of the letters R and P, taken with the Raspberry Pi Camera Module](![](/Camera Module/2.png)
+![Picture of the letters R and P, taken with the Raspberry Pi Camera Module](![](/Camera_Module/2.png)
 
 ## What you will need
 
@@ -14,13 +14,13 @@ Learn how to connect the Raspberry Pi Camera Module to your Raspberry Pi and tak
 
 All current models of Raspberry Pi have a port for connecting the Camera Module.
 
-![](/Camera Module/3.png)
+![](/Camera_Module/3.png)
 
 **Note:** If you want to use a Raspberry Pi Zero, you need a Camera Module ribbon cable that fits the Raspberry Pi Zero’s smaller Camera Module port.
 
 ### Raspberry Pi Camera Module
 
-![](/Camera Module/4.png)
+![](/Camera_Module/4.png)
 
 There are two versions of the Camera Module:
 
@@ -42,11 +42,11 @@ There are two versions of the Camera Module:
 
 - Go to the main menu and open the **Raspberry Pi Configuration** tool.
 
-  ![](/Camera Module/5.png)
+  ![](/Camera_Module/5.png)
 
 - Select the **Interfaces** tab and ensure that the camera is **enabled**:
 
-  ![](/Camera Module/6.png)
+  ![](/Camera_Module/6.png)
 
 - Reboot your Raspberry Pi.
 
@@ -56,7 +56,7 @@ Now your Camera Module is connected and the software is enabled, try out the com
 
 - Open a terminal window by clicking the black monitor icon in the taskbar:
 
-![Open terminal](https://projects-static.raspberrypi.org/projects/getting-started-with-picamera/eb7defb950e2f3eeb8aa5934d26cfd600860c8a0/en/images/open-terminal-annotated.png)
+![](/Camera_Module/12.png)
 
 - Type in the following command to take a still picture and save it to the Desktop:
 
@@ -64,7 +64,7 @@ Now your Camera Module is connected and the software is enabled, try out the com
 raspistill -o Desktop/image.jpg
 ```
 
-![](/Camera Module/7.png)
+![](/Camera_Module/7.png)
 
 - Press Enter to run the command.
 
@@ -72,7 +72,7 @@ When the command runs, you can see the camera preview open for five seconds befo
 
 - Look for the picture file icon on the Desktop, and double-click the file icon to open the picture.
 
-  ![](/Camera Module/8.png)
+  ![](/Camera_Module/8.png)
 
 By adding different options, you can set the size and look of the image the `raspistill` command takes.
 
@@ -98,7 +98,7 @@ The Python `picamera` library allows you to control your Camera Module and creat
 
 - Open a Python 3 editor, such as **Thonny Python IDE**:
 
-  ![](/Camera Module/9.png)
+  ![](/Camera_Module/9.png)
 
 - Open a new file and save it as `camera.py`.
 
@@ -119,7 +119,7 @@ The Python `picamera` library allows you to control your Camera Module and creat
 
 - Save and run your program. The camera preview should be shown for five seconds and then close again.
 
-  ![](/Camera Module/10.png)
+  ![](/Camera_Module/10.png)
 
   **Note:** the camera preview only works when a monitor is connected to your Raspberry Pi. If you are using remote access (such as SSH or VNC), you won’t’ see the camera preview.
 
@@ -365,7 +365,7 @@ The default effect is `none`.
   camera.stop_preview()
   ```
 
-  ![](/Camera Module/11.png)
+  ![](/Camera_Module/11.png)
 
 ### Set the image exposure mode
 

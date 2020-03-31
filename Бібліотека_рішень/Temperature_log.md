@@ -4,7 +4,7 @@
 
 The system on a chip (SoC) of the Raspberry Pi has a temperature sensor that can be used to measure its temperature from the command line. This project’s aim is to create a simple Python script that can run automatically as you boot up your Raspberry Pi, take measurements from the temperature sensor at given intervals, and write them into log files that can be viewed later. You’ll also be able to view the data as an interactively plotted graph.
 
-![graphing](https://projects-static.raspberrypi.org/projects/temperature-log/141a3d12552b49886d23e2264c6da9afd9c9613f/en/images/graphing.gif)
+![](C:\github\ProgIngContrSystems\Бібліотека_рішень\Temperature_log\1.gif)
 
 ### What you will need
 

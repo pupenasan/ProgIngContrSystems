@@ -9,9 +9,10 @@
 
 ## Прості приклади (один датчик + один ВМ).
 
-| Назва               | Опис                 | Платформа+Мова | Посилання на оригінал                                        |
-| ------------------- | -------------------- | -------------- | ------------------------------------------------------------ |
-| [motors](motors.md) | Використання двигуна | RPI2 + Python  | [Physical Computing with Python](https://projects.raspberrypi.org/en/projects/physical-computing/14) |
-|                     |                      |                |                                                              |
-|                     |                      |                |                                                              |
+| Назва                                 | Опис                       | Платформа+Мова | Посилання на оригінал                                        |
+| ------------------------------------- | -------------------------- | -------------- | ------------------------------------------------------------ |
+| [motors](motors.md)                   | Використання двигуна       | RPI2 + Python  | [Physical Computing with Python](https://projects.raspberrypi.org/en/projects/physical-computing/14) |
+| [laser_tripwire](laser_tripwire.md)   | Детектор руху              | RPI3 + Python  | [A Raspberry Pi laser tripwire](https://projects.raspberrypi.org/en/projects/laser-tripwire) |
+| [Temperature_log](Temperature_log.md) | Ведення архіву температури | RPI3 + Python  | [Temperature log](https://projects.raspberrypi.org/en/projects/temperature-log) |
+| [Camera_Module](Camera_Module.md)     | Робота з камерою           | RPI3 + Python  | [Getting started with the Camera Module](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera) |
 

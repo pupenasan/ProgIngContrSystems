@@ -1,4 +1,8 @@
-**Програмна інженерія в системах управління.**
+**Програмна інженерія в системах управління. Лекції.** Автор і лектор: Олександр Пупена 
+
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |
 
 # Організація роботи в GitHub
 
@@ -49,3 +53,7 @@ https://help.github.com/en/github/managing-your-work-on-github/linking-a-pull-re
 [Додатково про issue](https://help.github.com/en/github/managing-your-work-on-github/about-issues)
 
 [Managing your work on GitHub](https://help.github.com/en/github/managing-your-work-on-github)
+
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |

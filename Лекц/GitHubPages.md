@@ -1,3 +1,9 @@
+**Програмна інженерія в системах управління. Лекції.** Автор і лектор: Олександр Пупена 
+
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |
+
 # Робота з сайтами GitHub Pages
 
 https://help.github.com/en/github/working-with-github-pages
@@ -64,3 +70,6 @@ GitHub Pages не підтримує серверні мови типу PHP, Rub
 
 Про додаткові правила та обмеження читайте на [Prohibited uses](https://help.github.com/en/github/working-with-github-pages/about-github-pages#prohibited-uses)
 
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |

@@ -1,3 +1,9 @@
+**Програмна інженерія в системах управління. Лекції.** Автор і лектор: Олександр Пупена 
+
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |
+
 # Апаратне забезпечення Raspberry PI 3
 
 [https://www.raspberrypi.org](https://www.raspberrypi.org/)
@@ -212,3 +218,7 @@ SPI (англ. Serial Peripheral Interface, SPI bus — послідовний �
 [http://wiki.amperka.ru](http://wiki.amperka.ru/)[/](http://wiki.amperka.ru/) **База знаний** **Амперки** 
 
 [http://](http://mikrotik.kpi.ua/index.php/courses-list/category-raspberry)[mikrotik.kpi.ua/index.php/courses-list/category-raspberry](http://mikrotik.kpi.ua/index.php/courses-list/category-raspberry) 
+
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |

@@ -1,3 +1,9 @@
+**Програмна інженерія в системах управління. Лекції.** Автор і лектор: Олександр Пупена 
+
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |
+
 # Building actions
 
 ## [Про Actions (дії)](https://help.github.com/en/actions/building-actions/about-actions#about-actions)
@@ -93,3 +99,7 @@ GitHub Actions:
 - Can include access to a clone of your repository, enabling  deployment and publishing tools, code formatters, and command line tools to access your code.
 - Don't require you to deploy code or serve an app.
 - Have a simple interface to create and use secrets, which enables  actions to interact with third-party services without needing to store  the credentials of the person using the action.
+
+| [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
+| ------------------------- | ----------------------------------------- |
+|                           |                                           |

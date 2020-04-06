@@ -1,4 +1,4 @@
-# DbVisualizer Free 
+# DbVisualizer 
 
 ## Для з'єднання з mariaDB
 

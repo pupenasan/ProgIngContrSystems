@@ -1,13 +1,13 @@
 # Встановлення та налаштування пакетів Windows
 
-## MariaDB
+## Встановлення MariaDB
 
 1. Завантажити [звідси](https://downloads.mariadb.org/mariadb/10.4.12/)
 2. Усе виставляти за замовченням, вказати пароль для root
 
 
 
-## MySQL
+## Встановлення MySQL
 
 1. Зайти на сторінку [дистрибутиви](https://dev.mysql.com/downloads/installer/)
 

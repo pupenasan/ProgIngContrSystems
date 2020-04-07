@@ -1,6 +1,23 @@
-# Оператори SQL
+# Мова SQL
 
 https://www.w3schools.com/sql/sql_ref_keywords.asp
+
+## Команди SQL
+
+###### Виставити контекст на вказану базу даних (USE)
+
+Використовує вказану базу даних як за замовченням в межах сесії
+
+```sql
+USE {database_name} 
+```
+
+```sql
+USE db1;
+SELECT COUNT(*) FROM mytable;   # вибірка з db1.mytable
+USE db2;
+SELECT COUNT(*) FROM mytable;   # вимюірка з db2.mytable
+```
 
 ###### Вибірка даних (SELECT)
 
@@ -102,3 +119,154 @@ CREATE TABLE Persons (
 );
 ```
 
+###### Добавлення індексу при створенні тбалиці(PRIMARY KEY).  
+
+Наступний код SQL створить PRIMARY KEY для поля "ID" в таблиці "Persons" яка створюється:
+
+Для MySQL:
+
+```sql
+CREATE TABLE Persons (
+   ID int NOT NULL,
+   LastName varchar(255) NOT NULL,
+   FirstName varchar(255),
+   Age int,
+   PRIMARY KEY (ID)
+ ); 
+```
+
+Для MS SQL Server/Oracle/MS Access:
+
+```sql
+CREATE TABLE Persons (
+   ID int NOT NULL PRIMARY KEY,
+   LastName varchar(255) NOT NULL,
+   FirstName varchar(255),
+   Age int
+ ); 
+```
+
+Для складеного ключа PRIMARY KEY використовується наступний синтаксис SQL  syntax (MySQL/SQL Server/Oracle/MS Access):
+
+```sql
+CREATE TABLE Persons (
+   ID int NOT NULL,
+   LastName varchar(255) NOT NULL,
+   FirstName varchar(255),
+   Age int,
+   CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+ ); 
+```
+
+У цьому прикладі тільки один первинний ключ ONE PRIMARY KEY (PK_Person), але його значення  створюється з двох колонок (ID + LastName).
+
+###### Добавлення, видалення та модифікація колонок в таблиці (ALTER TABLE)
+
+Команда `ALTER TABLE` добавляє, видаляє або модифікує колонки в таблиці.
+Вона також добавляє та видаляє різні обмеження в таблиці.
+У наступному прикладі добавиться колонка "Email" в таблицю "Customers":
+
+```sql
+ALTER TABLE Customers
+ADD Email varchar(255); 
+```
+
+Наступна команда SQL видалить колонку "Email" з таблиці "Customers":
+
+```sql
+ALTER TABLE Customers
+DROP COLUMN Email;
+```
+
+###### Зміна типу колонки в таблиці (ALTER COLUMN)
+
+Команда `ALTER COLUMN` використовується для зміни типу даних колонки в таблиці.
+Наступна команда SQL змінить тип даних колонки з іменем "BirthDate" в таблиці "Employees" на тип `year`:
+
+```sql
+ALTER TABLE Employees
+ALTER COLUMN BirthDate year;
+```
+
+To create a PRIMARY KEY constraint on the "ID" column when the table is already created, use the following SQL (MySQL / SQL Server / Oracle / MS Access):
+
+```sql
+ALTER TABLE Persons
+ ADD PRIMARY KEY (ID); 
+```
+
+To allow naming of a PRIMARY KEY constraint, and for defining a  PRIMARY KEY constraint on multiplcolumns, use the following SQL  syntax (MySQL / SQL Server / Oracle / MS Access):
+
+```sql
+ALTER TABLE Persons
+ ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName); 
+```
+
+**Note:** If you use the ALTER TABLE statement to add a primary key, the primary key column(s) must already have been declared to not contain NULL values (when the table was first created).
+
+## Оператори SQL
+
+[w3schools](https://www.w3schools.com/sql/sql_operators.asp)
+
+###### SQL Arithmetic Operators
+
+| Operator | Description | Example |
+| -------- | ----------- | ------- |
+| +        | Add         |         |
+
+| -    | Subtract |      |
+| ---- | -------- | ---- |
+| *    | Multiply |      |
+| /    | Divide   |      |
+| %    | Modulo   |      |
+
+###### SQL Bitwise Operators
+
+| Operator | Description          |
+| -------- | -------------------- |
+| &        | Bitwise AND          |
+| \|       | Bitwise OR           |
+| ^        | Bitwise exclusive OR |
+
+###### SQL Comparison Operators
+
+| Operator | Description | Example |
+| -------- | ----------- | ------- |
+| =        | Equal to    |         |
+
+| >    | Greater than             |      |
+| ---- | ------------------------ | ---- |
+| <    | Less than                |      |
+| >=   | Greater than or equal to |      |
+| <=   | Less than or equal to    |      |
+| <>   | Not equal to             |      |
+
+###### SQL Compound Operators
+
+| Operator | Description              |
+| -------- | ------------------------ |
+| +=       | Add equals               |
+| -=       | Subtract equals          |
+| *=       | Multiply equals          |
+| /=       | Divide equals            |
+| %=       | Modulo equals            |
+| &=       | Bitwise AND equals       |
+| ^-=      | Bitwise exclusive equals |
+| \|*=     | Bitwise OR equals        |
+
+###### SQL Logical Operators
+
+| Operator | Description                                           | Example |
+| -------- | ----------------------------------------------------- | ------- |
+| ALL      | TRUE if all of the subquery values meet the condition |         |
+
+| AND     | TRUE if all the conditions separated by AND is TRUE          |      |
+| ------- | ------------------------------------------------------------ | ---- |
+| ANY     | TRUE if any of the subquery values meet the condition        |      |
+| BETWEEN | TRUE if the operand is within the range of comparisons       |      |
+| EXISTS  | TRUE if the subquery returns one or more records             |      |
+| IN      | TRUE if the operand is equal to one of a list of expressions |      |
+| LIKE    | TRUE if the operand matches a pattern                        |      |
+| NOT     | Displays a record if the condition(s) is NOT TRUE            |      |
+| OR      | TRUE if any of the conditions separated by OR is TRUE        |      |
+| SOME    | TRUE if any of the subquery values meet the condition        |      |

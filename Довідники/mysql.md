@@ -1,3 +1,4 @@
-# Усе по MySQL
+# Усе по MySQL та MariaDB
 
-[10 Best MySQL GUI Tools](https://codingsight.com/10-best-mysql-gui-tools/)
+[MariaDB Server Documentation](https://mariadb.com/kb/en/documentation/)
+

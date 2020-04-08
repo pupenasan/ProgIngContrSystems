@@ -297,3 +297,37 @@ SHOW {DATABASES | SCHEMAS}
 ```
 
 [`SHOW DATABASES`](https://dev.mysql.com/doc/refman/8.0/en/show-databases.html) lists the        databases on the MySQL server host.        [`SHOW         SCHEMAS`](https://dev.mysql.com/doc/refman/8.0/en/show-databases.html) is a synonym for [`SHOW         DATABASES`](https://dev.mysql.com/doc/refman/8.0/en/show-databases.html). The [`LIKE`](https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#operator_like)        clause, if present, indicates which database names to match. The        `WHERE` clause can be given to select rows        using more general conditions, as discussed in        [Section 25.49, “Extensions to SHOW Statements”](https://dev.mysql.com/doc/refman/8.0/en/extended-show.html).      
+
+### Функції
+
+[DATE_ADD](https://www.w3schools.com/sql/func_mysql_date_add.asp)
+
+The DATE_ADD() function adds a time/date interval to a date and then returns the date.
+
+```sql
+DATE_ADD(date, INTERVAL *value addunit*)
+```
+
+
+
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| *date*    | Дата яку необхідно модифікуватя                              |
+| *value*   | Значення інтервалу часу / дати, який потрібно додати. Дозволені як позитивні, так і негативні значення |
+| *addunit* | Тип інтервалу для добавлення. Доступні значення:          MICROSECOND      SECOND      MINUTE      HOUR      DAY      WEEK      MONTH      QUARTER      YEAR      SECOND_MICROSECOND      MINUTE_MICROSECOND      MINUTE_SECOND      HOUR_MICROSECOND      HOUR_SECOND      HOUR_MINUTE      DAY_MICROSECOND      DAY_SECOND      DAY_MINUTE      DAY_HOUR      YEAR_MONTH |
+
+## Technical Details
+
+| Works in: | From MySQL 4.0 |
+| --------- | -------------- |
+|           |                |
+
+------
+
+## More Examples
+
+### Example
+
+Add 15 minutes to a date and return the date:
+
+SELECT DATE_ADD("2017-06-15 09:34:21", INTERVAL 15 MINUTE); 

@@ -2,7 +2,7 @@
 
 https://www.w3schools.com/sql/sql_ref_keywords.asp
 
-## Команди SQL
+## Загальні команди SQL
 
 ###### Виставити контекст на вказану базу даних (USE)
 
@@ -204,7 +204,9 @@ ALTER TABLE Persons
 
 **Note:** If you use the ALTER TABLE statement to add a primary key, the primary key column(s) must already have been declared to not contain NULL values (when the table was first created).
 
-## Оператори SQL
+---
+
+## Загальні оператори SQL
 
 [w3schools](https://www.w3schools.com/sql/sql_operators.asp)
 
@@ -270,3 +272,28 @@ ALTER TABLE Persons
 | NOT     | Displays a record if the condition(s) is NOT TRUE            |      |
 | OR      | TRUE if any of the conditions separated by OR is TRUE        |      |
 | SOME    | TRUE if any of the subquery values meet the condition        |      |
+
+---
+
+## Загальні функії SQL
+
+
+
+---
+
+## Діалект SQL MySQL/MariaDB
+
+[MySQL doc](https://dev.mysql.com/doc/)
+
+[MariaDB doc](https://mariadb.com/kb/en/sql-statements-structure/)
+
+### Команди SQL 
+
+###### Показати список БД (SHOW DATABASES) 
+
+```sql
+SHOW {DATABASES | SCHEMAS}
+    [LIKE 'pattern' | WHERE expr]
+```
+
+[`SHOW DATABASES`](https://dev.mysql.com/doc/refman/8.0/en/show-databases.html) lists the        databases on the MySQL server host.        [`SHOW         SCHEMAS`](https://dev.mysql.com/doc/refman/8.0/en/show-databases.html) is a synonym for [`SHOW         DATABASES`](https://dev.mysql.com/doc/refman/8.0/en/show-databases.html). The [`LIKE`](https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#operator_like)        clause, if present, indicates which database names to match. The        `WHERE` clause can be given to select rows        using more general conditions, as discussed in        [Section 25.49, “Extensions to SHOW Statements”](https://dev.mysql.com/doc/refman/8.0/en/extended-show.html).      

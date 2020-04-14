@@ -2,6 +2,10 @@
 
 [Посібник JavaScript MDN](https://developer.mozilla.org/uk/docs/Web/JavaScript/Guide), [яваскрипт.укр](http://яваскрипт.укр), [Современный учебник JavaScript](https://learn.javascript.ru/)
 
+
+
+[toc]
+
 ## Коментарі
 
 Синтаксис коментарів такий самий, як в C++ та багатьох інших мовах програмування:
@@ -1145,7 +1149,7 @@ for (const prop in obj) {
 // "obj.c = 3"
 ```
 
-## Функції{#functions}
+## {#functions}Функції
 
 Окрім вбудованих системних функцій є також можливість писати власні.
 

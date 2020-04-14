@@ -82,7 +82,7 @@ You can create footnotes like this[^footnote].
 [^footnote]: Here is the *text* of the **footnote**.
 ```
 
-буде давати наступнийрезультат:
+буде давати наступний результат:
 
 You can create footnotes like this[^footnote].
 

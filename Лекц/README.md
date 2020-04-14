@@ -32,4 +32,9 @@
 - [Основи баз даних](db.md)
 - [SQL](sql1.md)
 
+**Програмування**
+
+- [JavaScript](javascript.md)
+- [Node.JS](nodejs.md)
+
 [<- На головну](../)

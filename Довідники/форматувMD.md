@@ -74,6 +74,22 @@
 це ~~закреслений текст~~
 ```
 
+### Виноски 
+
+```markdown
+You can create footnotes like this[^footnote].
+
+[^footnote]: Here is the *text* of the **footnote**.
+```
+
+буде давати наступнийрезультат:
+
+You can create footnotes like this[^footnote].
+
+[^footnote]: Here is the *text* of the **footnote**.
+
+Hover over the ‘footnote’ superscript to see content of the footnote.
+
 ### Код
 
 Для включення коду (відформатованого в моноширинний шрифт), ви можете або оточити вбудований код зворотніми лапками (\`), наприклад, \`деякий код\`, або відділити декілька рядків коду щонайменше чотирма пробілами, як тут:

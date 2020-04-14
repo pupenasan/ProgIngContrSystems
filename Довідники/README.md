@@ -8,6 +8,7 @@
 - [Інсталяція на RPI](RPI_install.md)
 - [Форматування MarkDown](форматувMD.md)
 - [Команди Git](командиGit.md)
+- [JavaScript](js/js.md)
 
 
 

@@ -17,6 +17,8 @@
   - 6.2.[Робота з SQL в NodeRED](labdb_2nodered.md)
   - 6.3.[Приклад реалізації завдання на RPI](labdb_3rpi.md)
 
-
+- ЛР7. Робота з JavaScript.
+  - 7.1. [Основи JavaScript](labjs_1js.md).
+  - 7.2. Робота з функціями в Node-RED.
 
 [<- На головну](../)

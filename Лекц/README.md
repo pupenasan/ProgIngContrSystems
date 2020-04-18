@@ -34,7 +34,8 @@
 
 ### Програмування
 
-- [JavaScript](javascript.md)
+- [Основи JavaScript](javascript.md)
+- [Об'єкти та функції JavaScript](jsobjects.md)
 - [Node.JS](nodejs.md)
 
 [<- На головну](../)

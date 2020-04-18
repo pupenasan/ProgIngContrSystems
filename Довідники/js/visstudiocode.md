@@ -2,7 +2,9 @@
 
 # JavaScript у Visual Studio Code
 
-Код Visual Studio включає вбудований JavaScript IntelliSense, налагодження, форматування, навігацію по коду, рефакторинг та багато інших додаткових мовних функцій.
+
+
+Visual Studio Code включає вбудований JavaScript IntelliSense, налагодження, форматування, навігацію по коду, рефракторинг та багато інших додаткових мовних функцій.
 
 ![Working with JavaScript in Visual Studio Code](https://code.visualstudio.com/assets/docs/languages/javascript/overview.png)
 

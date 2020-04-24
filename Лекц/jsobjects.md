@@ -111,6 +111,10 @@ console.log ("Таймер запущено, чекаємо...");
 
 <iframe width="640" height="480" src="https://www.youtube.com/embed/8cV4ZvHXQL4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>      
 
+### Створення тіла функції через New
+
+ https://learn.javascript.ru/new-function
+
 ## Об'єкти 
 
 На минулій лекції були коротко розглянуті призначення об'єктів, їх створення через літерал та робота з властивостями та методами. Тут продовжимо розглядати об'єкти та їх призначення.  
@@ -556,6 +560,175 @@ console.log (DT2<DT1); //true
 console.log (DT1-DT2); //31622400000 мс
 console.log ((DT1-DT2)/(24*60*60*1000)); //366 днів
 ```
+
+### Об'єкт JSON 
+
+[посилання](https://learn.javascript.ru/json) [ще одне](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)
+
+Об'єкт **`JSON`**  містить методи розбору (parsing) [JavaScript Object Notation](https://json.org/) ([JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON)) та навпаки - перетворення значень у JSON. Він не має конструкторів
+
+Таким чином він має всього два методи.
+
+- `JSON.stringify` для перетворення об'єктів та примітивів в JSON.
+- `JSON.parse` для перетворення JSON в об'єкти або примітиви
+
+Ці методи JSON працюють з об'єктами, масивами, рядками, числами, булевими значеннями.
+
+#### stringify
+
+Метод `JSON.stringify(student)` перетворює об'єкт `student` у рядок. Отриманий рядок  `json` називається *JSON-форматованим* або ***серіалізованим*** об'єктом. Ми можемо відправити його по мережі або помістити у сховище даних (БД).
+
+Об'єкт у форматі JSON має кілька важливих відмінностей  від об'єктного літералу:
+
+- рядки використовуються подвійні лапки, тобто одинарні і зворотні лапки в JSON не підтримуються. Так `'John'` перетворюється в`"John"`.
+- імена властивостей також беруться у подвійні лапки, це обов'язково. Так `age:30` стає`"age":30`.
+
+```javascript
+console.log( JSON.stringify('test') ) // "test" рядок в подвійних лапках
+console.log( JSON.stringify([1, 2, 3]) ); // [1,2,3]
+
+let meetup = {
+  title: "Conference",
+  room: {number: 23, participants: ["john", "ann"]}
+};
+console.log ( JSON.stringify(meetup) );
+/* вийде рядок:
+{"title":"Conference","room":{"number":23,"participants":["john","ann"]}}
+*/
+```
+
+JSON є незалежною від мови специфікацією для даних, тому `JSON.stringify` пропускає деякі специфічні властивості об'єктів JavaScript.
+
+А саме:
+
+- Властивості-функції (методи).
+- властивості типу Symbol.
+- властивості зі значенням `undefined`.
+
+Якщо необхідно налаштувати які саме властивості необхідно кодувати та вказати відступи можна використати повний синтаксис `JSON.stringify`:
+
+```javascript
+let json = JSON.stringify(value[, replacer, space])
+```
+
+- value - значення для кодуввання.
+- replacer - масив властивостей для кодування або функція відповідності `function(key, value)`.
+- space - додатковий простір (відступи), що використовується для форматування 
+
+#### parse
+
+Чтобы декодировать JSON-строку, нам нужен другой метод с именем [JSON.parse](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse).
+
+Синтаксис:
+
+```javascript
+let value = JSON.parse(str, [reviver]);
+```
+
+- str
+
+  JSON для преобразования в объект.
+
+- reviver
+
+  Необязательная функция, которая будет вызываться для каждой пары `(ключ, значение)`  и может преобразовывать значение.
+
+Например:
+
+```javascript
+// строковый массив
+let numbers = "[0, 1, 2, 3]";
+numbers = JSON.parse(numbers);
+alert( numbers[1] ); // 1
+```
+
+Или для вложенных объектов:
+
+```javascript
+let user = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
+user = JSON.parse(user);
+alert( user.friends[1] ); // 1
+```
+
+JSON может быть настолько сложным, насколько это необходимо, объекты и  массивы могут включать другие объекты и массивы. Но они должны быть в  том же JSON-формате.
+
+Вот типичные ошибки в написанном от руки JSON (иногда приходится писать его для отладки):
+
+```javascript
+      let json = `{
+  name: "John",                     // Ошибка: имя свойства без кавычек
+  "surname": 'Smith',               // Ошибка: одинарные кавычки в значении (должны быть двойными)
+  'isAdmin': false                  // Ошибка: одинарные кавычки в ключе (должны быть двойными)
+  "birthday": new Date(2000, 2, 3), // Ошибка: не допускается конструктор "new", только значения.
+  "friends": [0,1,2,3]                     // Здесь всё в порядке
+}`;
+```
+
+Кроме того, JSON не поддерживает комментарии. Добавление комментария в JSON делает его недействительным.
+
+Существует ещё один формат [JSON5](http://json5.org/), который поддерживает ключи без кавычек, комментарии и т.д. Но это самостоятельная библиотека, а не спецификация языка.
+
+Обычный JSON настолько строг не потому, что его разработчики ленивы, а потому, что позволяет легко, надёжно и очень быстро реализовывать  алгоритм кодирования и чтения.
+
+Представьте, что мы получили объект `meetup` с сервера в виде строки данных.
+
+Вот такой:
+
+```javascript
+// title: (meetup title), date: (meetup date)
+let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+```
+
+…А теперь нам нужно *десериализовать* её, т.е. снова превратить в объект JavaScript.
+
+Давайте сделаем это, вызвав `JSON.parse`:
+
+```javascript
+let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+let meetup = JSON.parse(str);
+
+alert( meetup.date.getDate() ); // Error!
+```
+
+Ой, ошибка!
+
+Значением `meetup.date` является строка, а не `Date` объект. Как `JSON.parse` мог знать, что он должен был преобразовать эту строку в `Date`?
+
+Давайте передадим `JSON.parse` функцию восстановления вторым аргументом, которая возвращает все значения «как есть», но `date` станет `Date`:
+
+```javascript
+let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+let meetup = JSON.parse(str, function(key, value) {
+  if (key == 'date') return new Date(value);
+  return value;
+});
+
+alert( meetup.date.getDate() ); // 30 - теперь работает!
+```
+
+Кстати, это работает и для вложенных объектов: 
+
+```javascript
+let schedule = `{
+  "meetups": [
+    {"title":"Conference","date":"2017-11-30T12:00:00.000Z"},
+    {"title":"Birthday","date":"2017-04-18T12:00:00.000Z"}
+  ]
+}`;
+
+schedule = JSON.parse(schedule, function(key, value) {
+  if (key == 'date') return new Date(value);
+  return value;
+});
+
+alert( schedule.meetups[1].date.getDate() ); // 18 - отлично!
+```
+
+## Об'єкт Function
+
+https://learn.javascript.ru/function-object
 
 
 

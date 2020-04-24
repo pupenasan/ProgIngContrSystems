@@ -292,7 +292,7 @@ console.log (typeof Symbol("id")); // "symbol"
 conso;e.log (typeof (['Я','М']));//"object", бо масиви це об'єкти
 console.log (typeof Math); // "object" - так як Math вбудований в JS обєкт для роботи з мат.операціями
 console.log (typeof null); // "object" - хоч це не так
-console.log (typeof console.log); // "function" - хоч формально такого типу немає, для методів і функцій поертається "function"
+console.log (typeof console.log); // "function" - хоч формально такого типу немає, для методів і функцій повертається "function"
 ```
 
 ### Перетворення типів 

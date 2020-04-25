@@ -94,6 +94,15 @@ setTimeout(() => console.log ("пройшло 2 секунди"), 2000);
 console.log ("Таймер запущено, чекаємо...");
 ```
 
+Асинхронно також працює функція `setInterval`, яка запускає функцію, з вказаною періодичністю: 
+
+```javascript
+let fn = function () {console.log ("пройшло 2 секунди")};
+console.log ("Запускаємо таймер");
+setInterval(fn, 2000);
+console.log ("Таймер запущено, чекаємо...");
+```
+
 Асинхронність є дуже корисною характеристикою тих функцій, які працюють з зовнішніми засобами. Якщо дані необхідно кудись записати, скільки це займе часу. Нижче наведений приклад, де показані в тактах ЦПУ час, що потребується для цього (числа умовні, але порядок буде такий самий).   
 
 | **Операція запису в** | **Кількість тактів CPU (приблизно)** |
@@ -399,7 +408,7 @@ console.log (a);	//2.718281828459045
 | [`Math.cbrt(x)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/cbrt) | Повертає кубічний корінь числа.                              |
 | [`Math.pow(x, y)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/pow) | Повертає результат піднесення `x` до степеня `y`.            |
 | [`Math.ceil(x)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil) | Повертає число, округлене "до більшого".                     |
-| [`Math.floor(x)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/floor) | Повертає результат округлення "до меншого".                  |
+| [`Math.floor(x)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/floor) | Повертає результат округлення "до меншого", тобто відкидує дробову частину. |
 | [`Math.round(x)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/round) | Повертає значення аргументу, округлене до найближчого цілого. |
 | [`Math.trunc(x)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc) | Повертає цілу частину аргументу, відкидаючи всю дробову частину. |
 | [`Math.log10(x)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Math/log10) | Повертає логарифм за основою 10 від аргументу.               |

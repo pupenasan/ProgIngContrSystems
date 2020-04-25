@@ -258,7 +258,7 @@ let phrase = `Зворотні лапки (зліва від '1') дозволя
 console.log ("один рядок \n інший рядок");	//виведеться в два рядки
 ```
 
-Об'єкти-обгортки `String` мають багато корисних методів і властивостей. У прикладі нижче, деякі з них: 
+Об'єкт-обгортка `String` мають багато корисних методів і властивостей. Повний перелік наведений у [довіднику](https://wiki.developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/String). У прикладі нижче, деякі з них: 
 
 ```javascript
 let a='Текст';
@@ -271,6 +271,8 @@ for (let char of a='Текст') {//перебір усіх символів
 console.log(a.substring(0,3)); //Тек - підрядок з 0-го по 3-й не включно
 console.log(a.substr(1,2)); //ек - підрядок з 1-го, 2 шт
 ```
+
+
 
 Додатково про роботу зі змінними `string` та виразами можна почитати за [цим посиланням](https://wiki.developer.mozilla.org/uk/docs/Web/JavaScript/Guide/Text_formatting) або [за цим](https://learn.javascript.ru/string).
 
@@ -1002,6 +1004,8 @@ console.log (ar1[1][1]);    //5
 | [sort](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) | відсортовує елементи масиву                                  |
 | [toString](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/toString) | повертає рядкове представлення заданого масиву та його елементів |
 | [unshift](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) | додає один або декілька елементів на початок масиву          |
+| [slice](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) | повертає дрібну копію частини масиву у новий масив           |
+| [splice](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) | змінює вміст масиву, видаляючи існуючі та/або додаючи нові елементи |
 
 ### Перебір елементів `for..of`()   
 
@@ -1060,6 +1064,26 @@ console.log(fruits);	//Array(5) ["Ананас", "Лимон", "Яблуко", "
 ```
 
 Слід звернути увагу на те, що методи `push/pop` виконуються швидше ніж  `shift/unshift`.
+
+Якщо необхідно видалити елемент масиву в середині масиву, можна скористатися його методами: [splice)](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) або [slice](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/slice).
+
+Метод `splice` змінює вміст масиву, видаляючи існуючі та/або додаючи нові елементи.
+
+```javascript
+//Видалення 2-ох елементів, починаючи з індексу 2
+let myFish = ['parrot', 'anemone', 'blue', 'trumpet', 'sturgeon'];
+let removed = myFish.splice(2, 2);
+console.log (myFish);// ["parrot", "anemone", "sturgeon"] 
+console.log (removed);// ["blue", "trumpet"]
+
+//Видалення 0 елементів, починаючи з індексу 2, і вставлення "drum"
+myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+removed = myFish.splice(2, 0, 'drum');
+console.log (myFish);// ["angel", "clown", "drum", "mandarin", "sturgeon"] 
+console.log (removed);// нічого не виведе, жодний елемент не було видалено
+```
+
+Метод `slice` повертає дрібну копію частини масиву у новий масив, починаючи з `begin` і до `end` (не включаючи `end`), де `begin` та `end` є індексами елементів масиву. Початковий масив не змінюється.
 
 ## Джерела:
 

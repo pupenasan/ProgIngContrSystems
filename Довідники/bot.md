@@ -26,6 +26,6 @@
 - Тепер добавте бот до своїх контактів `t.me/<username>`.
 - за допомогою `RPI_OherMan_Bot` ви зможете завжди відредагувати своїх ботів
 
- 
+[Bots: An introduction for developers](https://core.telegram.org/bots) 
 
 https://core.telegram.org/bots/api

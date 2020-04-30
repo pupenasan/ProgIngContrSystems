@@ -81,6 +81,8 @@ return msg;
 
 - Модернізуйте потік так, щоб можна було відправити текстове повідомлення у вказаний чат. Ідентифікатор `chatId` необхідно було визначити в пункті 4.
 
+> зверніть увагу, що в `inject` повинен бути формат корисного навантаження `{}JSON`
+
 ![](cldmedia/10.png)
 
 рис.5.
@@ -141,7 +143,9 @@ alm.state.valHI = alm_valHI;
 global.set ("alm", alm);
 //якщо хоча виникла хоча б одна тривога - відправка повідомлень 
 if (almmsg.length > 1) {
-    msg.payload = {chatId : 704574699, type : 'message', content : almmsg}
+    msg.payload = {chatId : #########, //тут має бути ваш ідентифікатор
+                   type : 'message', 
+                   content : almmsg}
     return msg;
 }
 ```

@@ -12,8 +12,6 @@
 
 ## Загальний огляд
 
-Google Apps Script is a rapid application development platform that makes it fast and easy to create business applications that integrate with G Suite. You write code in modern JavaScript and have access to built-in libraries for favorite G Suite applications like Gmail, Calendar, Drive, and more. There's nothing to install—we give you a code editor right in your browser, and your scripts run on Google's servers.
-
 **Google Apps Script** - це платформа для розробки застосунків, що дозволяє швидко та легко створювати бізнес-застосунки, які інтегруються з [G Suite](https://uk.wikipedia.org/wiki/G_Suite). Код пишеться на сучасній версії JavaScript, при цьому з надається доступ до вбудованих бібліотек для програм `G Suite`, таких як `Gmail`, `Календар`, `Диск` тощо. Для використання не потрібно встановлювати нічого - редактор надається безпосередньо в браузері, а сценарії працюють на серверах Google.
 
 У Apps Script як і для багатьох інших реалізацій JavaScript *середовище виконання* містить рушій JavaScript, який аналізує та виконує код сценарію (див. [лекцію по JS](javascript.md)). Під час виконання програми передбачені правила доступу до пам'яті, як програма може взаємодіяти з операційною системою комп'ютера та який синтаксис програми є законним. Кожен веб-браузер має середовище виконання JavaScript.

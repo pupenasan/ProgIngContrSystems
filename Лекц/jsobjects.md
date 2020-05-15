@@ -254,7 +254,7 @@ user.sayHi(); // Привіт, мене звати Джон !
 2. Виконується код функції. Зазвичай він модифікує `this`, добавляє туди нові властивості
 3. Повертається значення `this`     
 
-Іншими словами, виклик`new User(...)` робить приблизно наступне:        
+Іншими словами, виклик `new User(...)` робить приблизно наступне:        
 
 ```javascript
 function User(name) {
@@ -355,7 +355,7 @@ console.log (a.toString(16)); // f - 16-ковий формат
 | Методи                                                       | Опис                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [`toExponential(fractionDigits)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential) | Повертає рядок, що представляє число в експоненціальній нотації з `fractionDigits` цифр після коми |
-| [`toFixed(digits)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) | Повертає рядок, що представляє число з плаваючою кою з `digits` цифр після коми |
+| [`toFixed(digits)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) | Повертає рядок, що представляє число з плаваючою комою з `digits` цифр після коми |
 | [`toPrecision(precision)`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision) | Повертає рядок, що представляє число із заданою точністю у позначені плаваючої коми з `precision` кількістю цифр. |
 
 ```javascript

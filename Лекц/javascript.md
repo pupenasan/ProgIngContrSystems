@@ -272,8 +272,6 @@ console.log(a.substring(0,3)); //Тек - підрядок з 0-го по 3-й �
 console.log(a.substr(1,2)); //ек - підрядок з 1-го, 2 шт
 ```
 
-
-
 Додатково про роботу зі змінними `string` та виразами можна почитати за [цим посиланням](https://wiki.developer.mozilla.org/uk/docs/Web/JavaScript/Guide/Text_formatting) або [за цим](https://learn.javascript.ru/string).
 
 ### Оператор typeof 

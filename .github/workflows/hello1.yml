@@ -10,4 +10,4 @@ jobs:               # перелік завдань
     runs-on: ubuntu-latest # тип машини, на якій виконувати завдання
     steps:                 # кроки 
       - name: step1        # назва кроку  
-        run: echo ${{ github.event }} # виконує команди командного рядка
+        run: echo Hello world! # виконує команди командного рядка

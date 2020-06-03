@@ -18,6 +18,32 @@
 
 Ви можете виявити дії, які потрібно використовувати у своєму робочому процесі на GitHub, та створити дії, які потрібно ділитися спільнотою з GitHub. Для отримання додаткової інформації про створення власної дії див  "[Creating actions](https://help.github.com/en/actions/creating-actions)."
 
+## Простий приклад
+
+Наведений нижче приклад файлу YAML для означення workflow, який запускається при прикріпленні будь якої теми і виводить в консоль віртуальної машини фразу "Hello World"! 
+
+```yaml
+# самий прстий workflow, простіше я не придумав
+# створює віртуалку і запускає там команду в bash
+name: Hello world 1 # назва workflow  
+on:                 # це подія, яка вказує коли буде запускатися workflow
+  issues:           # назва події - коли щось відбувається з issues 
+    types: pinned   # тип активності - прикрпілення  
+# https://help.github.com/en/actions/reference/events-that-trigger-workflows#issues-event-issues 
+jobs:               # перелік завдань
+  job1:             # назва першого завдання
+    runs-on: ubuntu-latest # тип машини, на якій виконувати завдання
+    steps:                 # кроки 
+      - name: step1        # назва кроку  
+        run: echo Hello world! # виконує команди командного рядка
+```
+
+Після запуску на GitHub можна побачити результат запуску для кожного завдання та кроку.
+
+![](GitHubMedia/13.png)
+
+
+
 ## [Основні концепції](https://help.github.com/en/actions/getting-started-with-github-actions/core-concepts-for-github-actions)
 
 ### Action (Дія)

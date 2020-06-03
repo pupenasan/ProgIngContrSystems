@@ -1,0 +1,11 @@
+# самий прстий workflow, простіше я не придумав
+# створює віртуалку і запускає там команду в bash
+
+name: Hello world 1 # це назва workflow  
+on: repository_dispatch # це назва події, яка вказує коли буде запускатися workflow   
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+     - name: step1
+	   run: bash Hello world!

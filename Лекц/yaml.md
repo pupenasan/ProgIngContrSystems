@@ -37,6 +37,18 @@ float: 25.0
 boolean: Yes
 ```
 
+## [Block Scalars](https://yaml-multiline.info/)
+
+A block scalar header has three parts:
+
+**Block Style Indicator**: The *[block style](https://yaml.org/spec/1.2/spec.html#id2795688)* indicates how newlines inside the block should behave. If you would like them to be kept as newlines, use the **literal** style, indicated by a pipe (`|`). If instead you want them to be replaced by spaces, use the **folded** style, indicated by a right angle bracket (`>`). (To get a newline using the folded style, leave a blank line by putting *two* newlines in. Lines with extra indentation are also not folded.)
+
+**Block Chomping Indicator**: The *[chomping indicator](https://yaml.org/spec/1.2/spec.html#id2794534)* controls what should happen with newlines at the *end* of the string. The default, **clip**, puts a single newline at the end of the string. To remove all newlines, **strip** them by putting a minus sign (`-`) after the style indicator. Both clip and strip ignore how many newlines are actually at the end of the block; to **keep** them all put a plus sign (`+`) after the style indicator.
+
+**Indentation Indicator**: Ordinarily, the number of spaces you're using to indent a block will be automatically guessed from its first line. You may need a *[block indentation indicator](https://yaml.org/spec/1.2/spec.html#id2793979)* if the first line of the block starts with extra spaces. In this case, simply put the number of spaces used for indentation (between 1 and 9) at the end of the header.
+
+
+
 ### Послідовності (Sequences)
 
 Це базовий список з кожним елементом у списку, розміщеним у його власному рядку. Це аналог масиву в інших мовах. Блок послідовностей позначають кожен запис з тире та пробілом (`- `). 

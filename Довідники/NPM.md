@@ -141,6 +141,8 @@ NOTE: If a package has been upgraded to a version newer than `latest`, it will b
 npm audit
 ```
 
+## [npm config](https://docs.npmjs.com/misc/config)
+
 http://prgssr.ru/development/vvedenie-v-paketnyj-menedzher-npm-dlya-nachinayushih.html
 
 

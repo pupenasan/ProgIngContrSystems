@@ -11,11 +11,6 @@ jobs:               # перелік завдань
     steps:                 # кроки
       - name: uses my repository
         uses: actions/checkout@v2
-      - name: download file to vm
-        uses: actions/download-artifact@v2
-        with:
-          name: log
-          path: .github/workflows/log.txt
       - name: step1        # назва кроку  
         run: echo Hello world! >> count.txt # добавляє в файл текстовий рядок
       - name: upload file from vm

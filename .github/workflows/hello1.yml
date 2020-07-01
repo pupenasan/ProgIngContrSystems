@@ -17,3 +17,4 @@ jobs:               # перелік завдань
         uses: actions/upload-artifact@v2
         with:
           name: log
+          path: homework/count.txt

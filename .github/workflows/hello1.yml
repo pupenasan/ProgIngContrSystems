@@ -13,9 +13,9 @@ jobs:               # перелік завдань
         uses: actions/checkout@v2
       - name: download file to vm
         uses: actions/download-artifact@v2
-        with: count.txt		
+        with: log.txt		
       - name: step1        # назва кроку  
         run: echo Hello world! >> count.txt # добавляє в файл текстовий рядок
       - name: upload file from vm
         uses: actions/upload-artifact@v2
-        with: count.txt		
+        with: log.txt		

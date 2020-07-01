@@ -8,14 +8,6 @@ on:                 # це подія, яка вказує коли буде з�
 jobs:               # перелік завдань
   job1:             # назва першого завдання
     runs-on: ubuntu-latest # тип машини, на якій виконувати завдання
-    steps:                 # кроки
-      - name: uses my repository
-        uses: actions/checkout@v2
-      - name: download file to vm
-        uses: actions/download-artifact@v2
-        with: count.txt		
+    steps:                 # кроки 
       - name: step1        # назва кроку  
-        run: echo Hello world! >> count.txt # добавляє в файл текстовий рядок
-      - name: upload file from vm
-        uses: actions/upload-artifact@v2
-        with: count.txt		
+        run: echo Hello world! # виконує команди командного рядка

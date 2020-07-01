@@ -12,9 +12,9 @@ jobs:               # перелік завдань
       - name: uses my repository
         uses: actions/checkout@v2
       - name: step1        # назва кроку  
-        run: echo Hello world! >> ./.github/workflows/count.txt # добавляє в файл текстовий рядок
+        run: echo Hello world! >> ./.github/workflows/log.txt # добавляє в файл текстовий рядок
       - name: upload file from vm
         uses: actions/upload-artifact@v2
         with:
           name: log
-          path: ./.github/workflows/count.txt
+          path: ./.github/workflows/log.txt

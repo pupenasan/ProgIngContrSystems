@@ -11,9 +11,7 @@ jobs:
       - name: install unoconv
         run: sudo apt-get install unoconv
       - name: convert to pdf
-        run: doc2pdf labs.docx
-      - name: convert
-        run: curl --form file=@labs.docx http://localhost/unoconv/pdf > labs.pdf	  
+        run: unoconv -f pdf labs.docx
       - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 
         uses: actions/upload-artifact@v2
         with:

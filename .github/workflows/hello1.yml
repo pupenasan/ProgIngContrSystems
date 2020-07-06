@@ -5,15 +5,15 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: uses my repository
-        uses: actions/checkout@v2
-      - name: install libreoffice
-        run: sudo apt-get install libreoffice
-      - run: ls ~/work/
-      - name: convert to pdf1
-        run: lowriter --convert-to pdf labs.docx
-      - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 
-        uses: actions/upload-artifact@v2
-        with:
-          name: docx
-          path: labs.*
+#      - name: uses my repository
+#        uses: actions/checkout@v2
+#      - name: install libreoffice
+#        run: sudo apt-get install libreoffice
+      - run: sudo ls ~/
+#      - name: convert to pdf1
+#        run: lowriter --convert-to pdf labs.docx
+#      - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: docx
+#         path: labs.*

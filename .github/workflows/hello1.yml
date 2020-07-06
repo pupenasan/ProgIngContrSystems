@@ -10,6 +10,8 @@ jobs:
       - name: install libreoffice
         run: sudo apt-get install libreoffice
       - run: sudo ls /
+      - run: sudo ls /home
+      - run: sudo ls /root
 #      - name: convert to pdf1
 #        run: lowriter --convert-to pdf labs.docx
 #      - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 

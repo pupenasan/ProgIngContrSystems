@@ -13,6 +13,7 @@ jobs:
         run: sudo apt-get install libreoffice
       - name: install libreoffice-java-common
         run: sudo apt-get install default-jre libreoffice-java-common
+        run: rm ~/.libreoffice/3/user/config/javasettings_Linux_*.xml
       - name: convert to pdf
         run: lowriter --convert-to pdf labs.docx
       - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 

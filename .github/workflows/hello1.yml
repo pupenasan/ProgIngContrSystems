@@ -7,8 +7,8 @@ jobs:
     steps:
 #      - name: uses my repository
 #        uses: actions/checkout@v2
-#      - name: install libreoffice
-#        run: sudo apt-get install libreoffice
+      - name: install libreoffice
+        run: sudo apt-get install libreoffice
       - run: sudo ls /
 #      - name: convert to pdf1
 #        run: lowriter --convert-to pdf labs.docx

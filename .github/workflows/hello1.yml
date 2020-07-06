@@ -1,7 +1,7 @@
 name: To docx
 on:                 # це подія, яка вказує коли буде запускатися workflow
   issues:           # назва події - коли щось відбувається з issues
-    types: pinned   # тип активності - прикрпілення
+    types: push   # тип активності - прикрпілення
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2
       - name: install libreoffice
         run: sudo apt-get install libreoffice
-      - run: ls ~/.libreoffice/3/user/config/
+      - run: ls ~/.libreoffice/
       - name: convert to pdf
         run: lowriter --convert-to pdf labs.docx
       - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 

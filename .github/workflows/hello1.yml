@@ -8,8 +8,10 @@ jobs:
     steps:
       - name: uses my repository
         uses: actions/checkout@v2
-      - name: install unoconv
-        run: sudo apt install libreoffice
+      - name: install libreoffice
+        run: sudo apt-get install libreoffice
+      - name: install libreoffice-java-common
+        run: sudo apt-get libreoffice-java-common
       - name: convert to pdf
         run: lowriter --convert-to pdf labs.docx
       - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 

@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v2
       - name: install libreoffice
         run: sudo apt-get install libreoffice
-      - run: ls ~/
+      - run: ls ~/work/
       - name: convert to pdf1
         run: lowriter --convert-to pdf labs.docx
       - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 

@@ -9,9 +9,9 @@ jobs:
       - name: uses my repository
         uses: actions/checkout@v2
       - name: install unoconv
-        run: sudo apt-get install unoconv
+        run: sudo apt install libreoffice
       - name: convert to pdf
-        run: unoconv -f pdf labs.docx
+        run: lowriter --convert-to pdf labs.docx
       - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 
         uses: actions/upload-artifact@v2
         with:

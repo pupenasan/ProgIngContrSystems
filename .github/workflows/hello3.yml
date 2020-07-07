@@ -1,0 +1,19 @@
+name: To docx
+on:                 # це подія, яка вказує коли буде запускатися workflow
+  issues:           # назва події - коли щось відбувається з issues 
+    types: pinned   # тип активності - прикрпілення  
+jobs:
+  job1:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: uses my repository
+        uses: actions/checkout@v2
+      - name: install libreoffice
+        run: sudo apt-get install libreoffice
+      - name: convert to pdf1
+        run: sudo lowriter --convert-to pdf labs.docx
+      - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 
+        uses: actions/upload-artifact@v2
+        with:
+          name: docx
+          path: labs.*

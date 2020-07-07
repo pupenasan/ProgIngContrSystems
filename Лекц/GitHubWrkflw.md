@@ -551,7 +551,7 @@ steps:
       args: The ${{ github.event_name }} event triggered this step.
 ```
 
-`entrypoint`  переміщує Докер `ENTRYPOINT`  у `Dockerfile` або встановлює його, якщо його ще не було вказано. На відміну від інструкції Docker `ENTRYPOINT`, яка має форму оболонки та виконується, ключове слово ` entrypoint` приймає лише одну рядок, що означує виконуваний файл, який слід запустити.
+`entrypoint`  переміщує Докер `ENTRYPOINT`  у `Dockerfile` або встановлює його, якщо його ще не було вказано. На відміну від інструкції Docker `ENTRYPOINT`, яка має форму оболонки та виконується, ключове слово ` entrypoint` приймає лише один рядок, що означує виконуваний файл, який слід запустити.
 
 ```yaml
 steps:
@@ -797,7 +797,7 @@ This Markdown example adds a status badge for a workflow with the name "Greet Ev
 
 Якщо ви будуєте дію, яку ви не плануєте надавати загальнодоступній, ви можете зберігати файли дії в будь-якому місці вашого сховища. Якщо ви плануєте поєднувати дії, робочий процес та код програми в одному сховищі, радимо зберігати дії в каталозі `.github`. Наприклад, `.github/actions/action-a` та `.github/actions/action-b`.
 
-
+[Creating a Docker container action](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action)
 
 [Створення та збереження шифрованих паролів](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets) 
 

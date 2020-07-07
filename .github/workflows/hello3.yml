@@ -11,7 +11,7 @@ jobs:
       - name: install libreoffice
         run: sudo apt-get install libreoffice
       - name: convert to pdf1
-        run: sudo lowriter --convert-to pdf labs.docx
+        run: sudo lowriter --convert-to pdf ./.github/workflows/labs.docx
       - name: upload file from vm # вивантажує артефакт в файл текстовий рядок 
         uses: actions/upload-artifact@v2
         with:

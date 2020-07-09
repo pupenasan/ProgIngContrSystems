@@ -237,6 +237,174 @@ local g; g  = function (x) return math.sin(x) end
 print 'hello'  -- Works fine.
 ```
 
+### Базові функції
+
+[5.1 – Basic Functions](https://www.lua.org/manual/5.0/manual.html#5.1)
+
+###### `tonumber (e [, base])`
+
+An optional argument specifies the base to interpret the numeral. The base may be any integer between 2 and 36, inclusive. In bases above 10, the letter ``A`´ (in either upper or lower case) represents 10, ``B`´ represents 11, and so forth, with ``Z`´ representing 35. In base 10 (the default), the number may have a decimal part, as well as an optional exponent part (see [2.2.1](https://www.lua.org/manual/5.0/manual.html#coercion)). In other bases, only unsigned integers are accepted.
+
+Намагається перетворити його аргумент в число. Якщо аргументом є вже число або рядок, конвертований у число, то `tonumber` повертає це число; в іншому випадку він повертає **nil**.
+
+Необов’язковий аргумент вказує основу для інтерпретації числа. Основою може бути будь-яке ціле число між 2 і 36 включно. У прикладі вище 10 буква "A" (у верхньому або нижньому регістрі) являє собою 10, `B` являє собою 11 і так далі, а` `Z`` представляє 35. У базі 10 (за замовчуванням ), число може містити десяткову частину, а також необов'язкову частину експонента (див. [2.2.1](https://www.lua.org/manual/5.0/manual.html#coercion)). В інших базах приймаються лише непідписані цілі числа.
+
+### Математині функції
+
+[5.5 – Mathematical Functions](https://www.lua.org/manual/5.0/manual.html#5.5)
+
+### Функції для роботи зі string
+
+[5.3 – String Manipulation](https://www.lua.org/manual/5.0/manual.html#5.3)
+
+###### `string.sub (s, i [, j])`
+
+Returns the substring of `s` that starts at `i` and continues until `j`; `i` and `j` may be negative. If `j` is absent, then it is assumed to be equal to *-1* (which is the same as the string length). In particular, the call `string.sub(s,1,j)` returns a prefix of `s` with length `j`, and `string.sub(s, -i)` returns a suffix of `s` with length `i`.
+
+###### `string.find (s, pattern [, init [, plain]])`
+
+Looks for the first *match* of `pattern` in the string `s`. If it finds one, then `find` returns the indices of `s` where this occurrence starts and ends; otherwise, it returns **nil**. If the pattern specifies captures (see `string.gsub` below), the captured strings are returned as extra results. A third, optional numerical argument `init` specifies where to start the search; it may be negative and its default value is 1. A value of **true** as a fourth, optional argument `plain` turns off the pattern matching facilities, so the function does a plain "find substring" operation, with no characters in `pattern` being considered "magic". Note that if `plain` is given, then `init` must be given too.
+
+###### Patterns
+
+A *character class* is used to represent a set of characters. The following combinations are allowed in describing a character class:
+
+- ***x\*** (where *x* is not one of the magic characters `^$()%.[]*+-?`) --- represents the character *x* itself.
+
+- **`.`** --- (a dot) represents all characters.
+
+- **`%a`** --- represents all letters.
+
+- **`%c`** --- represents all control characters.
+
+- **`%d`** --- represents all digits.
+
+- **`%l`** --- represents all lowercase letters.
+
+- **`%p`** --- represents all punctuation characters.
+
+- **`%s`** --- represents all space characters.
+
+- **`%u`** --- represents all uppercase letters.
+
+- **`%w`** --- represents all alphanumeric characters.
+
+- **`%x`** --- represents all hexadecimal digits.
+
+- **`%z`** --- represents the character with representation 0.
+
+- `%*x*`
+
+   (where 
+
+  x
+
+   is any non-alphanumeric character)  --- represents the character 
+
+  x
+
+  . This is the standard way to escape the magic characters. Any punctuation character (even the non magic) can be preceded by a `
+
+  ```
+  %
+  ```
+
+  ´ when used to represent itself in a pattern.
+
+  
+
+- `[*set*]`
+
+   --- represents the class which is the union of all characters in 
+
+  set
+
+  . A range of characters may be specified by separating the end characters of the range with a `
+
+  ```
+  -
+  ```
+
+  ´. All classes 
+
+  ```
+  %
+  ```
+
+  x
+
+   described above may also be used as components in 
+
+  set
+
+  . All other characters in 
+
+  set
+
+   represent themselves. For example, 
+
+  ```
+  [%w_]
+  ```
+
+   (or 
+
+  ```
+  [_%w]
+  ```
+
+  ) represents all alphanumeric characters plus the underscore,
+
+  ```
+  [0-7]
+  ```
+
+   represents the octal digits, and 
+
+  ```
+  [0-7%l%-]
+  ```
+
+   represents the octal digits plus the lowercase letters plus the `
+
+  ```
+  -
+  ```
+
+  ´ character.
+
+  The interaction between ranges and classes is not defined. Therefore, patterns like `[%a-z]` or `[a-%%]` have no meaning.
+
+  
+
+- **`[^\*set\*]`** --- represents the complement of *set*, where *set* is interpreted as above.
+
+For all classes represented by single letters (`%a`, `%c`, etc.), the corresponding uppercase letter represents the complement of the class. For instance, `%S` represents all non-space characters.
+
+The definitions of letter, space, and other character groups depend on the current locale. In particular, the class `[a-z]` may not be equivalent to `%l`. The second form should be preferred for portability.
+
+A *pattern item* may be
+
+-   a single character class, which matches any single character in the class;
+-   a single character class followed by ``*`´, which matches 0 or more repetitions of characters in the class. These repetition items will always match the longest possible sequence;
+-   a single character class followed by ``+`´, which matches 1 or more repetitions of characters in the class. These repetition items will always match the longest possible sequence;
+-   a single character class followed by ``-`´, which also matches 0 or more repetitions of characters in the class. Unlike ``*`´, these repetition items will always match the *shortest* possible sequence;
+-   a single character class followed by ``?`´, which matches 0 or 1 occurrence of a character in the class;
+-   `%*n*`, for *n* between 1 and 9; such item matches a substring equal to the *n*-th captured string (see below);
+-   `%b*xy*`, where *x* and *y* are two distinct characters; such item matches strings that start with *x*, end with *y*, and where the *x* and *y* are *balanced*. This means that, if one reads the string from left to right, counting *+1* for an *x* and *-1* for a *y*, the ending *y* is the first *y* where the count reaches 0. For instance, the item `%b()` matches expressions with balanced parentheses.
+
+
+
+A *pattern* is a sequence of pattern items. A ``^`´ at the beginning of a pattern anchors the match at the beginning of the subject string. A ``$`´ at the end of a pattern anchors the match at the end of the subject string. At other positions, ``^`´ and ``$`´ have no special meaning and represent themselves.
+
+
+
+A pattern may contain sub-patterns enclosed in parentheses; they describe *captures*. When a match succeeds, the substrings of the subject string that match captures are stored (*captured*) for future use. Captures are numbered according to their left parentheses. For instance, in the pattern `"(a*(.)%w(%s*))"`, the part of the string matching `"a*(.)%w(%s*)"` is stored as the first capture (and therefore has number 1); the character matching `.` is captured with number 2, and the part matching `%s*` has number 3.
+
+As a special case, the empty capture `()` captures the current string position (a number). For instance, if we apply the pattern `"()aa()"` on the string `"flaaap"`, there will be two captures: 3 and 5.
+
+A pattern cannot contain embedded zeros.  Use `%z` instead.
+
 ## Таблиці
 
 Таблиці є найважливішим типом даних в Lua і є основою для типів даних користувача, таких як структури, масиви, списки, множини. Таблиця в Lua являє собою набір пар -- (Ключ, Значення). Ключем може бути будь-яке значення окрім nil.
@@ -248,6 +416,13 @@ t = { } -- пуста таблиця
 t['k'] = 10 -- Ключ k, значення 10
 t[20] = " super " -- Ключ 20, значення " super "
 t.IP = '192.168.0.1' -- Ключ IP, значення 192.168.0.1 
+```
+
+Розмірність списку (одномірного масиву) можна перевірити за допомогою #
+
+```lua
+t = {"A", 1}
+print (#t) -- виведе 2
 ```
 
 Таблиці можна використовувати і як звичайні масиви. Для цього варто скористатись записом `t = {'a', 'b', 'c', 'd', 'e'}`, після чого до елементів можна звертатись за індексом: `print(t[2]) --виведе b`. Зверніть увагу, що створені таким чином масиви, починаються з одиниці, а не з нуля, як в більшості інших мов.
@@ -365,6 +540,8 @@ return list[i], list[i+1], ···, list[j]
 ```
 
 By default, `i` is 1 and `j` is `#list`.
+
+
 
 ### Metatables and metamethods.
 

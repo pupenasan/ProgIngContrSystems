@@ -405,6 +405,42 @@ As a special case, the empty capture `()` captures the current string position (
 
 A pattern cannot contain embedded zeros.  Use `%z` instead.
 
+### Функції IO 
+
+https://www.lua.org/manual/5.0/manual.html#5.6
+
+###### `io.input ([file])`
+
+При виклику з ім'ям файлу він відкриває вказаний файл (у текстовому режимі) та встановлює його обробку як вхідний файл за замовчуванням. При виклику з файловим дескриптором він просто встановлює цей дескриптор як файл вводу за замовчуванням. При виклику без параметрів він повертає поточний файл вводу за замовчуванням.
+
+У разі помилок ця функція викликає помилку замість повернення коду помилки.
+
+###### `io.open (filename [, mode])`
+
+Ця функція відкриває файл у режимі, означеному у рядку `mode`. Він повертає новий дескриптор файлу, або, у випадку помилок,  **nil**  плюс повідомлення про помилку.
+
+Режими `mode` може бути одним із наступних:
+
+- **"r"** read mode (the default);
+- **"w"** write mode;
+- **"a"** append mode;
+- **"r+"** update mode, all previous data is preserved;
+- **"w+"** update mode, all previous data is erased;
+- **"a+"** append update mode, previous data is preserved,  writing is only allowed at the end of file.
+
+Рядок `mode` може також мати в кінці `b`,  який потрібен в деяких системах для відкриття файлу в бінарному режимі. Цей рядок є таким саме, що використовується у стандартній функції C `fopen` . 
+
+###### `file:read (format1, ...)`
+
+Читає файл з дескриптором `file`, відповідно до заданих форматів, які вказують, що читати. Для кожного формату функція повертає рядок (або число) з прочитаними символами, або **nil**, якщо вона не може прочитати дані у визначеному форматі. Коли викликається без форматів, він використовує формат за замовчуванням, який читає весь наступний рядок (див. Нижче).
+
+Доступні настпуні формати:
+
+- **"\*n"** reads a number; this is the only format that returns a number instead of a string.
+- **"\*a"** читає весь файл, починаючи з поточного положення. Після закінчення файлу він повертає порожній рядок.
+- **"\*l"** reads the next line (skipping the end of line), returning **nil** on end of file. This is the default format.
+- ***number\*** reads a string with up to that number of characters, returning **nil** on end of file. If number is zero, it reads nothing and returns an empty string, or **nil** on end of file.
+
 ## Таблиці
 
 Таблиці є найважливішим типом даних в Lua і є основою для типів даних користувача, таких як структури, масиви, списки, множини. Таблиця в Lua являє собою набір пар -- (Ключ, Значення). Ключем може бути будь-яке значення окрім nil.

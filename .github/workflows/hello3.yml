@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: uses my repository
         uses: actions/checkout@v2
+          with:
+            persist-credentials: false
       - name: install libreoffice
         run: sudo apt-get install libreoffice
       - name: convert to pdf1

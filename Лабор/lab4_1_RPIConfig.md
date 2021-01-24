@@ -14,7 +14,7 @@
 
 ###### 1.1. Завантаження образу для RPI з Інтернету.
 
-Завантажте образ з ОС та мінімальним ПЗ для карти RPI ("Raspbian Buster with desktop and recommended software") за [посиланням](https://www.raspberrypi.org/downloads/raspbian/ ) або попросіть його у викладача.
+Завантажте образ з ОС та мінімальним ПЗ для карти RPI (`Raspberry Pi OS with desktop`) за [посиланням](https://www.raspberrypi.org/downloads/raspbian). Виберіть один з варіантів завантаження `Download` або `Download Torrent`. 
 
 ###### 1.2. Завантаження утиліти для створення образу.
 

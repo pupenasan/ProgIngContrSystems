@@ -43,7 +43,7 @@ IntelliSense показує вам інтелектуальне завершен
 }
 ```
 
-> **Tip:** To check if a JavaScript file is part of JavaScript project, just open the file in VS Code  and run the **JavaScript: Go to Project Configuration** command. This command opens the `jsconfig.json` that the JavaScript file belongs to. A notification is shown if the file is not part of any `jsconfig.json` project.
+> **Порада** Щоб перевірити, чи файл JavaScript є частиною проекту JavaScript, просто відкрийте файл у коді VS та запустіть команду **JavaScript: Go to Project Configuration**. Ця команда відкриває `jsconfig.json`, до якого належить файл JavaScript. Повідомлення відображається, якщо файл не є частиною жодного проекту `jsconfig.json`.
 
 ## Інші функції
 

@@ -271,7 +271,7 @@ Markdown - може використовуватися для ведення т�
 
 - **Mac:** [MacDown](https://www.markdownguide.org/tools/macdown/), [iA Writer](https://www.markdownguide.org/tools/ia-writer/), або[Marked](https://marked2app.com/)
 - **iOS / Android:** [iA Writer](https://www.markdownguide.org/tools/ia-writer/)
-- **Windows:** [ghostwriter](https://wereturtle.github.io/ghostwriter/) або [Markdown Monster](https://markdownmonster.west-wind.com/)
+- **Windows:** [ghostwriter](https://wereturtle.github.io/ghostwriter/) або [Markdown Monster](https://markdownmonster.west-wind.com/), https://v2.docusaurus.io/
 - **Linux:** [ReText](https://github.com/retext-project/retext) або [ghostwriter](https://wereturtle.github.io/ghostwriter/)
 - **Web:** [Dillinger](https://www.markdownguide.org/tools/dillinger/) або [StackEdit](https://www.markdownguide.org/tools/stackedit/)
 

@@ -20,7 +20,7 @@ USE {database_name}
 USE db1;
 SELECT COUNT(*) FROM mytable;   # вибірка з db1.mytable
 USE db2;
-SELECT COUNT(*) FROM mytable;   # вимюірка з db2.mytable
+SELECT COUNT(*) FROM mytable;   # вибірка з db2.mytable
 ```
 
 ###### Вибірка даних (SELECT)

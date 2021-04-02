@@ -108,6 +108,31 @@ CREATE TABLE devinfo.tab1(
 
 ![](dbmedia/12.png)
 
+```js
+var prev = flow.get("prev");
+if (typeof prev!== 'undefined')
+{
+var cpus = msg.payload.cpus;
+var cpusp = prev.payload.cpus;
+var user, sys, idle, total; var avg = 0;
+var uses = []; var msgs = cpus;
+for (let i = 0; i < cpus.length; i++){      
+    user = cpus[i].times.user - cpusp[i].times.user;
+    sys = cpus[i].times.sys - cpusp[i].times.sys;
+    idle = cpus[i].times.idle - cpusp[i].times.idle;
+    total = user + sys + idle;
+    uses [i] = (user + sys)*100.0 / total;
+    avg += uses [i];
+    msgs [i].payload = uses[i];
+    msgs [i].topic = "cpu_" + i;
+}
+avg = avg / cpus.length; msgs.length = cpus.length + 1;
+msgs[msgs.length-1] = {"payload":avg,"topic":"avg"};
+return msgs;
+}
+flow.set("prev",msg);
+```
+
 - зробіть розгортання проекту, має бути вигляд як на рисунку
 
   ![](dbmedia/11.png)
@@ -117,6 +142,13 @@ CREATE TABLE devinfo.tab1(
 - модифікуйте програму відповідно до наведеного нижче фрагменту, зверніть увагу що необхідно буде добавити конфігураційний вузол з БД 'devinfo', який буде посилатися на відповідну базу даних 
 
 ![](dbmedia/14.png)
+
+```js
+var mem = flow.get ("memory");
+var cpuavg = flow.get ("cpuavg");
+msg.topic = "INSERT INTO tab1(cpuavg, memory) VALUES (" + mem + "," + cpuavg + ")";
+return msg;
+```
 
 - зробіть розгортання та досягніть щоб не було помилок
 - використовуючи HeidiSQL проконтролюйте, що дані дійсно записуються в БД

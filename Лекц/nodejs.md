@@ -361,6 +361,8 @@ https://www.w3schools.com/nodejs/nodejs_intro.asp
 
 https://medium.com/devschacht/node-hero-6a07ef8d822d 
 
+https://metanit.com/web/nodejs/
+
 | [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
 | ------------------------- | ----------------------------------------- |
 |                           |                                           |

@@ -81,6 +81,8 @@ node-red
 
 Для того, щоб Node-RED виконувався, вікно з командним рядком не можна закривати.
 
+<iframe width="640" height="480" src="https://www.youtube.com/embed/MQOxKuhLetg?start=1&end=680&rel=0&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## 2. Знайомство з Node-RED
 
 Створена програма на Node-RED виконується в **середовищі виконання**. Зрештою ця програма має текстовий вигляд  у форматі JSON (JavaScript Object Notation), але для розробника вона представляється в графічному вигляді.  Для редагування використовується браузер. 

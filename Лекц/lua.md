@@ -1,5 +1,7 @@
 # Мова Lua
 
+Робоча чернетка.
+
 [Learn Lua in 15 Minutes](http://tylerneylon.com/a/learn-lua/ )
 
 [wiki](https://uk.wikipedia.org/wiki/Lua)

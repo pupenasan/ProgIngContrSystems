@@ -175,7 +175,7 @@ DevOps на відміну від водоспадної моделі засто
 
 На Рис.19.3 приклад одного з них 
 
-![img](file:///C:\Users\san\AppData\Local\Temp\msohtmlclip1\01\clip_image004.png)
+![img](devopsmeida//14.png)
 
  Рис. 1.3 DevOps в Azure фреймворк
 

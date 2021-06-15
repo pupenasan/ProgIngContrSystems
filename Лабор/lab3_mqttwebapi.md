@@ -75,6 +75,8 @@ $SYS/broker/clients/connected
 
 У випадку відсутності зв’язку з брокером зробіть перевірку на `test.mosquitto.org`. 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vShI-bU0-kw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 1.3. Публікація і підписка для власного повідомлення 
 
 - [ ] На онлайновому клієнті HiveMQ створіть нову тему для публікації:
@@ -92,6 +94,8 @@ myname/device1/val
 - [ ] знайдіть це повідомлення і передивіться його значення
 - [ ] в HiveMQ ще кілька раз введіть різні значення і зробіть публікацію
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CYA3wfT0WwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 1.4. Відкриття сторінки з варіантом на тестовому сервері
 
 - [ ] Перейдіть на <http://edu.asu.in.ua:1880/ui/#/0> (надалі, **тестовий сервер**) виберіть вкладку і групу елементів **з вашим варіантом**.
@@ -103,6 +107,8 @@ myname/device1/val
  ![рис.2. Вибір вкладки з варіантом та панель для варіанту ](MQTTMedia/Рисунок2.png)
 
 рис.3.4. Вигляд сторінки з варіантом на тестовому сервері
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EiY_Roj6hXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 1.5.  Перевірка підключення до тестового варіанту
 
@@ -118,6 +124,8 @@ myname/device1/val
 - [ ] На тестовому сервері (<http://edu.asu.in.ua:1880/ui/#/0>) змініть якісь значення повзунків
 - [ ] У MQTT Explorer  мають з'явитися відповідні записи 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OTkXZeJ6JWE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 1.6.  Зміна даних на тестовому сервері через MQTT 
 
 - [ ] У MQTT Explorer на панелі Publish в полі Topic впишіть “NUFT TI4/Variant**X**/TT101”, де **X** – номер вашого варіанту. 
@@ -126,6 +134,8 @@ myname/device1/val
 - [ ] У полі Message введіть значення від 10.5, натисніть `Publish`. 
 - [ ] Перейдіть на тестовий сервер, подивіться як змінюється значення на круговому індикаторі. 
 - [ ] Зробіть поступове введення 30, 75, 50, з періодичністю 5 секунд, після кожного натискайте Publish. Подивіться як змінюється значення на тренді. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3BYZHlDtiPc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### 2. Зв’язок Node-RED з іншими пристроями по MQTT
 
@@ -149,6 +159,8 @@ myname/device1/val
 - [ ] Активуйте на боковій панелі режим відображення повідомлень відлагодження. Змініть значення на тестовому сервері для клапану зі свого варіанту. 
 - [ ] Використовуючи MQTT Explorer задайте значення температури. Зробіть аналіз виведених повідомлень на бічній панелі. 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kCDVz-WbIv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.3. Тестування відправки даних по MQTT
 
 - [ ] Використовуючи вузли «Slider» з Dashboard та «MQTT out» самостійно реалізуйте зв'язок локального графічного інтерфейсу з віртуальним приладом на тестовому сервері, що показує TT101 для вашого варіанту. 
@@ -160,6 +172,8 @@ myname/device1/val
 
 рис.3.6. Фрагмент програми в Node-RED для роботи з MQTT
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8EZeF2lpRmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.4. Генерування синусоїди
 
 - [ ] Модифікуйте програму так, як це показано на рисунку нижче. Перейдіть на тестовий сервер, подивіться результат. 
@@ -169,6 +183,8 @@ myname/device1/val
 рис.3.7. Фрагмент програми для генерування синусоїди
 
 - [ ] Зробіть копії екранів з графіками синусоїди
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZPHwBCtU3Ew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 2.5. Реалізація "коротко-замкнутого" з'єднання видавця і абонента в Node-RED 
 
@@ -201,6 +217,8 @@ return msg;
 - [ ] перевірте що тема `myname/device1/random` оновлюється
 - [ ] перевірте що статус `myname/client1/status` рівний `online`
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a6lcsLkCcK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.6. Перевірка роботи LWT-повідомлення
 
 У налаштуваннях підключення вказане повідомлення останньої волі LWT. Воно відправиться тільки при некоректному обриву з'єднання. Для імітації такого обриву можна тимчасово відключити мережу, після чого завершити роботу Node-RED, щоб при появі мережі він не обновив статус. Саме після підключення мережі при вимкнутому Node-RED за допомогою MQTT Explorer можна буде визначити, повідомлення останньої волі, яке має бути рівним `offline (break)`. Слід зауважити, що після останнього відправленого вузлом `MQTT-out` повідомлення повинно пройти щонайменше 1,5 часу `Keep alive time`, який дорівнює 60 секунд.
@@ -212,6 +230,8 @@ return msg;
 - [ ] запустіть Node-RED дочекайтеся, коли він запуститься
 - [ ] `myname/client1/status` повинен знову стати `online`
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pdfzFeNL40Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.7. Перевірка роботи черги повідомлень для QoS=1
 
 При знятій опції `Use Clean Session` , що значить `Persisten connection`, а також QoS>=1 і постійному ID-клієнта, повідомлення що не були отримані абонентом під час його відключення, зберігаються в буфері брокера. Після повторного підключення він повертає їх клієнтові.
@@ -220,6 +240,8 @@ return msg;
 - [ ] Зробіть розгортання проекту, очистіть усі повідомлення на бічній панелі
 - [ ] Дочекайтеся десь хвилини, активуйте знову конфігураційний вузол, і зробіть розгортання. 
 - [ ] Повинно пройти кілька повідомлень одразу. Проаналізуйте їх зміст. Спробуйте пояснити чому саме такі повідомлення прийшли.  
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NxUQcwllJMo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### 3. Зв’язок MQTT-клієнта з мобільного телефону 
 
@@ -266,6 +288,8 @@ Node-RED  може представляти як бік клієнта так і
 - [ ] Зайдіть на сайт https://www.myip.com/, подивіться яка інформація там надається.
 - [ ] Ознайомтеся з API-сервісом https://www.myip.com/api-docs/. 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/k6bArrJbxTQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 4.2. Робота з онлайн утилітами для API-тестування
 
 Для тестування API Ви можете користуватися будь якою утилітою, наприклад  https://apitester.com/ або http://restninja.io/ 
@@ -275,6 +299,8 @@ Node-RED  може представляти як бік клієнта так і
 - [ ] Проаналізуйте відповідь
 - [ ] Повторіть те саме з адресою <http://ip-api.com/json/8.8.8.8/> . 
 - [ ] Повторіть те саме зі своєю білою IP-адресою, або просто відправивши http://ip-api.com/json/. Порівняйте отримані результати з тими, що показані на сторінці https://ip-api.com 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/v9aAontbP88" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 4.3. Створення клієнту для IPAPI в Node-RED 
 
@@ -289,6 +315,8 @@ Node-RED  може представляти як бік клієнта так і
 рис.3.9. Фрагмент програми клієнту для IPAPI в Node-RED
 
 - [ ] Зробіть копію фрагменту екрану виводу у вікні відлагодження і збережіть для звіту.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uBMuYkNzZOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### 5. Робота з FRED - хмарним сервісом Node-RED  
 
@@ -318,6 +346,8 @@ Node-RED  може представляти як бік клієнта так і
 - [ ] Видаліть усі вузли в потоці, які вставлені туди при створенні аккаунту.
 
 - [ ] Створіть невеличку програму, наприклад, яка складається з двох з’єднаних вузлів «inject» та «debug», та перевірте її роботу.   
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nkEnpvq-XYI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### 6. Використання WEB-сокетів 
 
@@ -364,6 +394,8 @@ https://account_name.fred.sensetecnic.com/api/ui/
 
 де *account _name –* ім’я вашої реєстрації 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FGLQBB4pPDM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 6.3.Створення клієнтського WEB-сокету в локальному Node-RED.
 
 - [ ] Запустіть Node-RED на локальному ПК. Створіть новий потік, в ньому розмістіть два вузли – клієнтський “WebSocket out”  та “Inject” (рис.3.11). Налаштуйте відповідно до вашого серверного сокету. Перевірте роботу з’єднання. Зробіть копію екрану потоку на FRED, на якій видно адресу вашого аккаунту і наявність з’єднання – зелений напис «connected». Добавте його до звіту.  
@@ -371,6 +403,8 @@ https://account_name.fred.sensetecnic.com/api/ui/
  ![рис.13.](WEBAPIMedia/Рисунок13.png) 
 
  рис.3.11. Фрагмент програми WEB-сокету в локальному Node-RED
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y1Y5igcchTM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 6.4. Перевірка роботи сервісів WEB-сокету через онлайн утиліти.
 

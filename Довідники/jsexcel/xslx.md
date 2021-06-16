@@ -20,9 +20,9 @@ var workbook = XLSX.readFile('test.xlsx');
 
 **Why is there no Streaming Read API?** 
 
-The most common and interesting formats (XLS, XLSX/M, XLSB, ODS) are ultimately ZIP or CFB containers of files. Neither format puts the directory structure at the beginning of the file: ZIP files place the Central Directory records at the end of the logical file, while CFB files can place the storage info anywhere in the file! As a result, to properly handle these formats, a streaming function would have to buffer the entire file before commencing. That belies the expectations of streaming, so we do not provide any streaming read API.
+Найпоширеніші та найцікавіші формати (XLS, XLSX/M, XLSB, ODS) - це, зрештою, ZIP або CFB контейнери файлів. Жоден формат не розміщує структуру каталогів на початку файлу: ZIP-файли розміщують записи Центральної Директорії в кінці логічного файлу, тоді як CFB-файли можуть розміщувати інформацію про зберігання де завгодно у файлі! Як результат, щоб правильно обробляти ці формати, функція потокового передавання повинна буферизувати весь файл перед початком роботи. Це відповідає очікуванням потокового передавання, тому ми не надаємо жодного API для читання потокового передавання.
 
-When dealing with Readable Streams, the easiest approach is to buffer the stream and process the whole thing at the end. This can be done with a temporary file or by explicitly concatenating the stream:
+Маючи справу з Readable Streams, найпростіший підхід - це буферизувати потік і обробити все це в кінці. Це можна зробити за допомогою тимчасового файлу або шляхом явного об'єднання потоку:
 
 **Explicitly concatenating streams**
 
@@ -88,7 +88,7 @@ var desired_value = (desired_cell ? desired_cell.v : undefined);
 
 **Adding a new worksheet to a workbook**
 
-This example uses [`XLSX.utils.aoa_to_sheet`](https://github.com/SheetJS/sheetjs#array-of-arrays-input) to make a sheet and `XLSX.utils.book_append_sheet` to append the sheet to the workbook:
+У цьому прикладі використовується [`XLSX.utils.aoa_to_sheet`](https://github.com/SheetJS/sheetjs#array-of-arrays-input)  для створення аркуша та ` XLSX.utils.book_append_sheet` для додавання аркуша до робочої книги:
 
 ```js
 var ws_name = "SheetJS";
@@ -106,14 +106,14 @@ XLSX.utils.book_append_sheet(wb, ws, ws_name);
 
 **Creating a new workbook from scratch**
 
-The workbook object contains a `SheetNames` array of names and a `Sheets` object mapping sheet names to sheet objects. The `XLSX.utils.book_new` utility function creates a new workbook object:
+Об'єкт книги містить масив імен `SheetNames` та об'єкт ` Sheets`, що відображає імена аркушів на об'єкти аркуша. Функція утиліти `XLSX.utils.book_new` створює новий об'єкт книги:
 
 ```js
 /* create a new blank workbook */
 var wb = XLSX.utils.book_new();
 ```
 
-The new workbook is blank and contains no worksheets. The write functions will error if the workbook is empty.
+Нова книжка порожня і не містить аркушів. Функції запису помилятимуться, якщо книга порожня.
 
 ### Parsing and Writing Examples
 
@@ -144,7 +144,7 @@ XLSX.writeFile(workbook, 'out.xlsb');
 
 ### Streaming Write
 
-The streaming write functions are available in the `XLSX.stream` object.  They take the same arguments as the normal write functions but return a Readable Stream.  They are only exposed in NodeJS.
+Функції потокового запису доступні в об'єкті `XLSX.stream`. Вони приймають ті самі аргументи, що і звичайні функції запису, але повертають Readable Stream. Вони доступні лише в NodeJS.
 
 - `XLSX.stream.to_csv` is the streaming version of `XLSX.utils.sheet_to_csv`.
 - `XLSX.stream.to_html` is the streaming version of `XLSX.utils.sheet_to_html`.

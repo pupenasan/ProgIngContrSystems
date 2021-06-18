@@ -55,6 +55,8 @@
 - [ ] Натисніть `Disconnect`. Зайдіть в налаштування `Advanced`. Подивіться налаштування: у списку тем вказано фільтр підписки на усі теми. На кожну тему підписка вказана з `QoS=0`
 - [ ] Перевірте підключення до `test.mosquitto.org` 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Yy1TmXNhPEI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 1.2. Робота з HiveMQ Вебсокет-клієнтом
 
 - [ ] У браузері зайдіть на <http://www.hivemq.com/demos/websocket-client>
@@ -255,6 +257,8 @@ return msg;
   - [ ] Приклад для Андроїд  “IoT MQTT Panel” [завантажити тут ](https://play.google.com/store/apps/details?id=snr.lab.iotmqttpanel.prod&hl=en_US)
   - [ ] Приклад для iOS «MQTTool» [завантажити тут](https://itunes.apple.com/us/app/mqttool/id1085976398?mt=8)
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/b61au6teAMQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 3.2. Добавлення з'єднання з MQTT брокером
 
 - [ ] Запустіть на виконання. 
@@ -262,10 +266,14 @@ return msg;
 
 Наприклад, для застосунку “IoT MQTT Panel” це робиться в розділі Connection, де означуються ті самі налаштування, що і в попередніх пунктах. Додатково також треба добавити Device.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gvlZQzLbbC0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 3.3. Добавлення та тестування інтерфейсу користувача
 
 - [ ] Створіть інтерфейс користувача шляхом добавлення графічних елементів та означте для них теми (Topic) відповідно до вибраного варіанту. 
 - [ ] Перевірте роботу, змінюючи значення клапану на тестовому сервері. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Z8o4W2agZwQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### 4. Використання відкритого HTTP API 
 

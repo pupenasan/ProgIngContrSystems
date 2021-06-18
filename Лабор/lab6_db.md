@@ -41,6 +41,8 @@
 
 - [ ] знайдіть відповідний SQL запит на створення у нижньому вікні журналу запитів, скопіюйте його в створений текстовий файл; **надалі усі запити, які буде вказано в роботі скопіювати, будете добавляти в цей файл в нижній рядок**.    
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AqTdbu5hUww" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 1.3. Створення таблиці та полів таблиці за допомогою клієнтської утиліти
 
 - [ ] натисніть один раз по базі даних, вона активується, про що буде вказувати відповідний запис в журналі запитів (`USE`); скопіюйте запит `USE` в текстовий файл;  
@@ -55,6 +57,8 @@
 
 - [ ] знайдіть відповідний запис `CREATE TABLE`, та скопіюйте його в текстовий файл;
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_9DifDYyZ6Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 1.4. Ручне заповнення записів за допомогою клієнтської утиліти
 
 - [ ] перейдіть на закладку "Дані"
@@ -62,6 +66,8 @@
 - [ ] добавте 3 записи
 
 - [ ] усі SQL запити `INSERT INTO` скопіюйте у файл;
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/upOnGFBDvj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 1.5. Добавлення поля та запису з `Timestamp`
 
@@ -78,6 +84,8 @@
 - [ ] перейдіть на закладку `дані`, добавте ще один запис, але в поле `TS` не вписуйте жодного значення; 
 
 - [ ] після добавлення натисніть `оновити`, буде видно що в поле `TS` записалося автоматично значення;
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UCWaV41f7sI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 1.6. Створення індексного поля
 
@@ -97,6 +105,8 @@
 
 - [ ] скопіюйте запит `ALTER TABLE` зі зміною поля на індексне в текстовий файл 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WykG-qcENQM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 1.7. Створення БД, таблиці та полів таблиці за допомогою запита SQL
 
 - [ ] уважно передивіться текстовий файл з записами та проаналізуйте кожен з них
@@ -110,6 +120,8 @@
 - [ ] в утиліті "HeidiSQL" перейдіть на вкладку "Запит" і перенесіть туди цей зміст файлу
 
 - [ ] натисніть "Виконати SQL", якщо виникає повідомлення про помилку, проаналізуйте і виправіть код і знову повторіть; можливо виникне необхідність видалення бази даних 'DB3'
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/14M_CHQoSJU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 1.8. Створення копій екранів та  видалення баз даних
 
@@ -131,6 +143,8 @@
 
 - [ ] ознайомтеся з роботою бібліотеки за посиланням [бібліотеки Node-RED для роботи з БД](https://pupenasan.github.io/NodeREDGuidUKR/dbase/)
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n8idvJ2P10Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.2. Отримання переліку баз даних
 
 У даній лабораторній роботі будуть використовуватися два підключення:
@@ -150,6 +164,8 @@
 
 - [ ] зробіть розгортання, зробіть ініціювання формування запиту, повинен бути результат як зображено на рисунку праворуч; проаналізуйте і порівняйте, чи співпадає цей перелік з побаченим за допомогою клієнтської утиліти HeidiSQL.    
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YdcM15xRIb4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.3. Отримання переліку баз даних, з вказаним шаблоном імені
 
 - [ ] у вузлі `Inject` змініть запит, щоб він повертав відповіді за вказаним шаблоном (оператор `LIKE`) імені `mysql`
@@ -168,6 +184,8 @@ SHOW DATABASES LIKE 'devinfo'
 
 - [ ] подивіться на результат виконання запиту
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U3X9_3ex_nM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.4. Створення запиту на створення бази даних
 
 - [ ] модифікуйте програму, як показано на рисунку
@@ -181,6 +199,8 @@ SHOW DATABASES LIKE 'devinfo'
 - [ ] ініціюйте виконання запиту на відображення списку БД з іменем 'devinfo', подивіться чи з'явилася  ця БД в списку
 
 - [ ] ініціюйте виконання запиту на створення БД повторно; у панелі налагодження повинно з'явитися повідомлення про помилку;
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J-9a6q37Ug8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 2.5. Створення фрагменту коду, що створює базу даних з необхідними таблицями при старті
 
@@ -203,11 +223,15 @@ CREATE TABLE devinfo.tab1(
 
 Програма працює наступним чином: при старті перевіряється наявність бази даних  'devinfo', якщо її немає формується запит на створення БД, після чого формується запит на створення таблиці в БД.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/raGOfPmiHIQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.6. Встановлення та ознайомлення з бібліотеки Node-RED отримання статистики з ОС
 
 - [ ] Встановіть бібліотеку Node-RED `node-red-contrib-os` для отримання даних з ОС. 
 
 - [ ] Ознайомтеся з її вузлами та принципами їх роботи з  [опису бібліотеки  Node-RED Operating Systems](https://pupenasan.github.io/NodeREDGuidUKR/systems/os.html)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/64KB5m8086g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 2.7. Перевірка роботи вузлів `Memory` та `CPUs`
 
@@ -220,6 +244,8 @@ CREATE TABLE devinfo.tab1(
 ![](dbmedia/9.png)
 
 рис.6.8. Фрагмент програми з  `Memory` та `CPUs`.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hVCSlSJWdAI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 2.8. Створення фрагменту програми ресурсів
 
@@ -264,6 +290,8 @@ flow.set("prev",msg);
 
 рис.6.10. Виведення даних на тренди
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0vpcuY140VE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 #### 2.9. Модифікація програми для формування записів в історію
 
 - [ ] модифікуйте програму відповідно до наведеного нижче фрагменту, зверніть увагу що необхідно буде добавити конфігураційний вузол з БД 'devinfo', який буде посилатися на відповідну базу даних 
@@ -282,6 +310,8 @@ return msg;
 - [ ] зробіть розгортання та досягніть щоб не було помилок
 
 - [ ] використовуючи HeidiSQL проконтролюйте, що дані дійсно записуються в БД
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/43XUHliQ2cQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 #### 2.10. Реалізація запиту вибірки
 

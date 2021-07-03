@@ -667,6 +667,306 @@ $ git branch -vv
 $ git fetch --all; git branch -vv
 ```
 
+## Додаткові можливості роботи з git
+
+### Інструменти Git - Підмодулі
+
+<https://git-scm.com/book/uk/v2/Інструменти-Git-Підмодулі>
+
+Часто, під час роботи з проектом трапляється, що в ньому потрібно  використати інший проект. Можливо, це бібліотека, яку хтось інший або ви розробляєте окремо та  використовуєте в декількох проектах. У цих ситуаціях виникає поширена проблема: ви бажаєте мати можливість  розглядати два проекти як окремі, проте все одно мати можливість  використовувати один з іншого.
+
+Git намагається вирішити цю проблему за допомогою підмодулів. Підмодулі дозволяють зберігати репозиторій Git у піддиректорії іншого Git репозиторія. Це дозволяє вам зробити клон іншого репозиторія до проекту та тримати ваші коміти окремо.
+
+### Git Subtree
+
+https://github.com/git/git/blob/master/contrib/subtree/git-subtree.txt
+
+git-subtree - Merge subtrees together and split repository into subtrees
+
+[verse]
+
+```
+'git subtree' [<options>] -P <prefix> add <local-commit>
+'git subtree' [<options>] -P <prefix> add <repository> <remote-ref>
+'git subtree' [<options>] -P <prefix> merge <local-commit>
+'git subtree' [<options>] -P <prefix> split [<local-commit>]
+```
+
+[verse]
+
+```
+'git subtree' [<options>] -P <prefix> pull <repository> <remote-ref>
+'git subtree' [<options>] -P <prefix> push <repository> <refspec>
+```
+
+#### Опис
+Піддерева дозволяють включати підпроекти в підкаталог основного проекту, опціонально  включаючи всю історію підпроекту.
+
+Наприклад, ви можете включити вихідний код для бібліотеки як підкаталог вашої програми.
+
+Піддерева не слід плутати з підмодулями, які призначені для одного і того ж завдання. На відміну від підмодулів, піддеревам не потрібні будь-які спеціальні конструкції (як-от файли .gitmodules 'або gitlinks) у вашому сховищі, і не змушують кінцевих користувачів вашого сховища робити щось особливе або розуміти, як працюють піддерева. Піддерево - це просто підкаталог, до якого можна вкладати, розгалужувати та об’єднувати разом із вашим проектом будь-яким способом.
+
+Їх також не слід плутати з використанням стратегії злиття піддерев (subtree merge strategy). Головна відмінність полягає в тому, що, крім об’єднання іншого проекту як підкаталогу, ви також можете витягти всю історію підкаталогу зі свого проекту та зробити його самостійним проектом. На відміну від стратегії злиття піддерев ви можете чергувати ці дві операції вперед-назад. Якщо автономна бібліотека оновлюється, ви можете автоматично об’єднати зміни у свій проект; якщо ви оновите бібліотеку у своєму проекті, ви зможете знову "розділити" зміни та об'єднати їх назад у проект бібліотеки.
+
+Наприклад, якщо бібліотека, яку ви створили для однієї програми, виявиться корисною деінде, ви можете витягти всю її історію та опублікувати її як власне сховище git, не переплутавши випадково історію вашого проекту програми.
+
+[ПОРАДА]
+Щоб ваші повідомлення про коміти були чистими, ми рекомендуємо людям якомога більше розподіляти свої коміти між піддеревами та основним проектом. Тобто, якщо ви вносите зміни, що стосуються як бібліотеки, так і основної програми, зафіксуйте це у двох частинах. Таким чином, коли ви розділите бібліотечні коміти пізніше, їх описи все одно матимуть сенс. Але якщо це для вас не важливо, це не *потрібно*. 'git subtree' просто залишить не пов'язані з бібліотекою частини коміту, коли згодом поділить його на підпроект.
+
+
+#### Команди
+```
+add <local-commit>::
+add <repository> <remote-ref>::
+```
+
+Створіть піддерево <prefix>, імпортуючи його вміст із заданих <local-commit> або <repository> та <remote-ref>. Новий коміт створюється автоматично, приєднуючи історію імпортованого проекту до власної. За допомогою '--squash' імпортуйте лише один коміт із підпроекту, а не всю його історію.
+
+```
+merge <local-commit>::
+```
+
+Об’єднайте останні зміни до <local-commit> у піддерево <prefix>. Як і у звичайному 'git merge', це не видаляє ваших власних локальних змін; він просто об'єднує ці зміни в останню <local-commit>. За допомогою '--squash' створіть лише один коміт, який містить усі зміни, а не злиття у всій історії.
+
+Якщо ви використовуєте '--squash', напрямок об'єднання не завжди повинен бути прямим; Ви можете скористатися цією командою, щоб повернутися у минуле, наприклад, від v2.5 до v2.4. Якщо ваше злиття призводить до конфлікту, ви можете вирішити його в
+звичайними способами.
+
+```
+split [<local-commit>]::
+```
+
+Витягніть нову синтетичну історію проекту з історії піддерева <prefix> <local-commit> або HEAD, якщо <local-commit> не вказано. Нова історія включає лише коміти (включаючи злиття), які вплинули на <prefix>, і кожен із цих комітів тепер має вміст <prefix> у корені проекту, а не в підкаталозі. Таким чином, новостворена історія придатна для експорту як окреме сховище git.
+
+Після успішного розділення на stdout друкується один ідентифікатор коміту. Це відповідає HEAD новоствореного дерева, яким ви можете маніпулювати як завгодно.
+
+Повторювані поділи точно тієї ж історії гарантовано будуть ідентичними (тобто для створення однакових ідентифікаторів комітів), доки параметри, передані в "split" (наприклад, "--annotate"), є однаковими. Через це, якщо ви додасте нові коміти, а потім повторно розділите їх, нові коміти додаватимуться як коміти поверх історії, яку ви створили минулого разу, тому "git merge" та друзі працюватимуть, як очікувалося.
+
+```
+pull <repository> <remote-ref>::
+```
+
+Точно як "злиття", але паралельно "git pull" тим, що він отримує задане посилання із вказаного віддаленого сховища.
+
+```
+push <repository> [+][:]<remote-ref>::
+```
+
+Виконує 'split', використовуючи піддерево <prefix> <local-commit>, а потім робить 'git push', щоб перенести результат до <repository> і <remote-ref>. Це може бути використано для переміщення піддерева до різних гілок віддаленого сховища. Як і у випадку з "split", якщо не вказано <local-commit>, використовується HEAD. Необов’язковий ведучий '+' ігнорується.
+
+#### Опції для усіх команд 
+
+```
+-q::
+--quiet::
+```
+
+Придушити необов'язкові вихідні повідомлення на stderr.
+
+```
+-d::
+--debug::
+```
+
+Виробляти ще більше необов'язкових вихідних повідомлень на stderr.
+
+```
+-P <prefix>::
+--prefix=<prefix>::
+```
+
+Вкажіть шлях у сховищі до піддерева, яким ви хочете маніпулювати. Цей параметр є обов’язковим для всіх команд.
+
+#### Опції для 'add' та 'merge' (також 'pull', 'split --rejoin', та 'push --rejoin')
+
+These options for 'add' and 'merge' may also be given to 'pull' (which
+wraps 'merge'), 'split --rejoin' (which wraps either 'add' or 'merge'
+as appropriate), and 'push --rejoin' (which wraps 'split --rejoin').
+
+--squash::
+	Instead of merging the entire history from the subtree project, produce
+	only a single commit that contains all the differences you want to
+	merge, and then merge that new commit into your project.
++
+Using this option helps to reduce log clutter. People rarely want to see
+every change that happened between v1.0 and v1.1 of the library they're
+using, since none of the interim versions were ever included in their
+application.
++
+Using '--squash' also helps avoid problems when the same subproject is
+included multiple times in the same project, or is removed and then
+re-added.  In such a case, it doesn't make sense to combine the
+histories anyway, since it's unclear which part of the history belongs
+to which subtree.
++
+Furthermore, with '--squash', you can switch back and forth between
+different versions of a subtree, rather than strictly forward.  'git
+subtree merge --squash' always adjusts the subtree to match the exactly
+specified commit, even if getting to that commit would require undoing
+some changes that were added earlier.
++
+Whether or not you use '--squash', changes made in your local repository
+remain intact and can be later split and send upstream to the
+subproject.
+
+-m <message>::
+--message=<message>::
+	Specify <message> as the commit message for the merge commit.
+
+#### Опції для 'split' (також 'push')
+These options for 'split' may also be given to 'push' (which wraps
+'split').
+
+--annotate=<annotation>::
+	When generating synthetic history, add <annotation> as a prefix to each
+	commit message.  Since we're creating new commits with the same commit
+	message, but possibly different content, from the original commits, this
+	can help to differentiate them and avoid confusion.
++
+Whenever you split, you need to use the same <annotation>, or else you
+don't have a guarantee that the new re-created history will be identical
+to the old one.  That will prevent merging from working correctly.  git
+subtree tries to make it work anyway, particularly if you use '--rejoin',
+but it may not always be effective.
+
+-b <branch>::
+--branch=<branch>::
+	After generating the synthetic history, create a new branch called
+	<branch> that contains the new history.  This is suitable for immediate
+	pushing upstream.  <branch> must not already exist.
+
+--ignore-joins::
+	If you use '--rejoin', git subtree attempts to optimize its history
+	reconstruction to generate only the new commits since the last
+	'--rejoin'.  '--ignore-joins' disables this behavior, forcing it to
+	regenerate the entire history.  In a large project, this can take a long
+	time.
+
+--onto=<onto>::
+	If your subtree was originally imported using something other than git
+	subtree, its history may not match what git subtree is expecting.  In
+	that case, you can specify the commit ID <onto> that corresponds to the
+	first revision of the subproject's history that was imported into your
+	project, and git subtree will attempt to build its history from there.
++
+If you used 'git subtree add', you should never need this option.
+
+--rejoin::
+	After splitting, merge the newly created synthetic history back into
+	your main project.  That way, future splits can search only the part of
+	history that has been added since the most recent '--rejoin'.
++
+If your split commits end up merged into the upstream subproject, and
+then you want to get the latest upstream version, this will allow git's
+merge algorithm to more intelligently avoid conflicts (since it knows
+these synthetic commits are already part of the upstream repository).
++
+Unfortunately, using this option results in 'git log' showing an extra
+copy of every new commit that was created (the original, and the
+synthetic one).
++
+If you do all your merges with '--squash', make sure you also use
+'--squash' when you 'split --rejoin'.
+
+
+#### EXAMPLE 1. 'add' command
+Let's assume that you have a local repository that you would like
+to add an external vendor library to. In this case we will add the
+git-subtree repository as a subdirectory of your already existing
+git-extensions repository in ~/git-extensions/:
+
+	$ git subtree add --prefix=git-subtree --squash \
+		git://github.com/apenwarr/git-subtree.git master
+
+'master' needs to be a valid remote ref and can be a different branch
+name
+
+You can omit the '--squash' flag, but doing so will increase the number
+of commits that are included in your local repository.
+
+We now have a ~/git-extensions/git-subtree directory containing code
+from the master branch of git://github.com/apenwarr/git-subtree.git
+in our git-extensions repository.
+
+#### EXAMPLE 2. Extract a subtree using 'commit', 'merge' and 'pull'
+Let's use the repository for the git source code as an example.
+First, get your own copy of the git.git repository:
+
+	$ git clone git://git.kernel.org/pub/scm/git/git.git test-git
+	$ cd test-git
+
+gitweb (commit 1130ef3) was merged into git as of commit
+0a8f4f0, after which it was no longer maintained separately.
+But imagine it had been maintained separately, and we wanted to
+extract git's changes to gitweb since that time, to share with
+the upstream.  You could do this:
+
+	$ git subtree split --prefix=gitweb --annotate='(split) ' \
+	    	0a8f4f0^.. --onto=1130ef3 --rejoin \
+	    	--branch gitweb-latest
+	    $ gitk gitweb-latest
+	    $ git push git@github.com:whatever/gitweb.git gitweb-latest:master
+
+(We use '0a8f4f0^..' because that means "all the changes from
+0a8f4f0 to the current version, including 0a8f4f0 itself.")
+
+If gitweb had originally been merged using 'git subtree add' (or
+a previous split had already been done with '--rejoin' specified)
+then you can do all your splits without having to remember any
+weird commit IDs:
+
+	$ git subtree split --prefix=gitweb --annotate='(split) ' --rejoin \
+		--branch gitweb-latest2
+
+And you can merge changes back in from the upstream project just
+as easily:
+
+	$ git subtree pull --prefix=gitweb \
+		git@github.com:whatever/gitweb.git master
+
+Or, using '--squash', you can actually rewind to an earlier
+version of gitweb:
+
+	$ git subtree merge --prefix=gitweb --squash gitweb-latest~10
+
+Then make some changes:
+
+	$ date >gitweb/myfile
+	$ git add gitweb/myfile
+	$ git commit -m 'created myfile'
+
+And fast forward again:
+
+	$ git subtree merge --prefix=gitweb --squash gitweb-latest
+
+And notice that your change is still intact:
+
+	$ ls -l gitweb/myfile
+
+And you can split it out and look at your changes versus
+the standard gitweb:
+
+	git log gitweb-latest..$(git subtree split --prefix=gitweb)
+
+#### EXAMPLE 3. Extract a subtree using a branch
+Suppose you have a source directory with many files and
+subdirectories, and you want to extract the lib directory to its own
+git project. Here's a short way to do it:
+
+First, make the new repository wherever you want:
+
+	$ <go to the new location>
+	$ git init --bare
+
+Back in your original directory:
+
+	$ git subtree split --prefix=lib --annotate="(split)" -b split
+
+Then push the new branch onto the new empty repository:
+
+	$ git push <new-repo> split:master
+
+
+
 Книжка українською по Git [https://git-scm.com/book/uk/v2](https://git-scm.com/book/uk/v2?fbclid=IwAR0GVMcHP89ApW4WLZL0Idu8VNWFN7B93fH2GQFG3Res_H6-kShIM64K-2M)
 
 Детально про GitHub Ви можете прочитати [за посиланням](https://git-scm.com/book/uk/v2/GitHub-%D0%A1%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%D0%BD%D1%8F-%D1%82%D0%B0-%D0%BD%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D0%BE%D0%B1%D0%BB%D1%96%D0%BA%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE-%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%83).

@@ -67,7 +67,9 @@ pdfParser.on("pdfParser_dataReady", pdfData => {
         let target1 = x + '_' + y;
         let target2 = +(x + 1) + '_' + y;
         let target21 = +(x + 2) + '_' + y;
+        let target23 = +(x - 1) + '_' + y;
         let target3 = x + '_' + +(y + 1);
+
         //пошук по всім таргетам
         if (pagesinfo1[i].xy[target1]) { //якщо зафіксована така кордината
           for (let elm in pagesinfo1[i].xy[target1]) {//перебір усіх лементів по кординаті 
@@ -94,6 +96,13 @@ pdfParser.on("pdfParser_dataReady", pdfData => {
             }
           }
         }
+        if (pagesinfo1[i].xy[target23]) {
+          for (let elm in pagesinfo1[i].xy[target23]) {
+            if (elm !== name && Math.abs(xr - pagesinfo1[i].xy[target23][elm].x) < 3) { //близько по горизонталі
+              page3[name + '_' + elm] = { x1: xr, y1: yr, x2: pagesinfo1[i].xy[target23][elm].x, y2: pagesinfo1[i].xy[target23][elm].y }
+            }
+          }
+        }        
         if (pagesinfo1[i].xy[target3]) {
           for (let elm in pagesinfo1[i].xy[target3]) {
             if (elm !== name && (yr - pagesinfo1[i].xy[target3][elm].y) < 1) { //близько по вертикалі

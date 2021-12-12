@@ -1,0 +1,18 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pdf-lib": "^1.16.0",
+    "pdf2json": "^1.2.3",
+    "pdf2table": "^0.0.2",
+    "pdfjs-dist": "^2.8.335"
+  }
+}

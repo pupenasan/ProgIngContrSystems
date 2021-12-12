@@ -247,7 +247,7 @@ from(bucket:"example-bucket")
 
 Оскільки дані збираються у вікна часу, кожне вікно виводиться як власна таблиця. При візуалізації кожній таблиці присвоюється унікальний колір.
 
-![Windowed data tables](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\influx\flux\windowed-data.png)
+![Windowed data tables](flux/windowed-data.png)
 
 ## Aggregate windowed data
 
@@ -267,7 +267,7 @@ from(bucket:"example-bucket")
 
 Оскільки рядки в кожному вікні агрегуються, їх вихідна таблиця містить лише один рядок із сукупним значенням. Усі віконні таблиці все ще окремі, і при візуалізації відображатимуться як одиничні, не пов’язані між собою точки.
 
-![Windowed aggregate data](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\influx\flux\windowed-aggregates.png)
+![Windowed aggregate data](flux/windowed-aggregates.png)
 
 ## Добавлення відміток часу до агрегованих значень
 
@@ -308,7 +308,7 @@ from(bucket:"example-bucket")
 
 Після розгрупування та об’єднання в єдину таблицю сукупні точки даних з’являться пов’язаними у вашій візуалізації.
 
-![Unwindowed aggregate data](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\influx\flux\windowed-aggregates-ungrouped.png)
+![Unwindowed aggregate data](flux/windowed-aggregates-ungrouped.png)
 
 ## Helper functions
 

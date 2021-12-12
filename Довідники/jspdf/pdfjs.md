@@ -1,8 +1,14 @@
-# pdfjs
+# pdfjs (pdfjs-dist)
 
 
 
 https://github.com/rkusa/pdfjs/tree/master/docs
+
+https://mozilla.github.io/pdf.js/
+
+https://github.com/mozilla/pdf.js/wiki
+
+
 
 ## pdf2png Example
 

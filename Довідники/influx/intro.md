@@ -863,3 +863,9 @@ https://grafana.com/products/cloud/
 https://www.influxdata.com/get-influxdb/
 
 [Analysis of the Storage Mechanism in InfluxDB](https://medium.com/dataseries/analysis-of-the-storage-mechanism-in-influxdb-b84d686f3697) 
+
+https://www.sqlpac.com/en/documents/influxdb-migration-procedure-v1-v2.html
+
+https://youtu.be/zTek40zc9Cg
+
+https://youtu.be/-3dDD4KmCAM

@@ -8,3 +8,13 @@ PowerShell — это современная командная оболочка
 
 
 
+https://webhamster.ru/mytetrashare/index/mtb0/1434579537dupdoiaoza
+
+
+
+## Документация по Windows PowerShell
+
+- [Основы Windows PowerShell](https://info-comp.ru/sisadminst/546-windows-powershell-basics.html)
+- [Справочник командлетов Windows PowerShell](https://info-comp.ru/sisadminst/555-directory-windows-powershell-cmdlets.html)
+- [Программирование на языке PowerShell](https://info-comp.ru/programmirovanie/547-programming-in-powershell.html)
+- 

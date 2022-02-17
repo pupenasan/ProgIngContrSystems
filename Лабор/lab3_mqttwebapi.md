@@ -300,9 +300,9 @@ Node-RED  може представляти як бік клієнта так і
 
 #### 4.2. Робота з онлайн утилітами для API-тестування
 
-Для тестування API Ви можете користуватися будь якою утилітою, наприклад  https://apitester.com/ або http://restninja.io/ 
+Для тестування API Ви можете користуватися будь якою утилітою, наприклад http://restninja.io/  (у відео використовується <https://apitester.com>  який застарів)
 
-- [ ] Відкрийте сторінку однієї з утиліт <https://apitester.com> або <http://restninja.io>  
+- [ ] Відкрийте сторінку однієї з утиліт наприклад <http://restninja.io>  
 - [ ] Для перевірки роботи API  https://www.myip.com введіть в поле адреси https://api.myip.com у метод – «GET», і натисніть «SEND» або "TEST" в залежності від вибраного програми. 
 - [ ] Проаналізуйте відповідь
 - [ ] Повторіть те саме з адресою <http://ip-api.com/json/8.8.8.8/> . 
@@ -323,6 +323,8 @@ Node-RED  може представляти як бік клієнта так і
 рис.3.9. Фрагмент програми клієнту для IPAPI в Node-RED
 
 - [ ] Зробіть копію фрагменту екрану виводу у вікні відлагодження і збережіть для звіту.
+
+Зверніть увагу що у відео невірно налаштований вузол "headers". Знайдіть там помилку, враховуючи що вузол повинен формувати обов'язкові заголовки.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uBMuYkNzZOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

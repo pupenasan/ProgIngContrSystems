@@ -48,7 +48,7 @@ The alert engine publishes some internal metrics about itself. You can read more
 
 Grafana alerting allows you to attach rules to your dashboard panels. When you save the dashboard, Grafana extracts the alert rules into a  separate alert rule storage and schedules them for evaluation.
 
-![Alerting overview](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\grafana\media\drag_handles_gif.gif)
+![Alerting overview](media/drag_handles_gif.gif)
 
 In the Alert tab of the graph panel you can configure how often the  alert rule should be evaluated and the conditions that need to be met  for the alert to change state and trigger its [notifications](https://grafana.com/docs/grafana/latest/alerting/notifications/).
 
@@ -86,9 +86,9 @@ Typically, it’s always a good idea to use this setting since it’s  often wor
 
 Below you can see an example timeline of an alert using the `For` setting. At ~16:04 the alert state changes to `Pending` and after 4 minutes it changes to `Alerting` which is when alert notifications are sent. Once the series falls back to normal the alert rule goes back to `OK`.
 
-​	[![Alerting For](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\grafana\media\alerting-for-dark-theme.png) 		](https://grafana.com/static/img/docs/v54/alerting-for-dark-theme.png) 
+​	[![Alerting For](media/alerting-for-dark-theme.png) 		](https://grafana.com/static/img/docs/v54/alerting-for-dark-theme.png) 
 
-​	[![Alerting Conditions](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\grafana\media\alerting_conditions.png) 		](https://grafana.com/static/img/docs/v4/alerting_conditions.png) 
+​	[![Alerting Conditions](media/alerting_conditions.png) 		](https://grafana.com/static/img/docs/v4/alerting_conditions.png) 
 
 ### Conditions
 

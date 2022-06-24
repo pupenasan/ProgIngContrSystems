@@ -20,6 +20,8 @@
 
 - [Довідники](Довідники)
 
+- [Матеріали суміжних курсів](othercourses/README.md)
+
 
 
 [Сторінка курсу на GitHub](https://pupenasan.github.io/ProgIngContrSystems)

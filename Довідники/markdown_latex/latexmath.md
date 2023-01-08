@@ -234,10 +234,10 @@ $$
 \let\oldsqrt\sqrt
 % it defines the new \sqrt in terms of the old one
 \def\sqrt{\mathpalette\DHLhksqrt}
-\def\DHLhksqrt#1#2{%
+\def\DHLhksqrt#1#2{
 \setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
 \advance\dimen0-0.2\ht0
-\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}
 {\box0\lower0.4pt\box2}}
 ```
 

@@ -133,15 +133,6 @@ $$
 
 `^3/_7` -> $^3/_7$
 
-Якщо це виглядає трохи «вільним» (тобто, перевищено), можна визначити жорстку версію, вставивши деякий негативний пробіл
-
-```
-%running fraction with slash - requires math mode.
-\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
-
-\rfrac{3}{7}
-```
-
 If you use them throughout the document, usage of xfrac package is recommended. This package provides `\sfrac` command to create slanted fractions. Usage:
 
 ```

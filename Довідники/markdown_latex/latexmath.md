@@ -765,7 +765,7 @@ f(n) =
   \end{cases}
 $$
 
-Цей код створює помилки з Miktex 2.9 і не дає результатів, показаних праворуч. Використовуйте \mathrm замість просто \text.
+Цей код створює помилки з Miktex 2.9 і не дає результатів, показаних праворуч. Використовуйте `\mathrm` замість просто `\text`.
 
 
 (Зауважте, що цей конкретний приклад може бути виражений у більш елегантному коді конструкцією case, наданою пакетом amsmath, описаним у розділі Advanced Mathematics.)
@@ -959,16 +959,16 @@ All the pre-defined mathematical symbols from the \TeX\ package are listed  belo
 | $\sphericalangle$ | `\sphericalangle` |      | $\measuredangle$ | `\measuredangle` |
 |                   |                   |      |                  |                  |
 
-| Sym        | Script     |      | Sym      | Script   |      | Sym                | Script             | Sym         | Script      |
-| ---------- | ---------- | ---- | -------- | -------- | ---- | ------------------ | ------------------ | ----------- | ----------- |
-| $\pm$      | `\pm`      |      | $\cap$   | `\cap`   |      | $\diamond$         | `\diamond`         | $\oplus$    | `\oplus`    |
-| $\mp$      | `\mp`      |      | $\cup$   | `\cup`   |      | $\bigtriangleup$   | `\bigtriangleup`   | $\ominus$   | `\ominus`   |
-| $\times$   | `\times`   |      | $\uplus$ | `\uplus` |      | $\bigtriangledown$ | `\bigtriangledown` | $\otimes$   | `\otimes`   |
-| $\div$     | `\div`     |      | $\sqcap$ | `\sqcap` |      | $\triangleleft$    | `\triangleleft`    | $\oslash$   | `\oslash`   |
-| $\ast$     | `\ast`     |      | $\sqcup$ | `\sqcup` |      | $\triangleright$   | `\triangleright`   | $\odot$     | `\odot`     |
-| $\star$    | `\star`    |      | $\vee$   | `\vee`   |      | $\bigcirc$         | `\bigcirc`         | $\circ$     | `\circ`     |
-| $\dagger$  | `\dagger`  |      | $\wedge$ | `\wedge` |      | $\bullet$          | `\bullet`          | $\setminus$ | `\setminus` |
-| $\ddagger$ | `\ddagger` |      | $\cdot$  | `\cdot`  |      | $\wr$              | `\wr`              | $\amalg$    | `\amalg`    |
+| Sym        | Script     |      | Sym      | Script   |      | Sym                | Script             |      | Sym         | Script      |
+| ---------- | ---------- | ---- | -------- | -------- | ---- | ------------------ | ------------------ | ---- | ----------- | ----------- |
+| $\pm$      | `\pm`      |      | $\cap$   | `\cap`   |      | $\diamond$         | `\diamond`         |      | $\oplus$    | `\oplus`    |
+| $\mp$      | `\mp`      |      | $\cup$   | `\cup`   |      | $\bigtriangleup$   | `\bigtriangleup`   |      | $\ominus$   | `\ominus`   |
+| $\times$   | `\times`   |      | $\uplus$ | `\uplus` |      | $\bigtriangledown$ | `\bigtriangledown` |      | $\otimes$   | `\otimes`   |
+| $\div$     | `\div`     |      | $\sqcap$ | `\sqcap` |      | $\triangleleft$    | `\triangleleft`    |      | $\oslash$   | `\oslash`   |
+| $\ast$     | `\ast`     |      | $\sqcup$ | `\sqcup` |      | $\triangleright$   | `\triangleright`   |      | $\odot$     | `\odot`     |
+| $\star$    | `\star`    |      | $\vee$   | `\vee`   |      | $\bigcirc$         | `\bigcirc`         |      | $\circ$     | `\circ`     |
+| $\dagger$  | `\dagger`  |      | $\wedge$ | `\wedge` |      | $\bullet$          | `\bullet`          |      | $\setminus$ | `\setminus` |
+| $\ddagger$ | `\ddagger` |      | $\cdot$  | `\cdot`  |      | $\wr$              | `\wr`              |      | $\amalg$    | `\amalg`    |
 
 | Symbol     | Script     |      | Symbol               | Script                                                       |
 | ---------- | ---------- | ---- | -------------------- | ------------------------------------------------------------ |

@@ -710,6 +710,33 @@ console.log (fno.toString());//повертає першокод функції,
 fno.call (this, 100,10,1);    //111, викликає фукнкцію, this передається для контекста
 ```
 
+### Об'єкт Buffer
+
+Буфер - область пам'яті, яка використовується для тимчасового збереження бінарних даних (I/O, файли, мережа …). Для роботи з буфером використовується глобальний клас Buffer, який надає для цього ряд методів. 
+
+```js
+let buf1 = Buffer.alloc(8,0xFF); // виділити буфер на 8 байт і заповнити
+buf1.write('ABC', 2);//записати 65,66,67 с 2-го байта
+let buf2 = Buffer.from('DEF'); //отримати буфер з рядку => 68 69 70
+let buf3 = Buffer.from([1,2]); //отримати буфер з масиву
+let buf4 = Buffer.concat([buf1,buf3,buf2],buf1.length + buf2.length + buf3.length); 
+console.log (buf4.length); //24
+console.log (buf4.toJSON().data);//виведе масив значень байтів буферу
+```
+
+Буфер можна вважати байтовою послідовністю. Для інтерпретації цієї послідовності як даних певного типу, є різноманітні методи, наприклад `readInt16BE(offset)` інтерпретує 16-біт буферу починаючи з `offset` як 16-бітний Integer в форматі `Big Endian`. Ось кілька прикладів:
+
+```js
+const buf = Buffer.from([1, 2, 3, 4, 0, 5]);
+console.log(buf.readInt16BE(4)); //виведе 5 0x0005
+console.log(buf.readInt16LE(4)); //виведе 1280 0x0500
+buf.writeFloatBE(36.5, 0); //запише 36.5 в форматі BigEndian
+console.log(buf.readFloatBE(0)); //виведе 36.5
+console.log(buf.readFloatLE(0)); //виведе 6.549669022254195e-42
+```
+
+ Усі методи наведені в [документації](https://nodejs.org/api/buffer.html)    
+
 ## Додаткові посилання
 
 - [Асинхронний JS](asyncjs.md)

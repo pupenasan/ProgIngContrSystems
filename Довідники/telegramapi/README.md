@@ -1,3 +1,5 @@
+https://telegram-bot-sdk.readme.io/reference
+
 # Telegram API
 
 [Bots: An introduction for developers](https://core.telegram.org/bots)
@@ -82,7 +84,7 @@ You can use bots to **accept payments** from Telegram users around the world.
 - Check out [Demo Shop](https://telegram.org/teststore) for an example of a [Telegram Channel](https://telegram.org/tour/channels) used as **virtual storefront**.
 
 <video class="blog_video_player tl_blog_vid_autoplay" onclick="videoTogglePlay(this)" autoplay="autoplay" loop="" controls="controls" muted="muted" poster="/file/464001377/1/0o3vSvY22g8.123356/deb4ed6951d780f7b7" style="max-width: 400px;" title="If your pizza place can't deliver a clone army, you're buying pizza from the wrong shop." alt="Video: Ordering a pizza through a Telegram channel">
-  
+
  </video>
 
 > [Read more about the Payments Platform »](https://core.telegram.org/bots/payments)

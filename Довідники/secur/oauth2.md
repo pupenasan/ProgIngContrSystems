@@ -2625,3 +2625,23 @@ https://swagger.io/docs/specification/authentication/oauth2/
 https://ucci-service.org/ua/develop/docs?page=22 
 
 https://auth0.com/intro-to-iam/what-is-oauth-2
+
+
+
+https://cloud.google.com/docs/authentication
+
+https://habr.com/ru/post/491116/ 
+
+https://www.digitalocean.com/community/tutorials/oauth-2-ru
+
+https://docs.oracle.com/cd/E74890_01/books/RestAPI/RestAPI_Overview13.html
+
+Для проб
+
+https://swapi.dev/
+
+https://jigsaw.w3.org/HTTP
+
+https://demo.c2id.com/oidc-client/
+
+https://developers.google.com/oauthplayground/

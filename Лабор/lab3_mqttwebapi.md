@@ -328,99 +328,9 @@ Node-RED  може представляти як бік клієнта так і
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uBMuYkNzZOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### 5. Робота з FRED - хмарним сервісом Node-RED  
 
-На хмарних платформах, зокрема IBM, інструмент Node-RED можна використовувати як середовище для розробки програмних додатків. Є також можливість скористатися окремим хмарним сервісом FRED https://fred.sensetecnic.com/ . Ця платформа має безкоштовну ліцензію, обмежену 50-ма вузлами та потребує перезапуску (працює добу, після чого треба перезапускати). Для користування платформою потрібна безкоштовна реєстрація.
 
-Даний сервіс буде використовуватися в лабораторних роботах в тому випадку, коли необхідно буде мати серверний додаток в Інтернет. 
 
-#### 5.1. Реєстрація на FRED.
-
-- [ ] Зайдіть на https://fred.sensetecnic.com/ ознайомтеся з умовами ліцензії. 
-
-- [ ] Зайдіть на https://users.sensetecnic.com/register , зареєструйтеся:
-
-- введіть необхідні дані в поля реєстрації, 
-- виберіть PLAN Fred Short.
-- виставте одну із опцій «How would you describe your use of FRED? (select one)»
-- виставте одну або кілька опцій «What industry or area of interest are you using FRED for? (select all that apply)»
-- виставте опцію «I agree to the Terms of Use»
-- виставте опцію «Я не робот»
-- натисніть “Create An Account”
-- через кілька хвилин на пошту прийде лист від [info@sensetecnic.com](mailto:info@sensetecnic.com) , в якому буде посилання  «Verify your email address»  для активації аккаунту
-
-#### 5.2. Запуск FRED.
-
-- [ ] Зайдіть на https://fred.sensetecnic.com/ і якщо Node-RED не виконується, запустіть його натисканням “Start Instance”. Сховайте ліву бокову панель кнопкою «Togle slidebar» (стрілка в лівому нижньому кутку екрану)
-
-- [ ] Видаліть усі вузли в потоці, які вставлені туди при створенні аккаунту.
-
-- [ ] Створіть невеличку програму, наприклад, яка складається з двох з’єднаних вузлів «inject» та «debug», та перевірте її роботу.   
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nkEnpvq-XYI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### 6. Використання WEB-сокетів 
-
-#### 6.1. Ознайомтеся з принципами роботи WEB-сокетів
-
-- [ ] Ознайомтеся з принципами роботи WEB-сокетів  (даються в лекційному матеріалі).
-
-В даній частині лабораторної роботи WEB-сокети будуть використовуватися для наступних цілей:
-
-- зв’язку між локальним (ПК) та віддаленим (FRED) Node-RED, тобто в якості подовжувача зв’язку між потоками
-- зв’язку Node-RED з застосунками в Інтернет 
-- зв’язку Node-RED з застосунками на мобільних пристроях 
-
-При роботі з HTTP (у тому числі WEB-сокетами) FRED, як посередник, передає всі повідомлення з Інтернету на екземпляр Node-RED. Щоб відправити запит до конкретного екземпляру, FRED використовує ім'я користувача в заголовку для **приватних** вузлів введення API або URL для **загальнодоступних** вузлів вводу Websockets. 
-
-Для створення загальнодоступного серверного вузла Websocket, необхідно в конфігураційному вузлі Websocket в URL-адресі прослухування вказати префікс «/public/». Тоді можна буде отримати доступ до websocket в
-
-```http
-wss://{ім'я користувача}.fred.sensetecnic.com/api/public/{custom_endpoint_name}.
-```
-
-Наприклад, вхідний вузол websocket, налаштований на шлях /public /data, створений користувачем mike, буде доступний як 
-
-```http
-wss://mike.fred.sensetecnic.com/api/public/data
-```
-
-Для того, щоб клієнт Websockets отримував доступ до захищених вузлів вводу Websocket у потоках, необхідно надати своє ім'я користувача та пароль, використовуючи базову аутентифікацію, або ключ API з вашими запитами. Щоб зробити запит до захищеного вузла вводу веб-сокету, ім'я користувача та ключ API повинні бути додані до заголовків запиту: x-auth-user та x-auth-key. В даній лабораторній роботі не будуть використовуватися захищені приватні з’єднання. 
-З деталями роботи з Веб-сокетами на платформі FRED, можна ознайомитися [тут](http://docs.sensetecnic.com/fred/websocket-access/). 
-
-####  6.2. Створення серверного WEB-сокету в FRED.
-
-- [ ] В Node-RED на платформі FRED створіть вхідний серверний “WebSocket In”  та з’єднайте його з вузлом “Debug” (рис.3.10) 
-
-![рис.12.](WEBAPIMedia/Рисунок12.png) 
-
-рис.3.10. Фрагмент програми серверного WEB-сокету в FRED
-
-- [ ] Відкрийте Веб-інтерфейс Dashboard FRED, скопіюйте адресу, вона повинна мати вигляд:
-
-```http
-https://account_name.fred.sensetecnic.com/api/ui/
-```
-
-де *account _name –* ім’я вашої реєстрації 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FGLQBB4pPDM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-#### 6.3.Створення клієнтського WEB-сокету в локальному Node-RED.
-
-- [ ] Запустіть Node-RED на локальному ПК. Створіть новий потік, в ньому розмістіть два вузли – клієнтський “WebSocket out”  та “Inject” (рис.3.11). Налаштуйте відповідно до вашого серверного сокету. Перевірте роботу з’єднання. Зробіть копію екрану потоку на FRED, на якій видно адресу вашого аккаунту і наявність з’єднання – зелений напис «connected». Добавте його до звіту.  
-
- ![рис.13.](WEBAPIMedia/Рисунок13.png) 
-
- рис.3.11. Фрагмент програми WEB-сокету в локальному Node-RED
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Y1Y5igcchTM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-#### 6.4. Перевірка роботи сервісів WEB-сокету через онлайн утиліти.
-
-- [ ] Самостійно зробіть тестування клієнтського WEB-сокету в локальному Node-RED, під’єднавшись до `wss://echo.websocket.org`. Цей сервер передбачає ехо-відповіді на запити, тому для перевірки його роботи необхідно як вхідний так і вихідний клієнтські сокети.  
-
-- [ ] Самостійно зробіть тестування створеного раніше серверного WEB-сокету на FRED через севіс https://www.websocket.org/echo.html 
 
 ## Питання до захисту
 
@@ -433,4 +343,3 @@ https://account_name.fred.sensetecnic.com/api/ui/
 7. Розкажіть про призначення QoS.
 8. Розкажіть про принципи функціонування HTTP API та REST.
 9. Які відкриті сервіси HTTP API і як використовувалися в даній лабораторній роботі?
-10. Розкажіть про функціонування WEB-сокетів. Поясніть яким чином налаштовувалися і для який функцій WEB-сокети в лабораторній роботі.

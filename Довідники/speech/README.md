@@ -1,0 +1,7 @@
+https://sendpulse.ua/blog/transcribe-audio-into-text 
+
+
+
+[Як я вебінар перекладав. Замітки аматора](https://www.linkedin.com/pulse/%25D1%258F%25D0%25BA-%25D1%258F-%25D0%25B2%25D0%25B5%25D0%25B1%25D1%2596%25D0%25BD%25D0%25B0%25D1%2580-%25D0%25BF%25D0%25B5%25D1%2580%25D0%25B5%25D0%25BA%25D0%25BB%25D0%25B0%25D0%25B4%25D0%25B0%25D0%25B2-%25D0%25B7%25D0%25B0%25D0%25BC%25D1%2596%25D1%2582%25D0%25BA%25D0%25B8-%25D0%25B0%25D0%25BC%25D0%25B0%25D1%2582%25D0%25BE%25D1%2580%25D0%25B0-oleksandr-pupena/?trackingId=T7XpsoW%2FLMbsBdc3I09PJA%3D%3D)
+
+- https://downsub.com/ завантаження субтитрів

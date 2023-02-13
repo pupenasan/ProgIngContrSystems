@@ -8,6 +8,14 @@ https://sox.sourceforge.net/sox.pdf
 
 SoX − Sound eXchange, швейцарський армійський ніж для аудіоманіпуляції
 
+## Встановлення
+
+https://sourceforge.net/projects/sox/files/sox/14.4.1/
+
+```
+sudo apt-get install sox
+```
+
 ## Синтаксис виклику
 
 Загальна команда:

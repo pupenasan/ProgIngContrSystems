@@ -279,7 +279,7 @@ return msg;
   - [ ] відкрийте на іншій закладці браузеру посилання <https://www.freeformatter.com/html-formatter.html> 
   - [ ] помістіть скопійований текст в поле «Option 1: Copy-paste your HTML document here» 
   - [ ] натисніть на кнопку «format HTML». 
-- [ ] У вікні «Formatted HTML:» з’явиться відформатований код сторінки в форматі HTML. Проаналізуйте HTML код. Якщо ви до цього не знайомилися з мовою розмітки HTML - можете прочитати [цей урок](http://htmlbook.ru/samhtml/vvedenie-v-html). 
+- [ ] У вікні «Formatted HTML:» з’явиться відформатований код сторінки в форматі HTML. Проаналізуйте HTML код. Якщо ви до цього не знайомилися з мовою розмітки HTML - можете прочитати [цей урок](http://htmlbook.in.ua/01-html/). 
 
 - [ ] Зверніть увагу на тег **link** в заголовку HTML (допомога по призначенню тегу [тут](https://css.in.ua/html/tag/link)), та img (допомога по призначенню тегу [тут](https://css.in.ua/html/tag/img)).
 

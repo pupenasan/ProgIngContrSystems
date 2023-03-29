@@ -50,23 +50,7 @@ Appsmith підтримує написання однорядкового код
 
 **Invalid code**
 
-```javascript
-/*Call a query to fetch the results and filter the data*/
-{{ 
-   const array = QueryName.data;
-   const filterArray = array.filter((row) => row.id > 5);
-   return filterArray;
-}}
-
-/* Check the selected option and return the value*/
-{{ 
-  if (Dropdown.selectedOptionValue === "1") {
-      return "Option 1";
-  } else {
-      return "Option 2";
-  }
-}}
-```
+![image-20230329135855058](media/image-20230329135855058.png)
 
  **Valid code**
 

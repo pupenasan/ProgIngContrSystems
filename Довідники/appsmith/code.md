@@ -29,7 +29,11 @@ Appsmith підтримує написання однорядкового код
 У цьому прикладі показано, як виконати кілька дій для успішного виконання запиту `updateData`.
 
 ```js
-{{updateData.run(() => {getData.run(), closeModal('ModalName')}, () => {})}}
+{{ 
+    updateData.run(() => {
+        getData.run(), closeModal('ModalName')
+    }, () => {} )
+ }}
 ```
 
 If your expression becomes too complex or challenging to fit in a single  line, use multi-line code explained in the following section. To keep  the code readable, you can also write a helper function in a [JS Object](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta#js-object).

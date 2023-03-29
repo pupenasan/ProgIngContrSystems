@@ -28,7 +28,7 @@ Appsmith підтримує написання однорядкового код
 
 У цьому прикладі показано, як виконати кілька дій для успішного виконання запиту `updateData`.
 
-```javascript
+```js
 {{updateData.run(() => {getData.run(), closeModal('ModalName')}, () => {})}}
 ```
 

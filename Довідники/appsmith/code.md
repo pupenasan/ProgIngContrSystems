@@ -54,28 +54,7 @@ Appsmith підтримує написання однорядкового код
 
  **Valid code**
 
-```javascript
-/* Call a query and then manipulate its result */
-{{ 
-  (function() {
-      const array = QueryName.data;
-      const filterArray = array.filter((row) => row.id > 5);
-      return filterArray;
-   })()
-}}
-
-/* Verify the selected option and return the value*/
-
-{{ 
-  (function() {
-      if (Dropdown.selectedOptionValue === "1") {
-        return "Option 1";
-      } else {
-        return "Option 2";
-      }
-   })()
-}}
-```
+![image-20230329140624559](media/image-20230329140624559.png)
 
 #### JS Objects
 

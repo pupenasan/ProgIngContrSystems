@@ -28,15 +28,7 @@ Appsmith підтримує написання однорядкового код
 
 У цьому прикладі показано, як виконати кілька дій для успішного виконання запиту `updateData`.
 
-```js
-{{ 
-    updateData.run(() => {
-        getData.run(), closeModal('ModalName')
-    }, () => {} )
- }}
-```
-
-If your expression becomes too complex or challenging to fit in a single  line, use multi-line code explained in the following section. To keep  the code readable, you can also write a helper function in a [JS Object](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta#js-object).
+`js{{updateData.run(() => {getData.run(), closeModal('ModalName')}, () =>{})}}`
 
 Якщо ваш вираз стає надто складним або складним, щоб вмістити його в один рядок, скористайтеся багаторядковим кодом, який описано в наступному розділі. Щоб зберегти код читабельним, ви також можете написати допоміжну функцію в [JS Object](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta#js-object).
 

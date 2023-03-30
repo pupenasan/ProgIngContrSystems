@@ -288,7 +288,7 @@ sudo reboot
 
 #### 2.2. Завантаження бібліотеки зображень RPI3
 
-- [ ] Завантажте на ПК бібліотеку RPI3 з іменем `Raspberry Pi 3_3.fzpz` для  Fritzing  за [посиалнням](https://fritzing.org/media/fritzing-repo/projects/r/raspberry-pi-3/fritzing/Raspberry Pi 3_3.fzpz). Обговорення бібліотеки на форумі доступне за [посиланням ](https://fritzing.org/projects/raspberry-pi-3) 
+- [ ] Завантажте на ПК бібліотеку RPI3 з іменем `Raspberry Pi 3_3.fzpz` для  Fritzing  за [посиланням](https://fritzing.org/projects/raspberry-pi-3). Обговорення бібліотеки на форумі доступне за [посиланням ](https://fritzing.org/projects/raspberry-pi-3)  
 
 #### 2.3. Запуск, налаштування Fritzing та встановлення бібліотеки RPI3
 

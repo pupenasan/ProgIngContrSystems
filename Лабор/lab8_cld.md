@@ -143,7 +143,7 @@
 let now = new Date ();//сьогодні
 //trend - 2-мірний масив 3x60, на 60 останніх значень 
 //читання з контексту потоку або ініціалізація масиву-буферу
-let trend = flow.get ("trend") || [[now.getTime()],[0],[0]];
+let trend = flow.get ("trend") || [[now.toLocaleString()],[0],[0]];
 let l = trend[0].length;    //довжина мавису
 //з кожним викликом збільшуємо градуси в радіанах
 let rad = trend[1][l-1] + Math.PI/5;   

@@ -471,11 +471,9 @@ run(params: Object): Promise
 
 ```js
 // Using promise syntax to chain actions in sequence
-{{
     Query1.run(params)
         .then(() => {...}) // run after the query is successful
         .catch(() => {...}) // run if the query encounters any errors
-}}
 ```
 
 Щоб дізнатися більше про з’єднання дій для створення складних робочих процесів, див  [complex workflows](https://docs.appsmith.com/core-concepts/writing-code/workflows#complex-workflows). 
@@ -527,11 +525,11 @@ getByIds: async (ids) => {
 {{ appsmith.store.records }}
 ```
 
-Нарешті, щоб виконати запит, установіть подію **onClick** віджета Button для виконання вашої допоміжної функції:
+Нарешті, щоб виконати запит, установіть подію **onClick** (в подвійних фігурних дужках) віджета Button для виконання вашої допоміжної функції:
 
 ```javascript
 // Button widget's onClick
-{{ utils.getByIds([1, 4, 8, 34, 16])}}
+utils.getByIds([1, 4, 8, 34, 16])
 ```
 
 Коли ви натискаєте цю кнопку, вона запускає вашу допоміжну функцію, яка запитує базу даних для кожного з потрібних вам користувачів.

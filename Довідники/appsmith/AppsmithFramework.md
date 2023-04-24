@@ -469,7 +469,7 @@ run(params: Object): Promise
 
 Ця функція повертає **promise** JavaScript, яку можна використовувати для послідовної обробки асинхронних дій. Використовуйте `.then()` і `.catch()`, щоб написати код, який буде виконано, коли запит повертається успішно або помилково відповідно. Або використовуйте синтаксис `async/await`.
 
-```javascript
+```js
 // Using promise syntax to chain actions in sequence
 {{
     Query1.run(params)

@@ -71,7 +71,7 @@ SELECT DISTINCT country FROM users;
 2) Використовуйте JavaScript, щоб **перетворити дані**, додавши їх до властивості **Options**.
 
 ```js
-{{getdata.data.map( p => ({label: p.country, value: p.country}))}}
+getdata.data.map( p => ({label: p.country, value: p.country}))
 ```
 
 Код перетворює кожен елемент у масиві `getdata` за допомогою функції `map()`, щоб створити новий об’єкт із властивостями `label` і `value`, для яких встановлено значення країни для кожного об’єкта в масиві.

@@ -312,14 +312,14 @@ As you look at the `CategorySelect` widget, you'll see some default options alre
 Відкрийте властивості `CategorySelect` і додайте наступний фрагмент у поле `Options`:
 
 ```javascript
-{{
+{ {
     _.map(
       ["vegetables", "bakery", "fruits", "beverages", "dairy"],
       function (category) {
         return { label: category.toUpperCase(), value: category.toUpperCase() };
       }
     );
-}}
+} }
 ```
 
 > Щоб переконатися, що це працює, ви можете перевірити **Evaluated Value** та переконатися, що воно відповідає **Expected Structure**.

@@ -269,10 +269,12 @@ Categories Rating: {{businessTable.selectedRow.categories}}
 
 1. Перетягніть **button widget** під відомостями про компанію.
 2. Відкрийте панель властивостей кнопок і змініть мітку на **View Reviews**.
-3. У розділі Actions перейдіть до події onClick і **перемкніть кнопку JS і вставте наступний код:**
+3. У розділі Actions перейдіть до події onClick і **перемкніть кнопку JS і вставте наступний код:** 
 
 ```js
-{{(function () {storeValue("business_id", businessTable.selectedRow.business_id); navigateTo("Business Reviews")})()}}
+{ {
+(function () {storeValue("business_id", businessTable.selectedRow.business_id); navigateTo("Business Reviews")})()
+} }
 ```
 
 Чудово, ви успішно написали свою першу функцію JS на Appsmith. Як ви можете помітити, це первинні викликані функції, що означає, що вони запускаються, як тільки визначено. Усередині функції використовуйте метод **`storeValue`**, щоб зберегти бізнес-ключ із `businessTable` у змінній **`business_id`**. Далі ви використали метод **`navigateTo`**, щоб мати можливість переспрямовувати на нову сторінку.

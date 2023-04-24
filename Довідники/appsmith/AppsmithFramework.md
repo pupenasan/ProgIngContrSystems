@@ -239,7 +239,7 @@ This field is an enum that contains whether the app is currently running in  vie
 
 Консоль є невід’ємною частиною інструментарію будь-якого розробника – вона дозволяє відстежувати, що робить ваша програма, реєструючи повідомлення, помилки та попередження, щойно вони виникають. Ці інформативні журнали значно полегшують налагодження коду та визначення джерела помилок і неочікуваної поведінки.
 
-Appsmith надає глобальний об’єкт консолі для реєстрації інформації про ваш [API](https://docs.appsmith.com/core-concepts/connecting-to-data-sources/authentication), [Queries](https://docs.appsmith.com/core-concepts/data-access-and-binding/querying-a-database) і [Widgets properties](https://docs.appsmith.com/reference/widgets) у вашому коді JavaScript. Викличте консольний об’єкт за допомогою вусового знака `{{` та `}}` у властивостях віджета або [безпосередньо у вашому коді](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta#use -корпус).
+Appsmith надає глобальний об’єкт консолі для реєстрації інформації про ваш [API](https://docs.appsmith.com/core-concepts/connecting-to-data-sources/authentication), [Queries](https://docs.appsmith.com/core-concepts/data-access-and-binding/querying-a-database) і [Widgets properties](https://docs.appsmith.com/reference/widgets) у вашому коді JavaScript. Викличте консольний об’єкт за допомогою подвійних фігурних дужок (вусів \{\{ \}\}) у властивостях віджета або [безпосередньо у вашому коді](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta#use -корпус).
 
 Журнали консолі **не** зберігаються і доступні **лише** для **поточного сеансу.**
 

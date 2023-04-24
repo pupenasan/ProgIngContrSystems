@@ -14,7 +14,6 @@ https://docs.appsmith.com/core-concepts/writing-code/javascript-promises
 
 ```javascript
 // Using Callbacks
-{{
     MockApi.run(() => {
         MockApi1.run(() => {
             MockApi2.run(() => {
@@ -22,18 +21,15 @@ https://docs.appsmith.com/core-concepts/writing-code/javascript-promises
                 })
         })   
     }) 
-}}
 ```
 
 Використання promises для того самого прикладу робить реалізацію більш керованою та читабельною.
 
 ```javascript
-{{
     MockApi.run()
         .then(() => MockApi1.run())
         .then(() => MockApi2.run())
         .then(() => showAlert('done'))
- }}
 ```
 
 ### Promise methods
@@ -43,13 +39,11 @@ promises JavaScript мають кілька вбудованих методів.
 Передаючи функцію в `.then()` або `.catch()`, завжди пам’ятайте, що її потрібно передавати як функцію [зворотного виклику](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function) , як показано нижче:
 
 ```javascript
-{{
   (function() {
     ❌ MockApi.run().then(showAlert(`Success`))
     ✅ return MockApi.run().then(() => showAlert(`Success`))
       
    })()
-}}
 ```
 
 #### Promise.any()
@@ -59,7 +53,6 @@ promises JavaScript мають кілька вбудованих методів.
 **Example**
 
 ```javascript
-{{
 (function(){
     
   return Promise.any([
@@ -69,7 +62,6 @@ promises JavaScript мають кілька вбудованих методів.
     showAlert(`Winner: ${res.args.name}`) // Alert Message showns as "Winner: 1" 
   });
 })()
-}}
 ```
 
 In this example:
@@ -84,7 +76,6 @@ It waits for the first settled promise, fulfilled, or rejected, to get its resul
 **Example**
 
 ```javascript
-{{
 (function(){
     return  Promise.race([
             MockApi.run({ name: 1 }),
@@ -93,7 +84,6 @@ It waits for the first settled promise, fulfilled, or rejected, to get its resul
         showAlert(`Winner: ${res.args.name}`)
     });
 })()
-}}
 ```
 
 In the example:
@@ -109,7 +99,6 @@ It takes an array of promises (technically any iterable but is usually an  array
 **Example**
 
 ```javascript
-{{
 (function(){
     let employeeNames = ["Employee 1","Employee 2"];
     // Start a bunch of calls running in parallel and store returned promise
@@ -121,7 +110,6 @@ It takes an array of promises (technically any iterable but is usually an  array
             .catch(() => showAlert('Promise.all - Something went wrong'))
             .finally(() => showAlert('Promise.all - finished'))
 })()
-}}
 ```
 
 In the example:
@@ -137,7 +125,6 @@ It waits for all the promises to settle, regardless of the result (resolved or r
 **Example**
 
 ```javascript
-{{
 (function(){
   let employeeNames = ["Employee 1","Employee 2"];
   // Start a bunch of calls running in parallel and store returned promise
@@ -149,7 +136,6 @@ It waits for all the promises to settle, regardless of the result (resolved or r
         .catch(() => showAlert('Promise.allSettled - Something went wrong'))
         .finally(() => showAlert('Promise.allSettled - finished'))
 })()
-}}
 ```
 
 In the example:
@@ -167,19 +153,19 @@ In the example:
 - Повернути обіцянку з прикріпленим до неї `.then()`, як показано нижче:
 
 ```javascript
-{{
+
   (function() {
         // the .then only runs if a promise is returned
         return MockApi.run()
             .then(() => showAlert('success'))
     })()
-}}
+
 ```
 
 - Параметри більше не передаються в аргументі `.then()` `action.run()`. Передається лише відповідь, як показано нижче:
 
 ```javascript
-{{
+
   (function() {
         // define params on top so that you can use them in the later calls
         const params = { name: "Appsmith" }
@@ -188,7 +174,7 @@ In the example:
                 showAlert(`${response.length} users found in `${params.name}`)
             })
     })()
-}}
+
 ```
 
 ## Async/Await
@@ -206,13 +192,13 @@ In the example:
 **Example**
 
 ```javascript
-{{
+
     (async function(){ 
         const response = await MockApi.run({ name: 'Appsmith' }); 
         await storeValue( "name", response.args.name ); 
         await showAlert(appsmith.store.name); 
     })() 
-}}
+
 ```
 
 У попередньому прикладі:

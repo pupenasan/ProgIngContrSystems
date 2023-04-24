@@ -392,13 +392,13 @@ To get business_id-{{getBusinessDetails.data[0].business_id}}
 Далі додайте відгуки із запиту за такими параметрами в текстові віджети:
 
 ```text
-Stars Ratings: {{ `Stars: ${currentItem.stars}` }}
+Stars Ratings: { { `Stars: ${currentItem.stars}` } }
 
-Funny Ratings: {{ `Funny: ${currentItem.funny}` }}
+Funny Ratings: { { `Funny: ${currentItem.funny}` } }
 
-Useful Ratings: {{ `Useful: ${currentItem.useful}` }}
+Useful Ratings: { { `Useful: ${currentItem.useful}` } }
 
-Cool Ratings: {{ `Cool: ${currentItem.cool}` }}
+Cool Ratings: { { `Cool: ${currentItem.cool}` } }
 ```
 
 Після цього ви можете налаштувати текстовий віджет, знайти властивість background-color на панелі властивостей текстового віджета та додати будь-які фонові кольори. Тепер, нарешті, ось як виглядає програма:

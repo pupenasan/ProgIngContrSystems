@@ -2,9 +2,9 @@
 
 доц. кафедри [АКСТУ НУХТ](http://www.iasu-nuft.pp.ua/) 
 
-![](media/Devops.png)
+# [ПРОГРАМНА ІНЖЕНЕРІЯ В СИСТЕМАХ УПРАВЛІННЯ](https://pupenasan.github.io/ProgIngContrSystems) 
 
-# ПРОГРАМНА ІНЖЕНЕРІЯ В СИСТЕМАХ УПРАВЛІННЯ 
+![](media/logo.png)
 
 Дане сховище вміщує усі матеріали дисципліни "Програмна інженерія в системах управління" яка  дається студентам 1-го курсу спеціальності 151 «Автоматизація та комп’ютерно-інтегровані технології» освітньо-професійної програми «Комп’ютерні системи та програмна інженерія в автоматизації» Національного університету харчових технологій ([кафедра АКТСУ](http://www.iasu-nuft.pp.ua/)). 
 
@@ -22,11 +22,7 @@
 
 - [Матеріали суміжних курсів](othercourses/README.md)
 
-
-
-[Сторінка курсу на GitHub](https://pupenasan.github.io/ProgIngContrSystems)
-
-[Репозиторій](https://github.com/pupenasan/ProgIngContrSystems)
+[Репозиторій GitHub](https://github.com/pupenasan/ProgIngContrSystems)
 
 ![www.iasu.nuft.pp.ua](media/1.png)
 

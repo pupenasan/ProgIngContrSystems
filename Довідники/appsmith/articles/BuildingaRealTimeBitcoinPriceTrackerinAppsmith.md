@@ -96,7 +96,7 @@ parseFloat(GetBitcoinPrice.data.dp)<0? "iVBORw0KGgoAAAANSUhEUgAAADYAAWFQIBxKbwhM
 Нарешті, ми налаштуємо таймер, який працює періодично. Він працюватиме залежно від того, чи ввімкнено віджет перемикання автоматичного оновлення (`SwLive`) чи ні. Якщо він увімкнений, ми запускаємо таймер, який запускатиме API GetBitcoinPrice щосекунди. А якщо він вимкнений, ми очищаємо таймер. Запишіть наступне прив’язування до події `onChange` `SwLive`.
 
 ```js
-{{
+{ {
 
   (function(){
 
@@ -110,7 +110,7 @@ parseFloat(GetBitcoinPrice.data.dp)<0? "iVBORw0KGgoAAAANSUhEUgAAADYAAWFQIBxKbwhM
 
   })()
 
-}}
+} }
 ```
 
 [![Image description](https://res.cloudinary.com/practicaldev/image/fetch/s--iU6QhgS4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3bdsy9080llz3ghgnzrq.png)](https://res.cloudinary.com/practicaldev/image/fetch/s--iU6QhgS4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3bdsy9080llz3ghgnzrq.png)

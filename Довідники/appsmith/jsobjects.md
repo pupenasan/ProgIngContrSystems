@@ -53,7 +53,7 @@ Api.data.filter(() => {}); // filtering data
 
 Наприклад, `Promises`, `Api.run()`, `Query.Run()`, функції платформи Appsmith (наприклад, `showModal`). По суті, це дозволяє відкласти виконання коду, вбудованого в асинхронну функцію, і виконується за потреби.
 
-Ви можете [налаштувати додаткові параметри для асинхронної функції](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta/asynchronous-javascript-function-settings) і покращити взаємодію з користувачем.
+Ви можете [налаштувати додаткові параметри для асинхронної функції](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta/asynchronous-javascript-function-settings) і покращити взаємодію з користувачем (див нижче).
 
 ## Working with JavaScript editor
 
@@ -423,3 +423,202 @@ As the JavaScript Editor is in its BETA, there are a few limitations:
 ![Async Function](https://docs.appsmith.com/assets/images/JS_editor_async_function-0a80a6b89ba5862904e4d7cf6d1b09c6.png)
 
 If a function is async, it means that if it returns a promise, it can't be called on the fields incompatible with the return type, such as the  default text property of the [text](https://docs.appsmith.com/reference/widgets/text) widget. For example, in the screenshot `executeQuery` returns `Api1.run()` promise and hence is an [async function](https://docs.appsmith.com/core-concepts/writing-code/#asynchronous). You can call `executeQuery` or similar functions only from `trigger` or `event` properties such as `OnClick`.
+
+# Asynchronous JavaScript Function Settings
+
+Асинхронна функція дозволяє вам вибрати, коли ви хочете виконати код. Наприклад, ви можете відкласти виконання запиту або отримати дані на вимогу.
+
+## Як означити асинхронну функцію в Appsmith?
+
+У середовищі Appsmith функція називається **async**, якщо ви виконуєте одну з наведених нижче дій:
+
+- У вас є ключове слово (async), яке позначає асинхронне виконання функції.
+
+  ```text
+  export default{
+      functionName: async() => {
+         //use async-await or promises
+      }
+  }
+  ```
+
+Ви маєте будь-які вбудовані функції Appsmith, такі як `showModal(), showAlert()` тощо, додані у функціональний блок.
+
+Ви хочете виконати запит або викликати API під час виконання. Наприклад, у вас є API `GetUsersList`, і ви хочете викликати цей API під час виконання, тобто щоразу, коли виконується функція об’єкта JS `callAPI()`. Ваша функція може виглядати так:
+
+```text
+export default {
+   callAPI: () => {
+      GetUsersList.run();
+   }
+ }
+```
+
+Рядок коду `GetUsersList.run()` позначає функцію `callAPI()` для асинхронного виконання, тому функція `callAPI` вважається асинхронною.
+
+Редактор JavaScript в Appsmith надає деякі додаткові налаштування для асинхронних функцій, які допомагають додати більше конфігурацій.
+
+Ви можете вказати параметри на вкладці **Settings** у Appsmith JS Editor.
+
+## Settings
+
+Ви побачите вкладку **Settings** поруч із **Code** щоразу, коли ви додасте **асинхронну функцію** до об’єкта JS. Перейдіть на вкладку **Settings** та натисніть її, щоб відкрити додаткові конфігурації.
+
+Давайте швидко заглибимося в ці конфігурації, щоб зрозуміти, як вони допомагають покращити поведінку програми.
+
+Перейдіть до **JS Object** —> Ви побачите **Settings** поруч із **Code**
+
+![How to navigate to JS Object Settings for an asynchronous function?](https://docs.appsmith.com/assets/images/JSObject-Settings-Tab-af31929ea3b7e74a8169d41c4bda70c3.png)
+
+Click **Settings** to reveal configurations.
+
+![Configurations available for asynchronous functions](https://docs.appsmith.com/assets/images/Settings-Configurations-a91098bbfc0c1d1cc3717977b1561f4f.png)
+
+Ви отримуєте два параметри для налаштування асинхронних функцій:
+
+- RUN ON PAGE LOAD
+- CONFIRM BEFORE CALLING
+
+Налаштування доступні на функціональному рівні. Для **кожної** означеної асинхронної функції ви матимете відповідну конфігурацію, доступну для запуску під час завантаження сторінки, і підтвердьте її перед викликом. Зверніться до знімка екрана нижче, де ви можете побачити, що функції - **myFun2** і **`showData`** мають доступні конфігурації, які ви можете визначити для них окремо.
+
+![The asynchronous function configurations are available for each async function defined in a JS Object.](https://docs.appsmith.com/assets/images/Async-Setting-Function-Level-94ddd518e5560516c7017f92383307f9.png)
+
+### RUN ON PAGE LOAD
+
+Як випливає з назви, ви можете використовувати конфігурацію, щоб позначити, що ваша функція виконується кожного разу, коли завантажується сторінка. Наприклад, у вас є сторінка `User Listing` і ви додали об’єкт JS із функцією `GetUserRole`, яка отримує роль користувача. Ви хочете, щоб запит виконувався під час завантаження сторінки, щоб користувач, який увійшов у систему, міг бачити список користувачів. Щоб це запрацювало, вам потрібно встановити конфігурацію **RUN ON PAGE LOAD** як **YES** для функції `GetUserRole`. Після встановлення конфігурації функція `GetUserRole` виконується щоразу, коли програма завантажується, а згенерована нею відповідь відображається на сторінці.
+
+За замовчуванням **RUN ON PAGE LOAD** ON(вибрано **Yes**) для функцій, які відображають дані у віджеті. Тобто віджет прив’язується до відповіді, згенерованої **`JSObjectName.asynFunctionName.data`**. У цьому випадку для завантаження сторінки автоматично встановлюється значення true. Ви можете явно змінити цей параметр відповідно до вашої логіки на вкладці **Settings**.
+
+Якщо ви бажаєте відкласти виклик функції на вимогу, виберіть **No**. Це вказує на те, що функція не викликається під час завантаження сторінки, а виконання відкладено до виклику на вимогу шляхом виклику функції.
+
+#### Configure run on page load
+
+На Appsmith ви можете прив’язати виконання об’єктів JS до завантаження сторінки одним із двох способів:
+
+**Bind Response to Widget**
+
+Щоразу, коли ви зв’язуєте [query](https://docs.appsmith.com/core-concepts/data-access-and-binding/querying-a-database) або [API](https://docs.appsmith.com /core-concepts/connecting-to-data-sources/authentication) відповідь на [widget](https://docs.appsmith.com/reference/widgets), Appsmith автоматично встановлює виконання відповідного API або запиту на сторінці навантаження. Наприклад, у вас є віджет, який посилається на властивість даних асинхронної функції JavaScript, додаючи `{{JSObject.myFun.data}}`, у цей час Appsmith позначає виконання цього запиту/API під час завантаження сторінки. Ви можете змінити те саме, перейшовши до **JSObject** → **Settings** → **RUN ON PAGE LOAD** → Виберіть **No**.
+
+Ось короткий знімок того, як Appsmith запускає запит або виконання API під час завантаження сторінки:
+
+- Add a [table](https://docs.appsmith.com/reference/widgets/table) widget (*Table1*), and add a function in `JSObject5` that calls an API *`getUsers`*. The *`getUsers`* API call is embedded in the *`showData`* function and generates a user listing.
+
+![Call a getUsers API in the `showData` JS function](https://docs.appsmith.com/assets/images/Bind-Response-to-widget_(1)-ef6bd213d86ef4c188077b48611b14d7.png)
+
+-  Прив’яжіть відповідь, згенеровану `showData`, до віджета таблиці `Table1`, додавши наведений нижче код у властивість `Table Data`, доступну на панелі властивостей [Table](https://docs.appsmith.com/reference/widgets /table#table-data) віджет.
+
+```text
+{{JSObject5.showData.data}} // behind the scenes Appsmith 
+                           // marks execution of showData on page load                      
+                          // to get the response and bind it to the table data 
+```
+
+![`showData` function called on page load](https://docs.appsmith.com/assets/images/Show-Data-Called-OnPageLoad-a7476122ec70e326c17d101147253cef.png)
+
+**Asynchronous Function Setting**
+
+Especially for [asynchronous functions](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta/asynchronous-javascript-function-settings#how-to-define-asynchronous-function-in-appsmith), you can explicitly mark the execution of an async function on page load for the corresponding JS Object.
+
+Navigate to **JS Object** —> Click **Settings** —> Select **Yes** for **RUN ON PAGE LOAD** next to the JS function. You are all set. Appsmith takes care of executing the async function on page load for you.
+
+![How to set run on page load for async function?](https://docs.appsmith.com/assets/images/Async_Function_Setting_-_On_Page_Load-22a0760b124f18034cce36a687d234b9.png)
+
+As shown in the screenshot below, you can see that the `showData` function is called **on page load**, and `Table1` displays the data.
+
+![Data displayed in the table widget](https://docs.appsmith.com/assets/images/Show-Data-Data-Displayed-InTable-2bd2c8f9c8ae4139f657c9faa26afaf6.png)
+
+### CONFIRM BEFORE CALLING
+
+За допомогою цього параметра ви можете створити спливаюче вікно з підтвердженням і прийняти дані користувача для виконання функції. Наприклад, об’єкт JS має функцію `deletePermission`, яка викликає API, який видаляє дозвіл бази даних. Ви хочете переконатися, що користувач бажає видалити дозвіл, і в цьому випадку ви хочете показати діалогове вікно підтвердження. Діалог підтвердження гарантує, що користувач хоче виконати дію видалення. Користувач може вибрати **Так** для видалення або може відмовитися від цього, вибравши **Ні**. Таким чином, `Confirm Before Calling`  стає в нагоді для захисту від випадкового запуску користувачами деструктивних операцій.
+
+![A confirmation dialog is shown to the user before execution on myFun2](https://docs.appsmith.com/assets/images/Confirmation_Dialog-89d71f762dc1cda22dab9cfbbbe1c2af.png)
+
+#### Configure confirm before calling
+
+Confirmation is like a nudge given to the user before executing a function. It  ensures that the user is aware of the action that would be performed,  and the same is not triggered by chance. A confirmation setting can only be defined explicitly from the Settings tab.
+
+Navigate to **JS Object** —> Click **Settings** —> Select **Yes** for **CONFIRM BEFORE CALLING** next to the JS function. You are all set. Appsmith takes care of  executing and showing the confirmation dialog to the user whenever the  action is triggered.
+
+![Configurations for CONFIRM BEFORE CALLING](https://docs.appsmith.com/assets/images/Async_Function_Settings-Confirm-Before-Calling_(1)-c79491b8d3ab4acf645823db529a6146.png)
+
+## When to use Asynchronous settings
+
+Asynchronous function settings enable users to create complex workflows by executing functions before the application loads, allowing the data manipulation  logic to run and make the desired outcome— secure function execution  with a confirmation before you want application users to execute any  critical operations.
+
+Let’s understand the settings deeper with examples.
+
+For example, you would want to apply restrictions in your application based on the user’s domain. That is, anonymous users (users who are not a  part of your domain) cannot access certain application pages. You can  quickly implement this by creating a function that uses the asynchronous function setting- Run on page load.
+
+Here’s a quick snapshot of steps that you can take to create this logic:
+
+- Create an application and add two pages.
+
+  - First Page (UserListingForAppsmithUsers)- Add a table, and rename it to `UserListing` which displays the data generated by the `showUserListing` function of the `DataLoader` JS object. The function generates a list of users.
+  - Second Page (AnonymousUser) - Displays a message to the user.
+
+- Create a JS object 
+
+  ```
+  DataLoader
+  ```
+
+   and add a function 
+
+  ```
+  showUserListing
+  ```
+
+  that checks whether the user is logged in or not
+
+  ._ The function verifies the below logic:
+
+  - If the user is logged in, then the `GetUserList` API is called, and the response is generated
+  - If the user is not logged in or is not an Appsmith user, redirect the user to the `AnonymousUser` page.
+
+- Mark function `showUserListing` of JS Object - DataLoader to run on page load by selecting **Yes**.
+
+**UserListingForAppsmithUsers** - DataLoader JS object Code. You can see that a function `showUserListing` is marked for asynchronous execution by defining the `async` keyword.
+
+```text
+export default {
+    showUserListing: async () => {
+        //use async-await or promises
+        if(appsmith.user.isAnonymous) {
+              navigateTo("AnonymousUser");
+        }
+        //verify if the logged-in user is from appsmith
+        if(appsmith.user.email.match("appsmith")){
+          return GetUserList.run();
+        }else{
+          navigateTo("AnonymousUser");
+        }       
+    }
+}
+```
+
+For logged-in appsmith users, a user listing is shown as the`GetUserList` API is executed:
+
+![The user listing is displayed to logged-in appsmith users](https://docs.appsmith.com/assets/images/LoggedIn-Appsmith-Users-User-Listing-Shown-8ebffaeac022d0e4bea376e26db55af4.png)
+
+**Anonymous users -** Whenever the application renders, the `showUserListing` function is executed. The function determines whether the user is anonymous. You can use the property of a user object `isAnonymous` to check the user's logged-in status.
+
+```text
+appsmith.user.isAnonymous
+```
+
+![An anonymous user is shown the page with an unauthorized message](https://docs.appsmith.com/assets/images/Anonymous-Users-66d67f01404b3efd3b1177cee190a4de.png)
+
+Suppose the user is **not** logged in, then `appsmith.user.isAnonymous` *returns `true`  **and redirects** the user to the `AnonymousUser` page and displays the message.*
+
+You are not authorized to view user data.
+
+If the user is **logged in** `appsmith.user.isAnonymous` returns `false` and the logic is executed to verify if the logged-in user is an Appsmith user. If the user is an Appsmith user, `GetUserList` API is called to fetch the user listing. The execution is completed, and the response is generated, displayed in the `UserListing` table.
+
+You can use authentication and authorization using the Async function settings. To get started; [view and fork the authentication application](https://app.appsmith.com/app/custom-auth-google-sso/login-62a99de284b91337251a7dd3), [view and fork the authorization application](https://app.appsmith.com/applications/62a069e0e56c5566a628df0a/pages/62a069e0e56c5566a628df0d).
+
+You can do authentication and authorization using the Async function  settings. To get started, you can use one of the below applications:
+
+1. [View and fork the authentication application](https://app.appsmith.com/app/custom-auth-google-sso/login-62a99de284b91337251a7dd3)
+2. [View and fork the authorization application](https://app.appsmith.com/applications/62a069e0e56c5566a628df0a/pages/62a069e0e56c5566a628df0d)
+
+With the out-of-the-box settings provided for async functions, you can  manage the execution of your asynchronous functions and create a better  user experience.

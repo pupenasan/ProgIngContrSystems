@@ -1,3 +1,5 @@
+[До розділу](README.md)
+
 # DOM
 
 [Браузерное окружение, спецификации](https://learn.javascript.ru/browser-environment)

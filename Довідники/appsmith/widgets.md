@@ -200,3 +200,68 @@ When you tick the checkbox, it enables the Visible property, and the input box w
 <iframe style="width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 0.5rem; overflow: hidden;" src="https://youtube.com/embed/Jb5bNVhFoRE" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:100px;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.25em gray}</style><a href=https://youtube.com/embed/Jb5bNVhFoRE><img src=https://img.youtube.com/vi/Jb5bNVhFoRE/maxresdefault.jpg alt='Visible'><span><svg width=&quot;100px&quot; height=&quot;100px&quot; viewBox=&quot;0 0 463 462&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle opacity=&quot;0.5&quot; cx=&quot;231.742&quot; cy=&quot;230.999&quot; r=&quot;231&quot; fill=&quot;#FE5011&quot;></circle><path d=&quot;M181.703 165.53C181.703 156.392 191.812 150.873 199.499 155.814L301.34 221.283C308.412 225.83 308.412 236.168 301.34 240.715L199.499 306.184C191.812 311.125 181.703 305.606 181.703 296.468V165.53Z&quot; fill=&quot;#FFFFFF&quot;></path></svg></span></a>" allowfullscreen="" title="Visible" loading="lazy" frameborder="0"></iframe>
 
 *Visible*
+
+# Усі віджети 
+
+Плюсом вказані ті, що є в Ubos
+
+## Контейнери та оформлення
+
+- [Container](https://docs.appsmith.com/reference/widgets/container) +
+- [Divider](https://docs.appsmith.com/reference/widgets/divider) +
+- [Iframe](https://docs.appsmith.com/reference/widgets/iframe) +
+- [Modal](https://docs.appsmith.com/reference/widgets/modal) +
+- [Tabs](https://docs.appsmith.com/reference/widgets/tabs) + 
+
+## Діаграми
+
+- [Chart](https://docs.appsmith.com/reference/widgets/chart) +
+
+## Таблиці, списки, форми
+
+- [Form](https://docs.appsmith.com/reference/widgets/form) +
+- [List](https://docs.appsmith.com/reference/widgets/list) +
+- [Table](https://docs.appsmith.com/reference/widgets/table) + 
+- [Treeselect](https://docs.appsmith.com/reference/widgets/tree-select) +
+- [Multi-tree-select](https://docs.appsmith.com/reference/widgets/multi-tree-select) +
+
+## Інтерактивні елементи та відображення
+
+- [Button](https://docs.appsmith.com/reference/widgets/button) +
+- [Button Group](https://docs.appsmith.com/reference/widgets/button-group) +
+- [Checkbox](https://docs.appsmith.com/reference/widgets/checkbox) +
+- [Checkbox Group](https://docs.appsmith.com/reference/widgets/checkbox-group) +
+- [Currency Input](https://docs.appsmith.com/reference/widgets/currency-input) +
+- [Datepicker](https://docs.appsmith.com/reference/widgets/datepicker) +
+- [Icon Button](https://docs.appsmith.com/reference/widgets/icon-button) +
+- [Image](https://docs.appsmith.com/reference/widgets/image) +
+- [Input](https://docs.appsmith.com/reference/widgets/input) +
+- [JSON Form](https://docs.appsmith.com/reference/widgets/json-form) +
+- [Menu Button](https://docs.appsmith.com/reference/widgets/menu-button) +
+- [Multiselect](https://docs.appsmith.com/reference/widgets/multiselect) +
+- [Phone Input](https://docs.appsmith.com/reference/widgets/phone-input) +
+- [Progress](https://docs.appsmith.com/reference/widgets/progress) + 
+- [Radio Group](https://docs.appsmith.com/reference/widgets/radio-group) +
+- [Rating](https://docs.appsmith.com/reference/widgets/rating) +
+- [Rich Text Editor](https://docs.appsmith.com/reference/widgets/rich-text-editor) +
+- [Select](https://docs.appsmith.com/reference/widgets/select) + 
+- [Sliders](https://docs.appsmith.com/reference/widgets/sliders) +
+- [Stats Box](https://docs.appsmith.com/reference/widgets/stat-box) + 
+- [Switch](https://docs.appsmith.com/reference/widgets/switch) + 
+- [Switch Group](https://docs.appsmith.com/reference/widgets/switch-group) +
+- [Text](https://docs.appsmith.com/reference/widgets/text) + 
+
+## Аудіо та відео
+
+- [Audio](https://docs.appsmith.com/reference/widgets/audio) +
+- [Audio Recorder](https://docs.appsmith.com/reference/widgets/audio-recorder) +
+- [Camera](https://docs.appsmith.com/reference/widgets/camera) +
+- [Video](https://docs.appsmith.com/reference/widgets/video) +
+
+## Взаємодія з зовнішніми засобами та файлами
+
+- [Code Scanner](https://docs.appsmith.com/reference/widgets/code-scanner) - 
+- [Document Viewer](https://docs.appsmith.com/reference/widgets/document-viewer) +
+- [Filepicker](https://docs.appsmith.com/reference/widgets/filepicker) +
+- [Map](https://docs.appsmith.com/reference/widgets/maps) +
+- [Map Chart](https://docs.appsmith.com/reference/widgets/map-chart) + 

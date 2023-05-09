@@ -18,8 +18,6 @@
 
 Функція storeValue() зберігає дані у браузері як пари ключ-значення, і пізніше до них можна отримати доступ будь-де в програмі.
 
-<iframe style="width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 0.5rem; overflow: hidden;" src="https://youtube.com/embed/UUvJn8oWqNs?autoplay=1" srcdoc="<style>*{padding:0;margin:0;overflow:hidden}html,body{height:100%}img,span{position:absolute;width:100%;top:0;bottom:0;margin:auto}span{height:100px;text-align:center;font:48px/1.5 sans-serif;color:white;text-shadow:0 0 0.25em gray}</style><a href=https://youtube.com/embed/UUvJn8oWqNs?autoplay=1><img src=https://img.youtube.com/vi/UUvJn8oWqNs/maxresdefault.jpg alt='How to use the StoreValue Function'><span><svg width=&quot;100px&quot; height=&quot;100px&quot; viewBox=&quot;0 0 463 462&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;><circle opacity=&quot;0.5&quot; cx=&quot;231.742&quot; cy=&quot;230.999&quot; r=&quot;231&quot; fill=&quot;#FE5011&quot;></circle><path d=&quot;M181.703 165.53C181.703 156.392 191.812 150.873 199.499 155.814L301.34 221.283C308.412 225.83 308.412 236.168 301.34 240.715L199.499 306.184C191.812 311.125 181.703 305.606 181.703 296.468V165.53Z&quot; fill=&quot;#FFFFFF&quot;></path></svg></span></a>" allowfullscreen="" title="How to use the StoreValue Function" loading="lazy" allow="autoplay; picture-in-picture" frameborder="0"></iframe>
-
 *How to use the StoreValue Function*
 
 ## Save value

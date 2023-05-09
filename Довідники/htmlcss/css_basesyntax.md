@@ -1,3 +1,5 @@
+[До розділу](README.md)
+
 # Базовий синтаксис CSS
 
 <http://htmlbook.ru/samcss/bazovyy-sintaksis-css>

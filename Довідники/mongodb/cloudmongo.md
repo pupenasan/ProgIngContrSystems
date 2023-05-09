@@ -10,8 +10,6 @@ MongoDB Atlas — це багатохмарна служба баз даних, 
 
  [Зареєструйте](https://www.mongodb.com/docs/atlas/tutorial/create-atlas-account/) обліковий запис Atlas за допомогою свого облікового запису Google або електронної адреси.
 
-
-
 ### 2. Розгорніть безкоштовний кластер
 
 [Створіть і розгорніть безкоштовний кластер](https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/). Ви можете використовувати безкоштовні кластери Atlas як невелике середовище розробки для розміщення своїх даних. Термін дії безкоштовних кластерів ніколи не закінчується, вони надають доступ до піднабору функцій Atlas.
@@ -28,31 +26,31 @@ MongoDB Atlas — це багатохмарна служба баз даних, 
 
 ![image-20220810095649834](media/image-20220810095649834.png)
 
-4) Select your preferred Cloud Provider & Region.
+4) Виберіть бажаного хмарного постачальника та регіон.
 
-   Atlas supports M0 free clusters on Amazon Web Services (AWS), Google Cloud Platform (GCP), and Microsoft Azure. Atlas displays only the regions that support M0 free clusters and M2/M5 shared clusters.
+   Atlas підтримує безкоштовні кластери M0 на Amazon Web Services (AWS), Google Cloud Platform (GCP) і Microsoft Azure. Atlas відображає лише регіони, які підтримують вільні кластери M0 і спільні кластери M2/M5.
 
 ![image-20220810095734120](media/image-20220810095734120.png)
 
 
 
-5) Select M0 Sandbox for cluster tier.
+5) Виберіть M0 Sandbox для рівня кластера.
 
-Selecting M0 automatically locks the remaining configuration options. If you cannot select the M0 cluster tier, return to the previous step and select a Cloud Provider & Region that supports M0 free clusters.
+Вибір M0 автоматично блокує інші параметри конфігурації. Якщо ви не можете вибрати рівень кластера M0, поверніться до попереднього кроку та виберіть хмарного постачальника та регіон, який підтримує безкоштовні кластери M0.
 
 ![image-20220810095851903](media/image-20220810095851903.png)
 
 
 
-6) Enter a name for your cluster in the Cluster Name field.
+6) Введіть назву свого кластера в поле «Cluster Name».
 
-You can enter any name for your cluster. The cluster name can contain ASCII letters, numbers, and hyphens.
+Ви можете ввести будь-яку назву для свого кластера. Назва кластера може містити літери ASCII, цифри та дефіси.
 
 ![image-20220810095939241](media/image-20220810095939241.png)
 
-7) Click Create Cluster to deploy the cluster.
+7) Натисніть «Create Cluster», щоб розгорнути кластер.
 
-Once you deploy your cluster, it can take up to 10 minutes for your cluster to provision and become ready to use.
+Після розгортання кластера може знадобитися до 10 хвилин, перш ніж кластер стане готовим до використання.
 
 ![image-20220810100019761](media/image-20220810100019761.png)
 
@@ -64,22 +62,20 @@ Once you deploy your cluster, it can take up to 10 minutes for your cluster to p
 
 [Додайте свою IP-адресу до списку надійних IP-адрес](https://www.mongodb.com/docs/atlas/security/add-ip-address-to-list/). IP-адреса унікально ідентифікує пристрій, який підключається до мережі. В Atlas ви можете підключитися до кластера лише з довіреної IP-адреси. В Atlas ви можете створити список надійних IP-адрес, який називається списком IP-доступу. Список IP-доступу визначає IP-адреси, які можуть підключатися до вашого кластера та отримувати доступ до ваших даних.
 
-1. Click Connect.
+1. Натисніть Connect.
 
-   - Click Databases in the top-left corner of Atlas.
-   - In the Database Deployments view, click Connect for the cluster or serverless instance to which you want to connect.
+    - Клацніть Databases  у верхньому лівому куті Atlas.
+    - У вікні «Database Deployments» клацніть «Connect » для кластера або безсерверного екземпляра, до якого потрібно підключитися.
 
-   Atlas highlights the Setup connection security step.
+    Atlas виділяє крок безпеки підключення до налаштування.
 
-2. Click Add Your Current IP Address.
+2. Натисніть « Add Your Current IP Address».
 
-   - To secure your MongoDB Atlas cluster, limit access to specified IP addresses.
+    - Щоб захистити свій кластер MongoDB Atlas, обмежте доступ до вказаних IP-адрес.
 
-   - The menu expands to show the Add a connection IP address modal.
+    - Меню розгорнеться, щоб показати модальне Додати IP-адресу підключення.
 
-3. Click Add IP Address.
-
-
+3. Натисніть Add IP Address
 
 ### 4. Створіть користувача бази даних для свого кластера 
 

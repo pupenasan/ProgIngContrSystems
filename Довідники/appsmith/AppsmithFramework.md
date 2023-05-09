@@ -144,9 +144,9 @@ hash:"#n912xhego"
 
 #### queryParams
 
-Query parameters are a predefined set of parameters that define particular  content or actions based on the data being delivered. A URL has all the  query parameters appended at the end with a `?` as a separator.
+Параметри запиту – це попередньо означений набір параметрів, які означують певний вміст або дії на основі даних, що доставляються. URL-адреса містить усі параметри запиту, додані в кінці роздільником `?`.
 
-Example:
+приклад:
 
 ```js
 //{{appsmith.URL.queryParams}}

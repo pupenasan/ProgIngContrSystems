@@ -28,7 +28,7 @@ https://www.w3schools.com/html/html_forms.asp
 
 Приклад подібної форми можна перевірити [тут](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit)
 
-## Елемент `<form>` 
+## Елемент `form` 
 
 Елемент HTML `<form>` використовується для створення HTML-форми для введення користувачами:
 
@@ -119,7 +119,7 @@ https://www.w3schools.com/html/html_forms.asp
 
 
 
-## Елемент `<label>` 
+## Елемент `label` 
 
 Зверніть увагу на використання елемента `<label>` у прикладі.
 
@@ -138,7 +138,7 @@ https://www.w3schools.com/html/html_forms.asp
 
 [Деталі](https://www.w3schools.com/tags/tag_label.asp)
 
-## Елемент `<input>` 
+## Елемент `input` 
 
 Елемент HTML `<input>` є найбільш використовуваним елементом форми. Елемент `<input>` може відображатися різними способами, залежно від атрибута `type`. Ось кілька прикладів:
 
@@ -169,7 +169,7 @@ https://www.w3schools.com/html/html_forms.asp
 
 [Деталі по елементу](https://www.w3schools.com/tags/tag_input.asp)
 
-### Атрибут Name для `<input>`
+### Атрибут Name для `input`
 
 Зауважте, що кожне поле введення повинно мати атрибут `name` для надсилання. Якщо атрибут `name` пропущено, значення поля введення не надсилатиметься взагалі. У цьому прикладі не надсилатиметься значення поля введення «First name»:
 
@@ -339,7 +339,7 @@ https://www.w3schools.com/html/html_forms.asp
  <input   type="number" id="quantity" name="quantity" min="0" max="100" step="10"   value="30">
 </form> 
 
-## Елемент `<select>` 
+## Елемент `select` 
 
 Елемент `<select>` означує розкривний список:
 
@@ -406,7 +406,7 @@ https://www.w3schools.com/html/html_forms.asp
 
 [Деталі](https://www.w3schools.com/tags/tag_select.asp)
 
-## Елемент `<textarea>`
+## Елемент `textarea`
 
 Елемент `<textarea>` означує багаторядкове поле введення (текстова область). Атрибут `rows` визначає видиму кількість рядків у текстовій області. Атрибут `cols` визначає видиму ширину текстової області.
 
@@ -434,7 +434,7 @@ The cat was playing in the garden.
 
 [Деталі](https://www.w3schools.com/tags/tag_textarea.asp)
 
-## Елемент `<button>`
+## Елемент `button`
 
 Елемент `<button>` означує кнопку, яку можна натиснути:
 
@@ -448,7 +448,7 @@ The cat was playing in the garden.
 
 [Деталі](https://www.w3schools.com/tags/tag_button.asp)
 
-## Елементи `<fieldset>` і `<legend>`
+## Елементи `fieldset` і `legend`
 
 Елемент `<fieldset>` використовується для групування пов’язаних даних у формі. Елемент `<legend>` означує заголовок для елемента `<fieldset>`.
 
@@ -480,7 +480,7 @@ The cat was playing in the garden.
 
 [Деталі legend](https://www.w3schools.com/tags/tag_legend.asp)
 
-## Елемент `<datalist>`
+## Елемент `datalist`
 
 Елемент `<datalist>` означує список попередньо означених параметрів для елемента `<input>`. Під час введення даних користувачі бачитимуть розкривний список із попередньо означеними параметрами. Атрибут `list` елемента `<input>` має посилатися на атрибут `id` елемента `<datalist>`.
 
@@ -511,7 +511,7 @@ The cat was playing in the garden.
 
 
 
-## Елемент `<output>`
+## Елемент `output`
 
 Елемент `<output>` представляє результат обчислення (наприклад, обчислення, виконаного сценарієм). Виконайте обчислення та покажіть результат в елементі `<output>`:
 
@@ -541,11 +541,11 @@ The cat was playing in the garden.
 
 [Деталі](https://www.w3schools.com/tags/tag_output.asp)
 
-## HTML `<optgroup>` Tag
+## HTML `optgroup` Tag
 
 [Деталі](https://www.w3schools.com/tags/tag_optgroup.asp)
 
-## HTML `<option>` Tag
+## HTML `option` Tag
 
 [Деталі](https://www.w3schools.com/tags/tag_option.asp)
 

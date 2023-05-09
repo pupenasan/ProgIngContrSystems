@@ -30,12 +30,12 @@ password:     appsmith_password
 
 ```javascript
 // JSON in the query body field
-{{
+{ {
   {
     identifier: UsernameInput.text,
     password: PasswordInput.text
   }
-}}
+} }
 ```
 
 У разі успішної відповіді ваш API автентифікації має повернути дійсний маркер доступу. У наведеному нижче прикладі ключ `jwt` — це маркер, який вказує на те, що користувача було автентифіковано. Успішна відповідь може виглядати так:
@@ -73,7 +73,7 @@ password:     appsmith_password
 У коді кнопка **onClick** має виглядати так:
 
 ```javascript
-{{
+{ {
     login_api.run(() => {
         const jwt = login_api?.data?.jwt;
 
@@ -84,7 +84,7 @@ password:     appsmith_password
             showAlert('Login failed!', 'error');
         }
     })
-}}
+} }
 ```
 
 Значення `jwt`, яке ви зберегли в магазині Appsmith, використовується, щоб підтвердити вашій програмі, що користувача розпізнано, і йому може бути надано основний вміст. Пізніше його можна використовувати в запитах вашої головної програми для ідентифікації та надання дозволів користувачеві, наприклад. `Authorization: Bearer {{appsmith.store.jwt}}`
@@ -98,9 +98,9 @@ password:     appsmith_password
 2) У властивості «Default Tabs» віджета «Tabs » напишіть код для виконання запиту, який вимагає автентифікації користувача. У запиті має використовуватися попередній маркер доступу `jwt`, на який посилається `{{ appsmith.store.jwt }}`. Якщо він пройшов успішно, користувач може побачити вкладку «authorized»; у разі помилки користувач має побачити вкладку «unauthorized».
 
 ```javascript
-{{
+{ {
   SecureQuery.data.status == "200 OK"? "authorized": "unauthorized"
-}}
+} }
 ```
 
 3) На вкладці **unauthorized** додайте повідомлення, щоб повідомити користувачеві, що він повинен увійти, і додайте кнопку «Login», яка використовує `navigateTo()`, щоб переслати користувача на **LoginPage**.
@@ -121,12 +121,12 @@ password:     appsmith_password
 
 ```javascript
 // In a Button widget or other custom workflow
-{{ 
+{ { 
   (() => {
     storeValue("jwt", undefined);
     navigateTo("LoginPage");
   })()
-}}
+} }
 ```
 
 Після натискання вашої кнопки, щоб вийти, вони переходять на **LoginPage**, де вони повинні увійти знову, щоб побачити ваш вміст **MainPage**.

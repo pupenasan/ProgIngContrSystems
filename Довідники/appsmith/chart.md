@@ -47,7 +47,7 @@ GROUP BY gender;
 2) Далі давайте за допомогою JavaScript **перетворимо дані**, додавши їх до властивості **Series Data**.
 
 ```js
-{{fetchUserData.data.map( p => ({x: p.gender, y: p.count}))}}
+{ {fetchUserData.data.map( p => ({x: p.gender, y: p.count}))} }
 ```
 
 Код використовує функцію `map()` для перетворення кожного елемента в масиві `fetchUserData.data` в об’єкт із ключами `x` і `y`.

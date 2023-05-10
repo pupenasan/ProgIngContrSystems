@@ -54,7 +54,7 @@ https://www.w3schools.com/html/html_forms.asp
 | [accept-charset](https://www.w3schools.com/tags/att_form_accept_charset.asp) | означує кодування символів, які використовуються для надсилання форми | [Посилання](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_accept_charset) | `<form action="/action_page.php" accept-charset="utf-8">`    |
 | [enctype](https://www.w3schools.com/tags/att_form_enctype.asp) | означує, як мають бути закодовані дані форми під час надсилання їх на сервер (лише для method="post") | [Посилання](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_enctype) | `<form action="/action_page_binary.asp" method="post" enctype="multipart/form-data">` |
 | [name](https://www.w3schools.com/tags/att_form_name.asp)     | означує назву форми                                          | [Посилання](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_name) | `<form     action="/action_page.php"    method="get" name="myForm">` |
-| [rel](https://www.w3schools.com/tags/att_form_rel.asp)       | означує зв’язок між пов’язаним ресурсом і поточним документом | [Посилання]()                                                | ` <form rel="*value*">`                                      |
+| [rel](https://www.w3schools.com/tags/att_form_rel.asp)       | означує зв’язок між пов’язаним ресурсом і поточним документом | [Посилання]()                                                | `<form rel="*value*">`                                       |
 
 #### Target
 

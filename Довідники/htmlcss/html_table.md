@@ -32,6 +32,8 @@ https://www.w3schools.com/html/html_tables.asp
 
 <table>  <tr>    <th>Company</th>     <th>Contact</th>     <th>Country</th>   </tr>  <tr>    <td>Alfreds Futterkiste</td>     <td>Maria    Anders</td>     <td>Germany</td>   </tr>  <tr>    <td>Centro    comercial Moctezuma</td>     <td>Francisco    Chang</td>     <td>Mexico</td>   </tr></table>  
 
+[Спробувати](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro)
+
 ## Клітинки таблиці
 
 Кожна клітинка таблиці визначається тегами `<td>` і `</td>`. `td` означає дані таблиці (table data). Усе, що знаходиться між `<td>` і `</td>`, є вмістом клітинки таблиці.

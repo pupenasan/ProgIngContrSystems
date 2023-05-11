@@ -1,4 +1,4 @@
-# db.collection.find()
+# Метод db.collection.find
 
 https://www.mongodb.com/docs/manual/reference/method/db.collection.find/
 

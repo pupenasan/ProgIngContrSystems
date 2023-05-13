@@ -1,0 +1,874 @@
+[На головну](../../README.md)
+
+# JSON Web Tokens 
+
+Веб-токен JSON (JWT) — це відкритий стандарт ([RFC 7519](https://tools.ietf.org/html/rfc7519)), який означує компактний і самодостатній спосіб безпечної передачі інформації між сторонами як об’єкт JSON . Цю інформацію можна перевірити та довіряти їй, оскільки вона має цифровий підпис. JWT можна підписати за допомогою секрету (з алгоритмом **HMAC**) або пари відкритих/приватних ключів за допомогою **RSA** або **ECDSA**.
+
+Хоча JWT можна зашифрувати, щоб також забезпечити секретність між сторонами, ми зосередимося на *підписаних* токенах. Підписані токени (**Signed tokens**) можуть перевірити *цілісність* тверджень (claims), що містяться в ньому, тоді як зашифровані токени (**encrypted tokens**) *приховують* ці твердження від інших сторін. Коли токени підписуються за допомогою пар відкритих/приватних ключів, підпис також засвідчує, що лише сторона, яка володіє закритим ключем, є тією, яка його підписала.
+
+## Коли слід використовувати веб-токени JSON?
+
+Ось кілька сценаріїв, коли веб-маркери JSON корисні:
+
+- **Авторизація**: це найпоширеніший сценарій використання JWT. Після входу користувача кожен наступний запит включатиме JWT, що дозволить користувачеві отримати доступ до маршрутів, послуг і ресурсів, які дозволені за допомогою цього маркера. Єдиний вхід (**Single Sign On**) — це функція, яка сьогодні широко використовує JWT через невеликі накладні витрати та можливість легкого використання в різних доменах.
+- **Обмін інформацією**: веб-токени JSON є хорошим способом безпечної передачі інформації між сторонами. Оскільки JWT можна підписувати, наприклад, за допомогою пари відкритих/приватних ключів, ви можете бути впевнені, що відправники є тими, за кого себе видають. Крім того, оскільки підпис обчислюється за допомогою заголовка та корисного навантаження, ви також можете перевірити, чи вміст не було змінено.
+
+## Структура веб-токена JSON?
+
+У своїй компактній формі веб-токени JSON складаються з трьох частин, розділених крапками (`.`), які:
+
+- Header (Заголовок)
+- Payload (Корисне навантаження)
+- Signature (Підпис)
+
+Таким чином, JWT зазвичай виглядає так:
+
+```
+xxxxx.yyyyy.zzzzz
+```
+
+Наприклад:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+### Header
+
+Заголовок *зазвичай* складається з двох частин: типу токена, яким є JWT, і використовуваного алгоритму підпису, наприклад HMAC SHA256 або RSA.
+
+Наприклад:
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+Потім цей JSON кодується **Base64Url** для формування першої частини JWT.
+
+### Корисне навантаження
+
+Друга частина токена — це корисне навантаження, яке містить твердження. Твердження (Claims) – це заяви про сутність (як правило, користувача) і додаткові дані. Існує три типи тверджень: *зареєстровані*, *публічні* та *приватні* твердження.
+
+[**Зареєстровані твердження**](https://tools.ietf.org/html/rfc7519#section-4.1): це набір попередньо означених тверджень, які не є обов’язковими, але рекомендовані, щоб забезпечити набір корисних, інтероперабельні твердження. Деякі з них: 
+
+- `iss` (issuer, емітент) рядок або URI з урахуванням регістру, який унікально ідентифікує сторону, яка видала JWT. Його інтерпретація залежить від застосунку (немає центрального органу управління емітентами).
+
+- `sub` (subject, тема), - рядок або URI з урахуванням регістру, який унікально ідентифікує сторону, про яку цей JWT передає інформацію. Іншими словами, твердження, що містяться в цьому JWT, є заявами щодо цієї сторони. Специфікація JWT означує, що ця заява має бути унікальною в контексті емітента або, у випадках, коли це неможливо, глобально унікальною. Обробка цього твердження залежить від конкретного застосунку. 
+
+- `aud` (audience, аудиторія) - один рядок з урахуванням регістру, або URI, або масив таких значень, які однозначно ідентифікують призначених одержувачів цього JWT. Іншими словами, коли це твердження присутня, сторона, яка читає дані в цьому JWT, повинна знайти себе в твердженні aud або ігнорувати дані, що містяться в JWT. Як і у випадку з першою та підпунктами формули, ця формула стосується конкретного застосунку.
+
+-  `exp` (expiration, термін дії) - число, що представляє певну дату й час у форматі «секунди з епохи», як визначено POSIX6. Це твердження встановлює точний момент, з якого цей JWT вважається недійсним. Деякі реалізації можуть допускати певний перекіс між тактами (вважаючи цей JWT дійсним протягом кількох хвилин після закінчення терміну дії).
+
+- `nbf` (not before, від не раніше) - протилежне твердження exp. Число, що представляє певну дату й час у форматі «секунди з епохи», як визначено POSIX7. Це твердження встановлює точний момент, з якого цей JWT вважається дійсним. Поточний час і дата повинні відповідати або бути пізнішими за цю дату і час. Деякі реалізації можуть допускати певний перекіс. 
+
+- `iat` (from issued at, виданий від) - число, що представляє конкретну дату й час (у тому самому форматі, що й `exp` і `nbf`), коли було видано цей JWT.
+
+- `jti` (from JWT ID, виданий ID) - рядок, що представляє унікальний ідентифікатор для цього JWT. Це твердження може бути використаною, щоб відрізнити JWT від іншого подібного вмісту (наприклад, для запобігання повторам). Саме реалізація гарантує унікальність.
+
+
+Зверніть увагу, що назви тверджень містять лише три символи, оскільки JWT має бути компактним.
+
+[**Публічні твердження**](https://tools.ietf.org/html/rfc7519#section-4.2): вони можуть бути визначені за бажанням користувачами JWT. Але щоб уникнути зіткнень, їх слід визначити в [IANA JSON Web Token Registry](https://www.iana.org/assignments/jwt/jwt.xhtml) або визначити як URI, який містить простір імен, стійкий до зіткнень.
+
+[**Приватні твердження**](https://tools.ietf.org/html/rfc7519#section-4.3): це спеціальні твердження, створені для обміну інформацією між сторонами, які домовилися про їх використання та не *зареєстровані* та не *публічні* твердження.
+
+Прикладом корисного навантаження може бути:
+
+```json
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}
+```
+
+Потім корисне навантаження кодується **Base64Url** для формування другої частини веб-токена JSON.
+
+> Зауважте, що для підписаних токенів ця інформація, хоча й захищена від підробки, доступна для читання будь-кому. Не розміщуйте секретну інформацію в елементах корисного навантаження або заголовка JWT, якщо вони не зашифровані.
+
+### Підпис
+
+Щоб створити частину підпису, вам потрібно взяти закодований заголовок, закодовану корисну інформацію, секрет, алгоритм, указаний у заголовку, і підписати це.
+
+Наприклад, якщо ви хочете використовувати алгоритм HMAC SHA256, підпис буде створено таким чином:
+
+```json
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  secret)
+```
+
+Підпис використовується для перевірки того, що повідомлення не було змінено на шляху, і, у випадку маркерів, підписаних закритим ключем, він також може підтвердити, що відправник JWT є тим, за кого він себе називає.
+
+### Все разом
+
+Результатом є три рядки Base64-URL, розділені крапками, які можна легко передати в середовищах HTML і HTTP, але при цьому є більш компактними порівняно зі стандартами на основі XML, такими як SAML.
+
+Нижче показано JWT, який має попередній заголовок і корисне навантаження, закодовані та підписані секретом.
+
+![Encoded JWT](https://cdn.auth0.com/content/jwt/encoded-jwt3.png)
+
+Якщо ви хочете пограти з JWT і застосувати ці концепції на практиці, ви можете використовувати [jwt.io Debugger](https://jwt.io/#debugger-io) для декодування, перевірки та створення JWT.
+
+![JWT.io Debugger](https://cdn.auth0.com/blog/legacy-app-auth/legacy-app-auth-5.png)
+
+## Як працюють веб-токени JSON?
+
+Під час автентифікації, коли користувач успішно ввійде, використовуючи свої облікові дані, буде повернено веб-токен JSON. Оскільки токени є обліковими даними, потрібно бути дуже обережним, щоб запобігти проблемам безпеки. Загалом, ви не повинні зберігати токени довше, ніж потрібно.
+
+Ви також [не повинні зберігати конфіденційні дані сеансу в пам’яті браузера через відсутність безпеки](https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html#local-storage).
+
+Щоразу, коли користувач хоче отримати доступ до захищеного маршруту або ресурсу, агент користувача повинен надіслати JWT, як правило, у заголовку **Authorization** за допомогою схеми **Bearer**. Вміст заголовка має виглядати так:
+
+```
+Authorization: Bearer <token>
+```
+
+У деяких випадках це може бути механізм авторизації без стану. Захищені маршрути сервера перевірятимуть дійсний JWT у заголовку `Authorization`, і якщо він присутній, користувачеві буде дозволено доступ до захищених ресурсів. Якщо JWT містить необхідні дані, потреба запитувати базу даних для певних операцій може бути зменшена, хоча це не завжди так.
+
+Зауважте, що якщо ви надсилаєте маркери JWT через заголовки HTTP, ви повинні намагатися запобігти тому, щоб вони ставали занадто великими. Деякі сервери не приймають заголовки розміром більше 8 КБ. Якщо ви намагаєтеся вставити забагато інформації в маркер JWT, наприклад, включивши всі дозволи користувача, вам може знадобитися альтернативне рішення, наприклад [Auth0 Fine-Grained Authorization](https://fga.dev).
+
+Якщо маркер надіслано в заголовку `Authorization`, перехресне використання ресурсів (CORS) не буде проблемою, оскільки він не використовує файли cookie.
+
+На наступній діаграмі показано, як JWT отримується та використовується для доступу до API або ресурсів:
+
+![How does a JSON Web Token work](https://cdn2.auth0.com/docs/media/articles/api-auth/client-credentials-grant.png)
+
+1. Програма або клієнт запитує авторизацію на сервері авторизації. Це виконується за допомогою одного з різних потоків авторизації. Наприклад, типова сумісна веб-програма [OpenID Connect](http://openid.net/connect/) проходитиме через кінцеву точку `/oauth/authorize` за допомогою [потоку коду авторизації](http://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth).
+2. Коли авторизацію надано, сервер авторизації повертає програмі маркер доступу.
+3. Програма використовує маркер доступу для доступу до захищеного ресурсу (наприклад, API).
+
+Зауважте, що з підписаними маркерами вся інформація, що міститься в маркері, доступна користувачам або іншим сторонам, навіть якщо вони не можуть її змінити. Це означає, що ви не повинні розміщувати секретну інформацію в маркері.
+
+## Чому ми повинні використовувати веб-токени JSON?
+
+Давайте поговоримо про переваги **веб-токенів JSON (JWT)** порівняно з **простими веб-токенами (SWT)** і **маркерами мови розмітки безпеки (SAML)**.
+
+Оскільки JSON є менш детальним, ніж XML, коли він закодований, його розмір також менший, що робить JWT більш компактним, ніж SAML. Це робить JWT хорошим вибором для передачі в середовищах HTML і HTTP.
+
+З точки зору безпеки SWT може бути лише симетрично підписаний спільним секретом за допомогою алгоритму HMAC. Проте маркери JWT і SAML можуть використовувати для підпису пару відкритих/приватних ключів у формі сертифіката X.509. Підписати XML за допомогою цифрового підпису XML без введення незрозумілих прогалин у безпеці дуже складно порівняно з простотою підпису JSON.
+
+Парсери JSON поширені в більшості мов програмування, оскільки вони відображаються безпосередньо на об’єкти. І навпаки, XML не має природного відображення документа в об’єкт. Це полегшує роботу з JWT, ніж із твердженнями SAML.
+
+Що стосується використання, JWT використовується в масштабі Інтернету. Це підкреслює легкість клієнтської обробки веб-токена JSON на багатьох платформах, особливо мобільних.
+
+![Comparing the length of an encoded JWT and an encoded SAML](https://cdn.auth0.com/content/jwt/comparing-jwt-vs-saml2.png) 
+
+*Порівняння довжини закодованого JWT і закодованого SAML*
+
+Якщо ви хочете дізнатися більше про веб-токени JSON і навіть почати використовувати їх для автентифікації у власних програмах, перейдіть на [цільову сторінку веб-токенів JSON](http://auth0.com/learn/json-web-tokens) в Auth0.
+
+# Бібліотека JS - jsonwebtoken
+
+https://github.com/auth0/node-jsonwebtoken#readme
+
+```bash
+$ npm install jsonwebtoken
+```
+
+Має три методи:
+
+- `sign` - Формує  JsonWebToken як рядок за вказаним корисним навантаженням, секретним приватним ключем та опціями 
+- `verify` - повертає розшифроване корисне навантаження за вказаним JsonWebToken, якщо підпис дійсний і необов’язковий термін дії, аудиторія чи емітент дійсні, якщо ні - видасть помилку.
+- `decode` - повертає розшифроване корисне навантаження без перевірки дійсності підпису.
+
+## sign
+
+Формує  JsonWebToken як рядок. Може працювати в асинхронному абос синхронному режимі:
+
+- (Асинхронний) Якщо надається зворотний виклик, зворотний виклик викликається з `err` або JWT.
+- (Синхронно) Повертає JsonWebToken як рядок
+
+```
+jwt.sign(payload, secretOrPrivateKey, [options, callback])
+```
+
+- `payload` може бути літералом об’єкта, буфером або рядком, що представляє дійсний JSON.  **Будь ласка, *зауважте*, що** `exp` або будь-який інший payload встановлюється, лише якщо корисне навантаження є літералом об’єкта. Корисне навантаження типу buder або string не перевіряється на дійсність JSON. Якщо `payload` не є буфером або рядком, його буде переведено в рядок за допомогою `JSON.stringify`.
+
+- `secretOrPrivateKey` - це рядок (закодований utf-8), буфер, об’єкт або KeyObject, що містить або секрет для алгоритмів HMAC, або закритий ключ у кодуванні PEM для RSA та ECDSA. У випадку закритого ключа з парольною фразою можна використовувати об’єкт `{ key, passphrase }` (на основі [криптодокументації](https://nodejs.org/api/crypto.html#crypto_sign_sign_private_key_output_format)), у цьому випадку переконайтеся, що ви передали параметр `algorithm`. Під час підписання за допомогою алгоритмів RSA мінімальна довжина модуля становить 2048, за винятком випадків, коли для параметра `allowInsecureKeySizes` встановлено значення `true`. Приватні ключі менше цього розміру будуть відхилені з помилкою.
+
+- `options`:
+
+  - `algorithm` (default: `HS256`)
+
+  - `expiresIn`: виражений у секундах або рядок, що описує проміжок часу  [vercel/ms](https://github.com/vercel/ms). Наприклад: `60`, `"2 days"`, `"10h"`, `"7d"`. Числове значення інтерпретується як кількість секунд. Якщо ви використовуєте рядок, переконайтеся, що ви вказали одиниці часу (days, hours, тощо), інакше за замовчуванням використовуються одиниці вимірювання мілісекунди (`120` дорівнює 120 мс).
+
+  - `notBefore`: виражений у секундах або рядок, що описує проміжок часу  [vercel/ms](https://github.com/vercel/ms). 
+
+  - `audience`
+
+  - `issuer`
+
+  - `jwtid`
+
+  - `subject`
+
+  - `noTimestamp`
+
+  - `header`
+
+  - `keyid`
+
+  - `mutatePayload`: якщо істина, функція `sign` безпосередньо змінюватиме об’єкт корисного навантаження. Це корисно, якщо вам потрібно необроблене посилання на корисне навантаження після того, як до нього було застосовано твердження, але до того, як його було закодовано в маркер.
+
+  - `allowInsecureKeySizes`: якщо true, дозволяє використовувати приватні ключі з модулем нижче 2048 для RSA
+
+  - `allowInvalidAsymmetricKeyTypes`: якщо істина, дозволяє асиметричні ключі, які не відповідають указаному алгоритму. Цей параметр призначений лише для зворотної сумісності, і його слід уникати.
+
+Немає значень за умовчанням для `expiresIn`, `notBefore`, `audience`, `subject`, `issuer`. Ці твердження також можна надати в корисному навантаженні безпосередньо за допомогою `exp`, `nbf`, `aud`, `sub` і `iss` відповідно, але ви ***не можете*** включити в обидва місця і в опції і в корисне навантаження.
+
+Пам’ятайте, що `exp`, `nbf` і `iat` є **NumericDate**, див. пов’язану [Token Expiration (exp claim)](https://github.com/auth0/node-jsonwebtoken#token-expiration-exp-claim)
+
+Заголовок можна налаштувати за допомогою об’єкта `options.header`.
+
+Згенеровані jwts за замовчуванням включатимуть твердження `iat` (випущено о), якщо не вказано `noTimestamp`. Якщо `iat` вставлено в корисне навантаження, воно використовуватиметься замість реальної мітки часу для обчислення інших речей, таких як `exp`, враховуючи проміжок часу в `options.expiresIn`.
+
+Синхронний знак за умовчанням (HMAC SHA256)
+
+```js
+var jwt = require('jsonwebtoken');
+var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+```
+
+Синхронне підписування із RSA SHA256
+
+```js
+// sign with RSA SHA256
+var privateKey = fs.readFileSync('private.key');
+var token = jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256' });
+```
+
+Асинхронне підписування
+
+```js
+jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256' }, function(err, token) {
+  console.log(token);
+});
+```
+
+Зворотня дата (Backdate ) на 30 секунд назад
+
+```js
+var older_token = jwt.sign({ foo: 'bar', iat: Math.floor(Date.now() / 1000) - 30 }, 'shhhhh');
+```
+
+#### Token Expiration (exp claim)
+
+Стандарт для JWT означує вимогу `exp` для закінчення терміну дії. Термін дії представлено як **NumericDate** - це числове значення JSON, що представляє кількість секунд від 1970-01-01T00:00:00Z UTC до вказаної дати/часу UTC, ігноруючи високосні секунди. Це еквівалентно визначенню IEEE Std 1003.1, 2013 Edition [POSIX.1] «Секунди з епохи», у якому кожен день враховується рівно 86400 секундами, крім цього можуть бути представлені нецілі значення. Перегляньте RFC 3339 [RFC3339], щоб дізнатися більше про дату/час загалом і UTC зокрема.
+
+Це означає, що поле `exp` має містити кількість секунд після епохи.
+
+Підписання токена з терміном дії 1 година:
+
+```javascript
+jwt.sign({
+  exp: Math.floor(Date.now() / 1000) + (60 * 60),
+  data: 'foobar'
+}, 'secret');
+```
+
+Ще один спосіб створити подібний маркер за допомогою цієї бібліотеки:
+
+```javascript
+jwt.sign({
+  data: 'foobar'
+}, 'secret', { expiresIn: 60 * 60 });
+
+//or even better:
+
+jwt.sign({
+  data: 'foobar'
+}, 'secret', { expiresIn: '1h' });
+```
+
+## verify
+
+```
+jwt.verify(token, secretOrPublicKey, [options, callback])
+```
+
+(Асинхронний) Якщо надається зворотний виклик, функція діє асинхронно. Зворотний виклик викликається з розшифрованим корисним навантаженням, якщо підпис дійсний і необов’язковий термін дії, аудиторія або емітент дійсні. Якщо ні, буде викликано з помилкою.
+
+(Синхронно) Якщо зворотний виклик не надається, функція діє синхронно. Повертає розшифроване корисне навантаження, якщо підпис дійсний і необов’язковий термін дії, аудиторія чи емітент дійсні. Якщо ні, це видасть помилку.
+
+> **Warning:** When the token comes from an  untrusted source (e.g. user input or external requests), the returned  decoded payload should be treated like any other user input; please make sure to sanitize and only work with properties that are expected **Попередження.** Якщо токен надходить із ненадійного джерела (наприклад, введені користувачем або зовнішні запити), повернуте декодоване корисне навантаження слід розглядати як будь-які інші введені користувачем дані; обов’язково продезінфікуйте та працюйте лише з очікуваними властивостями
+
+- `token` is the JsonWebToken string
+
+- `secretOrPublicKey` is a string (utf-8 encoded), buffer, or KeyObject containing either the secret for HMAC algorithms, or the PEM encoded public key for RSA and ECDSA. If `jwt.verify` is called asynchronous, `secretOrPublicKey` can be a function that should fetch the secret or public key. See below for a detailed example
+
+As mentioned in [this comment](https://github.com/auth0/node-jsonwebtoken/issues/208#issuecomment-231861138), there are other libraries that expect base64 encoded secrets (random  bytes encoded using base64), if that is your case you can pass `Buffer.from(secret, 'base64')`, by doing this the secret will be decoded using base64 and the token verification will use the original random bytes.
+
+- options
+
+  - algorithms : List of strings with the names of the allowed algorithms. For instance, 
+
+    ```
+    ["HS256", "HS384"]
+    ```
+
+    > If not specified a defaults will be used based on the type of key provided
+    >
+    > - secret - ['HS256', 'HS384', 'HS512']
+    > - rsa - ['RS256', 'RS384', 'RS512']
+    > - ec - ['ES256', 'ES384', 'ES512']
+    > - default - ['RS256', 'RS384', 'RS512']
+
+  - audience : if you want to check audience (
+
+    ```
+    aud
+    ```
+
+    ), provide a value here. The audience can be checked against a string, a  regular expression or a list of strings and/or regular expressions.
+
+    > Eg: `"urn:foo"`, `/urn:f[o]{2}/`, `[/urn:f[o]{2}/, "urn:bar"]`
+
+  - `complete`: return an object with the decoded `{ payload, header, signature }` instead of only the usual content of the payload.
+
+  - `issuer` (optional): string or array of strings of valid values for the `iss` field.
+
+  - `jwtid` (optional): if you want to check JWT ID (`jti`), provide a string value here.
+
+  - `ignoreExpiration`: if `true` do not validate the expiration of the token.
+
+  - `ignoreNotBefore`...
+
+  - `subject`: if you want to check subject (`sub`), provide a value here
+
+  - `clockTolerance`: number of seconds to tolerate when checking the `nbf` and `exp` claims, to deal with small clock differences among different servers
+
+  - maxAge: the maximum allowed age for tokens to still be valid. It is expressed in seconds or a string describing a time span 
+
+    vercel/ms
+
+    .
+
+    > Eg: `1000`, `"2 days"`, `"10h"`, `"7d"`. A numeric value is interpreted as a seconds count. If you use a string  be sure you provide the time units (days, hours, etc), otherwise  milliseconds unit is used by default (`"120"` is equal to `"120ms"`).
+
+  - `clockTimestamp`: the time in seconds that should be used as the current time for all necessary comparisons.
+
+  - `nonce`: if you want to check `nonce` claim, provide a string value here. It is used on Open ID for the ID Tokens. ([Open ID implementation notes](https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes))
+
+  - `allowInvalidAsymmetricKeyTypes`: if true, allows  asymmetric keys which do not match the specified algorithm. This option  is intended only for backwards compatability and should be avoided.
+
+```js
+// verify a token symmetric - synchronous
+var decoded = jwt.verify(token, 'shhhhh');
+console.log(decoded.foo) // bar
+
+// verify a token symmetric
+jwt.verify(token, 'shhhhh', function(err, decoded) {
+  console.log(decoded.foo) // bar
+});
+
+// invalid token - synchronous
+try {
+  var decoded = jwt.verify(token, 'wrong-secret');
+} catch(err) {
+  // err
+}
+
+// invalid token
+jwt.verify(token, 'wrong-secret', function(err, decoded) {
+  // err
+  // decoded undefined
+});
+
+// verify a token asymmetric
+var cert = fs.readFileSync('public.pem');  // get public key
+jwt.verify(token, cert, function(err, decoded) {
+  console.log(decoded.foo) // bar
+});
+
+// verify audience
+var cert = fs.readFileSync('public.pem');  // get public key
+jwt.verify(token, cert, { audience: 'urn:foo' }, function(err, decoded) {
+  // if audience mismatch, err == invalid audience
+});
+
+// verify issuer
+var cert = fs.readFileSync('public.pem');  // get public key
+jwt.verify(token, cert, { audience: 'urn:foo', issuer: 'urn:issuer' }, function(err, decoded) {
+  // if issuer mismatch, err == invalid issuer
+});
+
+// verify jwt id
+var cert = fs.readFileSync('public.pem');  // get public key
+jwt.verify(token, cert, { audience: 'urn:foo', issuer: 'urn:issuer', jwtid: 'jwtid' }, function(err, decoded) {
+  // if jwt id mismatch, err == invalid jwt id
+});
+
+// verify subject
+var cert = fs.readFileSync('public.pem');  // get public key
+jwt.verify(token, cert, { audience: 'urn:foo', issuer: 'urn:issuer', jwtid: 'jwtid', subject: 'subject' }, function(err, decoded) {
+  // if subject mismatch, err == invalid subject
+});
+
+// alg mismatch
+var cert = fs.readFileSync('public.pem'); // get public key
+jwt.verify(token, cert, { algorithms: ['RS256'] }, function (err, payload) {
+  // if token alg != RS256,  err == invalid signature
+});
+
+// Verify using getKey callback
+// Example uses https://github.com/auth0/node-jwks-rsa as a way to fetch the keys.
+var jwksClient = require('jwks-rsa');
+var client = jwksClient({
+  jwksUri: 'https://sandrino.auth0.com/.well-known/jwks.json'
+});
+function getKey(header, callback){
+  client.getSigningKey(header.kid, function(err, key) {
+    var signingKey = key.publicKey || key.rsaPublicKey;
+    callback(null, signingKey);
+  });
+}
+
+jwt.verify(token, getKey, options, function(err, decoded) {
+  console.log(decoded.foo) // bar
+});
+```
+
+## decode
+
+```
+jwt.decode(token [, options])
+```
+
+(Synchronous) Повертає розшифроване корисне навантаження без перевірки дійсності підпису.
+
+> **Попередження:** це **не** перевірить, чи дійсний підпис. Вам **не** слід використовувати це для ненадійних повідомлень. Швидше за все, ви захочете використовувати замість цього `jwt.verify`. **Попередження.** Якщо маркер надходить із ненадійного джерела (наприклад, введення користувача або зовнішній запит), повернуте декодоване корисне навантаження слід розглядати як будь-який інший ввід користувача; обов’язково продезінфікуйте та працюйте лише з очікуваними властивостями
+
+- `token` is the JsonWebToken string
+
+- `options`:
+
+  - `json`: force JSON.parse on the payload even if the header doesn't contain `"typ":"JWT"`.
+
+  - `complete`: return an object with the decoded payload and header.
+
+приклад
+
+```js
+// get the decoded payload ignoring signature, no secretOrPrivateKey needed
+var decoded = jwt.decode(token);
+
+// get the decoded payload and header
+var decoded = jwt.decode(token, {complete: true});
+console.log(decoded.header);
+console.log(decoded.payload)
+```
+
+## Errors & Codes
+
+Можливі помилки під час перевірки. Помилка є першим аргументом зворотного виклику перевірки.
+
+### TokenExpiredError
+
+Виникла помилка, якщо термін дії маркера минув. Об'єкт помилки:
+
+- name: 'TokenExpiredError'
+- message: 'jwt expired'
+- expiredAt: [ExpDate]
+
+```js
+jwt.verify(token, 'shhhhh', function(err, decoded) {
+  if (err) {
+    /*
+      err = {
+        name: 'TokenExpiredError',
+        message: 'jwt expired',
+        expiredAt: 1408621000
+      }
+    */
+  }
+});
+```
+
+### JsonWebTokenError
+
+Error object:
+
+- name: 'JsonWebTokenError'
+- message:
+  - 'invalid token' - the header or payload could not be parsed
+  - 'jwt malformed' - the token does not have three components (delimited by a `.`)
+  - 'jwt signature is required'
+  - 'invalid signature'
+  - 'jwt audience invalid. expected: [OPTIONS AUDIENCE]'
+  - 'jwt issuer invalid. expected: [OPTIONS ISSUER]'
+  - 'jwt id invalid. expected: [OPTIONS JWT ID]'
+  - 'jwt subject invalid. expected: [OPTIONS SUBJECT]'
+
+```js
+jwt.verify(token, 'shhhhh', function(err, decoded) {
+  if (err) {
+    /*
+      err = {
+        name: 'JsonWebTokenError',
+        message: 'jwt malformed'
+      }
+    */
+  }
+});
+```
+
+### NotBeforeError
+
+Видається, якщо поточний час передує запиту nbf. Об'єкт помилки:
+
+- name: 'NotBeforeError'
+- message: 'jwt not active'
+- date: 2018-10-04T16:10:44.000Z
+
+```js
+jwt.verify(token, 'shhhhh', function(err, decoded) {
+  if (err) {
+    /*
+      err = {
+        name: 'NotBeforeError',
+        message: 'jwt not active',
+        date: 2018-10-04T16:10:44.000Z
+      }
+    */
+  }
+});
+```
+
+## Підтримувані алгоритми
+
+Масив підтримуваних алгоритмів. Наразі підтримуються такі алгоритми.
+
+| alg Parameter Value | Digital Signature or MAC Algorithm                           |
+| ------------------- | ------------------------------------------------------------ |
+| HS256               | HMAC using SHA-256 hash algorithm                            |
+| HS384               | HMAC using SHA-384 hash algorithm                            |
+| HS512               | HMAC using SHA-512 hash algorithm                            |
+| RS256               | RSASSA-PKCS1-v1_5 using SHA-256 hash algorithm               |
+| RS384               | RSASSA-PKCS1-v1_5 using SHA-384 hash algorithm               |
+| RS512               | RSASSA-PKCS1-v1_5 using SHA-512 hash algorithm               |
+| PS256               | RSASSA-PSS using SHA-256 hash algorithm (only node ^6.12.0 OR >=8.0.0) |
+| PS384               | RSASSA-PSS using SHA-384 hash algorithm (only node ^6.12.0 OR >=8.0.0) |
+| PS512               | RSASSA-PSS using SHA-512 hash algorithm (only node ^6.12.0 OR >=8.0.0) |
+| ES256               | ECDSA using P-256 curve and SHA-256 hash algorithm           |
+| ES384               | ECDSA using P-384 curve and SHA-384 hash algorithm           |
+| ES512               | ECDSA using P-521 curve and SHA-512 hash algorithm           |
+| none                | No digital signature or MAC value included                   |
+
+## Оновлення JWT
+
+Перш за все, ми рекомендуємо вам уважно подумати, чи не призведе автоматичне оновлення JWT до вразливості вашої системи.
+
+Нам не зручно включати це як частину бібліотеки, однак ви можете поглянути на [цей приклад](https://gist.github.com/ziluvatar/a3feb505c4c0ec37059054537b38fc48), щоб показати, як це можна зробити. Окрім цього прикладу, є [проблема](https://github.com/auth0/node-jsonwebtoken/issues/122) і [запит на отримання](https://github.com/auth0/node-jsonwebtoken/ pull/172), щоб отримати більше знань про цю тему.
+
+# Практичне застосування
+
+Цей розділ дасть вам уявлення про складність (або простоту) звичайних рішень на основі JWT, які сьогодні використовуються в галузі. Для вашої зручності весь код доступний у загальнодоступних репозиторіях. Майте на увазі, що наведені нижче демонстрації *не* призначені для використання у виробництві. Тестові випадки, ведення журналів і найкращі методи безпеки є важливими для готового до виробництва коду. Ці зразки призначені лише для освітніх цілей, тому залишаються простими та по суті.
+
+## Client-side/Stateless Sessions
+
+Так звані сеанси *без стану* насправді є нічим іншим, як даними на стороні клієнта. Ключовий аспект цього застосування полягає у використанні *підпису (signing)* і, можливо, *шифрування* для автентифікації та захисту вмісту сеансу. Дані на стороні клієнта можуть бути *підроблені*. Таким чином, серверна частина має обробляти його дуже обережно. 
+
+JWT, завдяки JWS і JWE, можуть надавати різні типи підписів і шифрування. Підписи корисні для *перевірки* даних на предмет підробки. Шифрування корисно для *захисту* даних від читання третіми сторонами.
+
+У більшості випадків сеанси потрібно лише підписувати. Іншими словами, немає проблем із безпекою чи конфіденційністю, коли збережені в них дані зчитуються третіми сторонами. Поширеним прикладом твердження, яке зазвичай можуть безпечно прочитати треті сторони, є `sub` твердження (тема). Твердження тема зазвичай ідентифікує одну зі сторін іншої (подумайте про ідентифікатори користувачів або електронні адреси). Не обов’язково, щоб це твердження було *унікальним*. Іншими словами, для однозначної ідентифікації користувача можуть знадобитися додаткові твердження. Це залишається на вирішення користувачів.
+
+Твердження, яке не можна належним чином залишати відкритим, може бути «items», що представляє кошик користувача. Цей кошик може бути заповнений товарами, які користувач збирається придбати, і тому вони пов’язані з його або її сеансом. Третя сторона (сценарій на стороні клієнта) може отримати ці елементи, якщо вони зберігаються в незашифрованому JWT, що може викликати проблеми з конфіденційністю.
+
+![image-20230513093922178](media/image-20230513093922178.png)
+
+Рисунок 1: Підписані дані на стороні клієнта
+
+Поширеним методом атаки на підписаний JWT є просто видалення підпису. Підписані JWT складаються з трьох різних частин: заголовка, корисного навантаження та підпису. Ці три частини кодуються окремо. Таким чином, можна видалити підпис, а потім *змінити* заголовок, щоб стверджувати, що JWT є *непідписаним*. Недбале використання певних бібліотек перевірки JWT може призвести до того, що непідписані токени будуть прийняті за дійсні, що може дозволити зловмиснику змінювати корисне навантаження на власний розсуд. Це легко вирішити, переконавшись, що програма, яка виконує перевірку, не вважає непідписані JWT дійсними.
+
+![image-20230513093949383](media/image-20230513093949383.png)
+
+Рисунок 2: Видалення підпису
+
+### Підробка міжсайтового запиту (CSRF)
+
+Атаки підробки міжсайтових запитів намагаються виконувати запити проти сайтів, на яких користувач увійшов, обманом змушуючи браузер користувача надіслати запит з іншого сайту. Щоб досягти цього, спеціально створений сайт (або елемент) повинен містити URL-адресу цілі. Типовим прикладом є тег `<img>`, вбудований у шкідливу сторінку з `src`, що вказує на ціль атаки. Наприклад:
+
+```html
+<!-- Це вбудовано в сайт іншого домену -->
+<img src="http://target.site.com/add-user?user=name&grant=admin">
+```
+
+Наведений вище тег `<img>` надсилатиме запит до `target.site.com` кожного разу, коли завантажуватиметься сторінка, яка його містить. Якщо користувач раніше входив у систему на `target.site.com` і сайт використовував файл `cookie`, щоб підтримувати сеанс активним, цей файл cookie також буде надіслано. Якщо цільовий сайт не реалізує жодних методів пом’якшення CSRF, запит буде оброблено як дійсний запит від імені користувача. JWT, як і будь-які інші клієнтські дані, можна зберігати як файли cookie.
+
+![image-20230513094005600](media/image-20230513094005600.png)
+
+Рис. 3: Підробка міжсайтового запиту (Cross-Site Request Forgery)
+
+Короткочасні JWT можуть допомогти в цьому випадку. Загальні методи пом’якшення CSRF включають спеціальні заголовки, які додаються до запитів лише тоді, коли вони виконуються з правильного джерела, сеансових файлів cookie та маркерів запиту. Якщо JWT (і дані сеансу) не зберігаються як файли cookie, атаки CSRF неможливі. Однак міжсайтові сценарні атаки все ще можливі.
+
+### Cross-Site Scripting (XSS)
+
+Атаки міжсайтового сценарію (XSS) намагаються впровадити JavaScript у надійні сайти. Введений JavaScript може потім викрасти маркери з файлів cookie та локального сховища. Якщо маркер доступу витік до закінчення терміну дії, зловмисник може використати його для доступу до захищених ресурсів. Поширені атаки XSS зазвичай спричинені неправильною перевіркою даних, що передаються на сервер (подібно до атак SQL-ін’єкцій).
+
+Приклад XSS-атаки може бути пов’язаний із розділом коментарів на публічному сайті. Щоразу, коли користувач додає коментар, він зберігається серверною частиною та відображається користувачам, які завантажують розділ коментарів. Якщо серверна частина не очищає коментарі, зловмисник може написати коментар таким чином, що він може бути інтерпретований браузером як тег `<script>`. Отже, зловмисник може вставити довільний код JavaScript і виконати його в браузері кожного користувача, таким чином викравши облікові дані, що зберігаються як файли cookie та в локальному сховищі.
+
+![image-20230513094019358](media/image-20230513094019358.png)
+
+Рис.4. Постійний міжсайтовий сценарій
+
+![image-20230513094033958](media/image-20230513094033958.png)
+
+Рис.5: Рефлексивний міжсайтовий сценарій
+
+Методи пом’якшення покладаються на належну перевірку всіх даних, що передаються до серверної частини. Зокрема, будь-які дані, отримані від клієнтів, завжди повинні бути оброблені. Якщо використовуються файли cookie, можна захистити їх від доступу з боку JavaScript, встановивши прапорець HttpOnly. Прапор HttpOnly, хоч і корисний, не захистить файл cookie від атак CSRF.
+
+### Чи корисні сеанси на стороні клієнта?
+
+У будь-якого підходу є плюси та мінуси, і сеанси на стороні клієнта не є винятком. Для деяких програм можуть знадобитися великі сеанси. Надсилання цього стану туди й назад для кожного запиту (або групи запитів) може легко подолати переваги зменшення балакучості у серверній частині. Необхідний певний баланс між даними на стороні клієнта та пошуком бази даних у серверній частині. Це залежить від моделі даних вашої програми. Деякі програми погано відображаються на клієнтських сесіях. Інші можуть повністю залежати від даних клієнта. Останнє слово в цьому питанні за вами! Виконайте контрольні тести, вивчіть переваги збереження певного стану на стороні клієнта. JWT занадто великі? Чи впливає це на пропускну здатність? Чи ця додаткова пропускна здатність скасовує зменшену затримку у серверній частині? Чи можна невеликі запити об’єднати в один більший запит? Чи вимагають ці запити все ще великі пошуки в базі даних? Відповіді на ці запитання допоможуть вам вибрати правильний підхід.
+
+### Приклад
+
+Для нашого прикладу ми створимо простий додаток для покупок. Кошик для покупок користувача зберігатиметься на стороні клієнта. У цьому прикладі присутні кілька JWT. Наш кошик буде одним із них.
+
+- Один JWT для ідентифікаційного токена, токена, який містить інформацію про профіль користувача, корисну для інтерфейсу користувача.
+
+- Один JWT для взаємодії з серверною частиною API (токен доступу). 
+- Один JWT для нашого клієнтського стану: кошик для покупок.
+
+Ось як виглядає кошик для покупок у розшифрованому вигляді:
+
+```json
+{
+    "items": [ 0, 2, 4],
+    "iat": 1493139659, 
+    "exp": 1493143259
+}
+```
+
+Кожен елемент ідентифікується цифровим ID. Закодований і підписаний JWT виглядає так:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9. eyJpdGVtcyI6WzAsMiw0XSwiaWF0IjoxNDkzMTM5NjU5LCJleHAiOjE0OTMxNDMyNTl9. 932ZxtZzy1qhLXs932hd04J58Ihbg5_g_rIrj-Z16Js
+```
+
+Щоб відобразити елементи в кошику, інтерфейсу потрібно лише отримати його зі свого файлу cookie:
+
+```js
+function populateCart() {
+	const cartElem = $('#cart'); 
+    cartElem.empty();
+	const cartToken = Cookies.get('cart'); 
+    if(!cartToken) {return; }
+	const cart = jwt_decode(cartToken).items;
+	cart.forEach(itemId => {
+		const name = items.find(item => item.id == itemId).name;
+        cartElem.append(`<li>${name}</li>`);
+	}); 
+}
+```
+
+Зауважте, що інтерфейс не перевіряє підпис, він просто декодує JWT, щоб відобразити його вміст. Фактичні перевірки виконує серверна частина. Усі JWT перевірені.
+
+Ось бекенд-перевірка дійсності JWT кошика, реалізованого як проміжне програмне забезпечення Express:
+
+```js
+function cartValidator(req, res, next) { 
+    if(!req.cookies.cart) {
+        req.cart = { items: [] }; 
+    } else {
+        try {
+            req.cart = {
+                items: jwt.verify(
+                    req.cookies.cart, 
+                    process.env.AUTH0_CART_SECRET, 
+                    cartVerifyJwtOptions).items
+            };
+        } catch(e) {
+            req.cart = { items: [] }; 
+        }
+    }
+    next(); 
+}
+```
+
+Коли елементи додаються, серверна програма створює новий JWT з новим елементом у ньому та новим підписом:
+
+```js
+app.get('/protected/add_item', idValidator, cartValidator, (req, res) => {
+    req.cart.items.push(parseInt(req.query.id));
+    const newCart = jwt.sign(
+        req.cart, 
+        process.env.AUTH0_CART_SECRET, 
+        cartSignJwtOptions);
+    res.cookie('cart', 
+               newCart, 
+               { maxAge: 1000 * 60 * 60}
+              );
+    res.end();
+    console.log(`Item ID ${req.query.id} added to cart.`); 
+});
+```
+
+Зауважте, що розташування з префіксом `/protected` також захищені маркером доступу API. Це налаштовано за допомогою express-jwt:
+
+```js
+app.use('/protected', expressJwt({
+    secret: jwksClient.expressJwtSecret(jwksOpts), 
+    issuer: process.env.AUTH0_API_ISSUER, 
+    audience: process.env.AUTH0_API_AUDIENCE, 
+    requestProperty: 'accessToken',
+    getToken: req => {
+        return req.cookies['access_token']; }
+}));
+```
+
+Іншими словами, `/protected/add_itemendpoint` має спочатку пройти етап перевірки маркера доступу перед перевіркою кошика. Один маркер перевіряє доступ (авторизацію) до API, а інший маркер перевіряє цілісність даних на стороні клієнта (кошик).
+
+Маркер доступу та маркер ідентифікатора призначаються Auth0 нашій програмі. Для цього потрібно налаштувати клієнт і кінцеву точку API за допомогою інформаційної панелі Auth0. Потім вони витягуються за допомогою бібліотеки Auth0 JavaScript, викликаної нашим інтерфейсом:
+
+```js
+//Auth0 Client ID
+const clientId = "t42WY87weXzepAdUlwMiHYRBQj9qWVAT"; //Auth0 Domain
+const domain = "speyrott.auth0.com";
+const auth0 = new window.auth0.WebAuth({ 
+    domain: domain,
+    clientID: clientId, 
+    audience: '/protected',
+    cope: 'openid profile purchase', 
+    responseType: 'id_token token', 
+    redirectUri: 'http://localhost:3000/auth/', 
+    responseMode: 'form_post'
+});
+//(...)
+$('#login-button').on('click', function(event) { auth0.authorize();});
+```
+
+Твердження про аудиторію має відповідати одному налаштуванню для вашої кінцевої точки API за допомогою інформаційної панелі Auth0.
+
+Сервер автентифікації та авторизації Auth0 відображає екран входу з нашими налаштуваннями, а потім перенаправляє назад до нашої програми за певним шляхом із запитаними маркерами. Вони обробляються нашим сервером, який просто встановлює їх як файли cookie:
+
+```js
+app.post('/auth', (req, res) => { 
+    res.cookie('access_token', req.body.access_token, {
+        httpOnly: true,
+        maxAge: req.body.expires_in * 1000 
+    });
+    res.cookie('id_token', req.body.id_token, { 
+        maxAge: req.body.expires_in * 1000
+    }); 
+    res.redirect('/');
+})
+```
+
+Впровадження методів пом’якшення CSRF залишається для читача як вправа. Повний приклад цього коду можна знайти в каталозі [samples/stateless-sessions](https://github.com/auth0/jwt-handbook-samples/tree/master/stateless-sessions).
+
+## Системи об’єднаної ідентифікації
+
+Системи об’єднаної ідентифікації (Federated identity systems) дозволяють різним, можливо непов’язаним сторонам, спільно використовувати служби автентифікації та авторизації з іншими сторонами. Іншими словами, ідентичність користувача централізована. Існує кілька рішень для федеративного керування ідентифікацією: SAML8 і OpenID Connect є двома найпоширенішими. Деякі компанії надають спеціалізовані продукти, які централізують автентифікацію та авторизацію. Вони можуть використовувати один із згаданих вище стандартів або використовувати щось зовсім інше. Деякі з цих компаній використовують JWT для цієї мети.
+
+Використання JWT для централізованої автентифікації та авторизації залежить від компанії, але основний процес авторизації:
+
+
+
+![image-20230513094107155](media/image-20230513094107155.png)
+
+Рис. 6: Загальний федеративний потік ідентифікації
+
+1. Користувач намагається отримати доступ до ресурсу, який контролюється сервером.
+2. Користувач не має належних облікових даних для доступу до ресурсу, тому сервер перенаправляє користувача на сервер авторизації. Сервер авторизації налаштовано, щоб дозволити користувачам входити в систему за допомогою облікових даних, якими керує постачальник посвідчень (identity provider).
+3. Сервер авторизації перенаправляє користувача на екран входу постачальника ідентифікаційних даних. 
+
+4. Користувач успішно входить у систему та перенаправляється на сервер авторизації. Сервер авторизації використовує облікові дані, надані постачальником посвідчень, для доступу до облікових даних, необхідних серверу ресурсів.
+
+5. Сервер авторизації перенаправляє користувача на сервер ресурсів. Тепер запит містить правильні облікові дані, необхідні для доступу до ресурсу.
+6. Користувач успішно отримує доступ до ресурсу.
+
+Усі дані, що передаються від сервера до сервера, проходять через користувача, будучи вбудованими в запити перенаправлення (зазвичай як частина URL-адреси). Це робить транспортну безпеку (TLS) і безпеку даних надзвичайно важливими.
+
+Облікові дані, які сервер авторизації повертає користувачеві, можуть бути закодовані як JWT. Якщо сервер авторизації дозволяє вхід через постачальника ідентифікаційної інформації (як у випадку в цьому прикладі), можна сказати, що сервер авторизації надає уніфікований інтерфейс і уніфіковані дані (JWT) для користувача.
+
+У нашому прикладі далі в цьому розділі ми будемо використовувати Auth0 як сервер авторизації та оброблятимемо входи через Twitter, Facebook і звичайну базу даних користувачів.
+
+### Маркери доступу та оновлення
+
+Маркери доступу та оновлення — це два типи маркерів, які ви часто побачите під час аналізу різних рішень федеративної ідентифікації. Ми коротко пояснимо, що це таке та як вони допомагають у контексті автентифікації та авторизації.
+
+Обидві концепції зазвичай реалізуються в контексті специфікації OAuth2. Специфікація OAuth2 визначає низку кроків, необхідних для надання доступу до ресурсів шляхом відокремлення доступу від права власності (іншими словами, це дозволяє кільком сторонам з різними рівнями доступу отримувати доступ до одного ресурсу). Кілька частин цих кроків *визначено реалізацією*. Тобто конкуруючі реалізації OAuth2 можуть бути несумісними. Наприклад, фактичний двійковий формат токенів *не вказано*. Їх призначення і функціональність така.
+
+**Маркери доступу** – це маркери, які надають тим, хто їх має, доступ до захищених ресурсів. Ці токени зазвичай недовговічні та можуть мати вбудовану дату закінчення терміну дії. Вони також можуть містити додаткову інформацію або бути пов’язаною з нею (наприклад, маркер доступу може містити IP-адресу, з якої дозволені запити). Ці додаткові дані визначаються реалізацією.
+
+З іншого боку, **Маркети оновлення** дозволяють клієнтам запитувати нові маркери доступу. Наприклад, після закінчення терміну дії маркера доступу клієнт може виконати запит нового маркера доступу до сервера авторизації. Щоб цей запит було задоволено, потрібен маркер оновлення. На відміну від маркерів доступу, маркери оновлення зазвичай довгоживучі.
+
+![image-20230513094129535](media/image-20230513094129535.png)
+
+Рис. 7 Оновлення та доступ до маркерів
+
+Ключовий аспект поділу між маркерами доступу та оновлення полягає в можливості полегшення перевірки маркерів доступу. Маркер доступу, який містить підпис (наприклад, підписаний JWT), може бути перевірений сервером ресурсів самостійно. Для цього не потрібно звертатися до сервера авторизації.
+
+З іншого боку, маркери оновлення вимагають доступу до сервера авторизації. Відокремлюючи перевірку від запитів до сервера авторизації, можна досягти кращої затримки та менш складних шаблонів доступу. Відповідна безпека у разі витоку токенів досягається за рахунок того, що маркери доступу мають якомога коротший термін дії та вбудовуються в них додаткові перевірки (наприклад, перевірки клієнта).
+
+Токени оновлення мають бути захищені від витоків, оскільки вони довго живуть. У разі витоку на сервері може знадобитися чорний список (короткочасні маркери доступу змушують зрештою використовувати маркери оновлення, таким чином захищаючи ресурс після того, як він потрапляє в чорний список і термін дії всіх маркерів доступу закінчується).
+
+Примітка: концепції маркера доступу та маркера оновлення були представлені в OAuth2. OAuth 1.0 і 1.0a використовують слово *токен* по-різному.
+
+### JWTs та OAuth2
+
+Хоча OAuth2 не згадує формат своїх маркерів, JWT добре відповідають його вимогам. Підписані JWT є хорошими маркерами доступу, оскільки вони можуть кодувати всі необхідні дані для диференціації рівнів доступу до ресурсу, можуть містити термін дії та підписані, щоб уникнути перевірочних запитів до сервера авторизації. Кілька федеративних постачальників посвідчень видають маркери доступу у форматі JWT.
+
+JWT також можна використовувати для маркерів оновлення. Однак немає причин використовувати їх для цієї мети. Оскільки для маркерів оновлення потрібен доступ до сервера авторизації, у більшості випадків буде достатньо простого UUID, оскільки немає потреби, щоб маркер переносив корисне навантаження (проте він може бути підписаний).
+
+### JWTs and OpenID Connect
+
+OpenID Connect — це спроба стандартизації, щоб об’єднати типові випадки використання OAuth2 під загальну, чітко визначену специфікацію. Оскільки багато деталей, що стоять за OAuth2, залишено на вибір розробників, OpenID Connect намагається надати правильні визначення для відсутніх частин. Зокрема, OpenID Connect визначає API і формат даних для виконання потоків авторизації OAuth2. Крім того, він забезпечує рівень автентифікації, побудований поверх цього потоку. Для деяких його частин обрано формат даних JSON Web Token. Зокрема, ідентифікаційний токен — це особливий тип токена, який містить інформацію про автентифікованого користувача.
+
+#### OpenID Connect Flows та JWTs
+
+OpenID Connect визначає кілька потоків, які повертають дані різними способами. Деякі з цих даних можуть бути у форматі JWT.
+
+- **Потік авторизації**: клієнт запитує код авторизації до кінцевої точки авторизації (/authorize). Цей код можна використовувати проти кінцевої точки маркера (/token), щоб запитати маркер ідентифікатора (у форматі JWT), маркер доступу або маркер оновлення.
+- **Неявний потік**: клієнт запитує маркери безпосередньо від кінцевої точки авторизації (/authorize). Токени вказуються в запиті. Якщо запитується маркер ідентифікатора, він повертається у форматі JWT.
+- **Гібридний потік**: клієнт запитує як код авторизації, так і певні токени від кінцевої точки авторизації (/authorize). Якщо запитується маркер ідентифікатора, він повертається у форматі JWT. Якщо ідентифікаційний маркер не запитується на цьому кроці, пізніше його можна запросити безпосередньо з кінцевої точки маркера (/token).
+
+### Приклад
+
+У цьому прикладі ми будемо використовувати Auth0 як сервер авторизації. Auth0 дозволяє динамічно встановлювати різних постачальників посвідчень. Іншими словами, щоразу, коли користувач намагається ввійти, зміни, внесені на сервер авторизації, можуть дозволити користувачам увійти за допомогою інших постачальників ідентифікаційних даних (таких як Twitter, Facebook тощо). Після розгортання програм не потрібно прив’язувати до певних постачальників. Тому наш приклад може бути досить простим. Ми налаштували екран входу Auth0 за допомогою бібліотеки Auth0.js14 на всіх наших зразках серверів. Після входу на один сервер користувач також матиме доступ до інших серверів (навіть якщо вони не з’єднані між собою).
+
+![image-20230513094148355](media/image-20230513094148355.png)
+
+Рис. 8: Auth0 as Authorization Servers
+
+Налаштування бібліотеки Auth0 можна виконати наступним чином. Ми використаємо той самий приклад, що й для прикладу сеансів без стану:
+
+```js
+const auth0 = new window.auth0.WebAuth({ 
+    domain: domain, 
+    clientID: clientId,
+    audience: 'app1.com/protected', 
+    scope: 'openid profile purchase', 
+    responseType: 'id_token token',
+    redirectUri: 'http://app1.com:3000/auth/', 
+    responseMode: 'form_post'
+});
+// (...)
+$('#login-button').on(
+    'click', 
+    function(event) { auth0.authorize({prompt: 'none' });}
+);
+```
+
+Зверніть увагу на використання параметра підказки: 'none' для авторизаційного виклику. Authorizecall перенаправляє користувача на сервер авторизації. За допомогою параметра none, якщо користувач уже авторизував програму на використання його або її облікових даних для доступу до захищеного ресурсу, сервер авторизації просто перенаправить назад до програми. Користувач виглядає так, ніби він уже ввійшов у програму.
+
+У нашому прикладі є дві програми: app1.com і app2.com. Коли користувач авторизує обидві програми (що відбувається лише один раз: під час першого входу користувача), будь-які наступні входи в будь-яку з обох програм також дозволять іншій програмі ввійти без відображення екранів входу.
+
+Щоб перевірити це, перегляньте файл README для прикладу, який знаходиться в каталозі samples/single-sign-on-federated-identity, щоб налаштувати обидві програми та запустити їх. Коли обидва запущені, перейдіть на app1.com:300016 і app2.com:300117 і увійдіть. Потім вийдіть з обох програм. Тепер спробуйте увійти в один із них. Потім поверніться до іншого та увійдіть. Ви помітите, що екран входу буде відсутній в обох програмах. Сервер авторизації запам’ятовує попередні входи та може видавати нові маркери доступу за запитом будь-якої з цих програм. Таким чином, поки користувач має сеанс сервера авторизації, він або вона вже ввійшли в обидві програми.
+
+Впровадження методів пом’якшення CSRF залишається для читача як вправа.
+
+# Посилання
+
+https://jwt.io/
+
+http://auth0.com/learn/json-web-tokens
+
+https://github.com/sunilchauhan1/jwtExamples/blob/master/jwt-handbook-v0_14_1.pdf
+

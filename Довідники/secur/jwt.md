@@ -48,11 +48,13 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Потім цей JSON кодується **Base64Url** для формування першої частини JWT.
 
+JWS допускає особливі випадки використання, які змушують заголовок містити більше тверджень. Наприклад, для алгоритмів підписання відкритим ключем можна вставити URL-адресу відкритого ключа як твердження. 
+
 ### Корисне навантаження
 
-Друга частина токена — це корисне навантаження, яке містить твердження. Твердження (Claims) – це заяви про сутність (як правило, користувача) і додаткові дані. Існує три типи тверджень: *зареєстровані*, *публічні* та *приватні* твердження.
+Друга частина токена — це корисне навантаження (payload), яке містить твердження. Твердження (Claims) – це заяви про сутність (як правило, користувача) і додаткові дані. Існує три типи тверджень: *зареєстровані*, *публічні* та *приватні* твердження.
 
-[**Зареєстровані твердження**](https://tools.ietf.org/html/rfc7519#section-4.1): це набір попередньо означених тверджень, які не є обов’язковими, але рекомендовані, щоб забезпечити набір корисних, інтероперабельні твердження. Деякі з них: 
+[**Зареєстровані твердження**](https://tools.ietf.org/html/rfc7519#section-4.1): це набір попередньо означених тверджень, які не є обов’язковими, але рекомендовані, щоб забезпечити набір корисних, інтероперабельні твердження. Ось їх перелік: 
 
 - `iss` (issuer, емітент) рядок або URI з урахуванням регістру, який унікально ідентифікує сторону, яка видала JWT. Його інтерпретація залежить від застосунку (немає центрального органу управління емітентами).
 
@@ -293,68 +295,59 @@ jwt.verify(token, secretOrPublicKey, [options, callback])
 
 (Асинхронний) Якщо надається зворотний виклик, функція діє асинхронно. Зворотний виклик викликається з розшифрованим корисним навантаженням, якщо підпис дійсний і необов’язковий термін дії, аудиторія або емітент дійсні. Якщо ні, буде викликано з помилкою.
 
-(Синхронно) Якщо зворотний виклик не надається, функція діє синхронно. Повертає розшифроване корисне навантаження, якщо підпис дійсний і необов’язковий термін дії, аудиторія чи емітент дійсні. Якщо ні, це видасть помилку.
-
-> **Warning:** When the token comes from an  untrusted source (e.g. user input or external requests), the returned  decoded payload should be treated like any other user input; please make sure to sanitize and only work with properties that are expected **Попередження.** Якщо токен надходить із ненадійного джерела (наприклад, введені користувачем або зовнішні запити), повернуте декодоване корисне навантаження слід розглядати як будь-які інші введені користувачем дані; обов’язково продезінфікуйте та працюйте лише з очікуваними властивостями
+(Синхронно) Якщо зворотний виклик не надається, функція діє синхронно. Повертає розшифроване корисне навантаження, якщо підпис дійсний і необов’язковий термін дії, аудиторія чи емітент дійсні. Якщо ні, це видасть помилку. **Попередження.** Якщо токен надходить із ненадійного джерела (наприклад, введені користувачем або зовнішні запити), повернуте декодоване корисне навантаження слід розглядати як будь-які інші введені користувачем дані; обов’язково продезінфікуйте та працюйте лише з очікуваними властивостями
 
 - `token` is the JsonWebToken string
 
-- `secretOrPublicKey` is a string (utf-8 encoded), buffer, or KeyObject containing either the secret for HMAC algorithms, or the PEM encoded public key for RSA and ECDSA. If `jwt.verify` is called asynchronous, `secretOrPublicKey` can be a function that should fetch the secret or public key. See below for a detailed example
+- `secretOrPublicKey` це рядок (закодований utf-8), буфер або KeyObject, що містить або секрет для алгоритмів HMAC, або відкритий ключ у кодуванні PEM для RSA та ECDSA. Якщо `jwt.verify` називається асинхронним, `secretOrPublicKey` може бути функцією, яка має отримати секретний або відкритий ключ. Детальний приклад див. нижче. Як зазначено в [цьому коментарі](https://github.com/auth0/node-jsonwebtoken/issues/208#issuecomment-231861138), існують інші бібліотеки, які очікують секретів, закодованих base64 (випадкові байти, закодовані за допомогою base64), якщо це у вашому випадку ви можете передати `Buffer.from(secret, 'base64')`, таким чином секрет буде розшифровано за допомогою base64, а перевірка маркера використовуватиме вихідні випадкові байти.
 
-As mentioned in [this comment](https://github.com/auth0/node-jsonwebtoken/issues/208#issuecomment-231861138), there are other libraries that expect base64 encoded secrets (random  bytes encoded using base64), if that is your case you can pass `Buffer.from(secret, 'base64')`, by doing this the secret will be decoded using base64 and the token verification will use the original random bytes.
+- `options`
 
-- options
+  - `algorithms` : Список рядків з назвами дозволених алгоритмів. Наприклад, (`["HS256", "HS384"]`) Якщо не вказано, буде використано значення за замовчуванням на основі типу наданого ключа
 
-  - algorithms : List of strings with the names of the allowed algorithms. For instance, 
+    - `secret` - ['HS256', 'HS384', 'HS512']
+  
+    - `rsa` - ['RS256', 'RS384', 'RS512']
 
-    ```
-    ["HS256", "HS384"]
-    ```
+    - `ec` - ['ES256', 'ES384', 'ES512']
+  
+    - `default` - ['RS256', 'RS384', 'RS512']
+  
+  
+  - `audience` : якщо ви хочете перевірити аудиторію (`aud`), введіть тут значення. Аудиторію можна перевірити за рядком, регулярним виразом або списком рядків і/або регулярних виразів. наприклад:`"urn:foo"`, `/urn:f[o]{2}/`, `[/urn:f[o]{2}/, "urn:bar"]` 
 
-    > If not specified a defaults will be used based on the type of key provided
-    >
-    > - secret - ['HS256', 'HS384', 'HS512']
-    > - rsa - ['RS256', 'RS384', 'RS512']
-    > - ec - ['ES256', 'ES384', 'ES512']
-    > - default - ['RS256', 'RS384', 'RS512']
-
-  - audience : if you want to check audience (
-
-    ```
-    aud
-    ```
-
-    ), provide a value here. The audience can be checked against a string, a  regular expression or a list of strings and/or regular expressions.
-
-    > Eg: `"urn:foo"`, `/urn:f[o]{2}/`, `[/urn:f[o]{2}/, "urn:bar"]`
-
-  - `complete`: return an object with the decoded `{ payload, header, signature }` instead of only the usual content of the payload.
-
+  
+- `complete`: return an object with the decoded `{ payload, header, signature }` instead of only the usual content of the payload.
+  
+  
   - `issuer` (optional): string or array of strings of valid values for the `iss` field.
 
-  - `jwtid` (optional): if you want to check JWT ID (`jti`), provide a string value here.
+  
+- `jwtid` (optional): if you want to check JWT ID (`jti`), provide a string value here.
+  
 
   - `ignoreExpiration`: if `true` do not validate the expiration of the token.
 
-  - `ignoreNotBefore`...
+  
+- `ignoreNotBefore`...
+  
 
   - `subject`: if you want to check subject (`sub`), provide a value here
 
-  - `clockTolerance`: number of seconds to tolerate when checking the `nbf` and `exp` claims, to deal with small clock differences among different servers
+  
+- `clockTolerance`: number of seconds to tolerate when checking the `nbf` and `exp` claims, to deal with small clock differences among different servers
+  
 
-  - maxAge: the maximum allowed age for tokens to still be valid. It is expressed in seconds or a string describing a time span 
+  - `maxAge`: the maximum allowed age for tokens to still be valid. It is expressed in seconds or a string describing a time span vercel/ms
 
-    vercel/ms
-
-    .
-
-    > Eg: `1000`, `"2 days"`, `"10h"`, `"7d"`. A numeric value is interpreted as a seconds count. If you use a string  be sure you provide the time units (days, hours, etc), otherwise  milliseconds unit is used by default (`"120"` is equal to `"120ms"`).
-
-  - `clockTimestamp`: the time in seconds that should be used as the current time for all necessary comparisons.
+  
+- `clockTimestamp`: the time in seconds that should be used as the current time for all necessary comparisons.
+  
 
   - `nonce`: if you want to check `nonce` claim, provide a string value here. It is used on Open ID for the ID Tokens. ([Open ID implementation notes](https://openid.net/specs/openid-connect-core-1_0.html#NonceNotes))
 
-  - `allowInvalidAsymmetricKeyTypes`: if true, allows  asymmetric keys which do not match the specified algorithm. This option  is intended only for backwards compatability and should be avoided.
+  
+- `allowInvalidAsymmetricKeyTypes`: if true, allows  asymmetric keys which do not match the specified algorithm. This option  is intended only for backwards compatability and should be avoided.
 
 ```js
 // verify a token symmetric - synchronous
@@ -441,7 +434,7 @@ jwt.decode(token [, options])
 
 (Synchronous) Повертає розшифроване корисне навантаження без перевірки дійсності підпису.
 
-> **Попередження:** це **не** перевірить, чи дійсний підпис. Вам **не** слід використовувати це для ненадійних повідомлень. Швидше за все, ви захочете використовувати замість цього `jwt.verify`. **Попередження.** Якщо маркер надходить із ненадійного джерела (наприклад, введення користувача або зовнішній запит), повернуте декодоване корисне навантаження слід розглядати як будь-який інший ввід користувача; обов’язково продезінфікуйте та працюйте лише з очікуваними властивостями
+**Попередження:** це **не** перевірить, чи дійсний підпис. Вам **не** слід використовувати це для ненадійних повідомлень. Швидше за все, ви захочете використовувати замість цього `jwt.verify`. **Попередження.** Якщо маркер надходить із ненадійного джерела (наприклад, введення користувача або зовнішній запит), повернуте декодоване корисне навантаження слід розглядати як будь-який інший ввід користувача; обов’язково продезінфікуйте та працюйте лише з очікуваними властивостями
 
 - `token` is the JsonWebToken string
 
@@ -463,7 +456,7 @@ console.log(decoded.header);
 console.log(decoded.payload)
 ```
 
-## Errors & Codes
+## Помилки та коди 
 
 Можливі помилки під час перевірки. Помилка є першим аргументом зворотного виклику перевірки.
 

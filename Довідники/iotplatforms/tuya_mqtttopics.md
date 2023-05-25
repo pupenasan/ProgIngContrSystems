@@ -26,15 +26,15 @@ https://developer.tuya.com/en/docs/iot/MQTT_Topic?id=Kbt4ezpeko2rz
 | Establish topological relationship   | Шлюз додає топологію пристрою.                               | tylink/${deviceId}/device/topo/add               |
 | Delete topological relationship      | Шлюз видаляє топологію пристрою.                             | tylink/${deviceId}/device/topo/delete            |
 | Query topological relationship       | Шлюз запитує топологічний зв’язок із хмари.                  | tylink/${deviceId}/device/topo/get               |
-| Update firmware via OTA              | The device reports the firmware version information.         | tylink/${deviceId}/ota/firmware/report           |
-| Update firmware via OTA              | The device requests information about silent updates.        | tylink/${deviceId}/ota/get                       |
-| Update firmware via OTA              | The device reports the status and progress of the update.    | tylink/${deviceId}/ota/progress/report           |
-| Network time protocol (NTP) service  | The device requests to sync time with the NTP server.        | tylink/${deviceId}/ext/time/request              |
-| Daylight saving time (DST) service   | The device requests the DST service.                         | tylink/${deviceId}/ext/time/request              |
-| Upload files                         | The device requests the presigned URL to upload a file.      | tylink/${deviceId}/ext/file/upload/request       |
-| Download files                       | The device requests the URL to download a file.              | tylink/${deviceId}/ext/file/download/request     |
-| Send the configuration file remotely | A device gets the latest configuration file.                 | tylink/${deviceId}/ext/config/get                |
-| Report custom format data            | The device sends custom format data to the cloud.            | tylink/${deviceId}/channel/raw/up                |
+| Update firmware via OTA              | Пристрій повідомляє інформацію про версію прошивки.          | tylink/${deviceId}/ota/firmware/report           |
+| Update firmware via OTA              | Пристрій запитує інформацію про тихі оновлення.              | tylink/${deviceId}/ota/get                       |
+| Update firmware via OTA              | Пристрій повідомляє про стан і хід оновлення.                | tylink/${deviceId}/ota/progress/report           |
+| Network time protocol (NTP) service  | Пристрій запитує синхронізацію часу з сервером NTP.          | tylink/${deviceId}/ext/time/request              |
+| Daylight saving time (DST) service   | Пристрій запитує послугу літнього часу.                      | tylink/${deviceId}/ext/time/request              |
+| Upload files                         | Пристрій запитує попередньо підписану URL-адресу для завантаження файлу. | tylink/${deviceId}/ext/file/upload/request       |
+| Download files                       | Пристрій запитує URL-адресу для завантаження файлу.          | tylink/${deviceId}/ext/file/download/request     |
+| Send the configuration file remotely | Пристрій отримує останній файл конфігурації.                 | tylink/${deviceId}/ext/config/get                |
+| Report custom format data            | Пристрій надсилає дані спеціального формату в хмару.         | tylink/${deviceId}/channel/raw/up                |
 
 ## Теми підписки
 
@@ -44,11 +44,11 @@ https://developer.tuya.com/en/docs/iot/MQTT_Topic?id=Kbt4ezpeko2rz
 | ------------------------------------ | ------------------------------------------------------------ | --------------------------------------------------- |
 | Get the model                        | Пристрій отримує означення моделі пристрою.                  | tylink/${deviceId}/thing/model/get_response         |
 | Report property values               | Пристрій отримує відповідь на повідомлену властивість.       | tylink/${deviceId}/thing/property/report_response   |
-| Send property values                 | The device receives the property values from the cloud.      | tylink/${deviceId}/thing/property/set               |
-| Report property values in bulk       | The device receives a response to the reported property in bulk. | tylink/${deviceId}/thing/data/batch_report_response |
-| Report events                        | The device receives a response to the reported event message. | tylink/${deviceId}/thing/event/trigger_response     |
-| Perform actions                      | The device receives a command to perform an action.          | tylink/${deviceId}/thing/action/execute             |
-| Bind sub-devices                     | The device receives a response to sub-device binding. Note that the sub-device does not need to subscribe to this topic. | tylink/${deviceId}/device/sub/bind_response         |
+| Send property values                 | Пристрій отримує значення властивостей із хмари.             | tylink/${deviceId}/thing/property/set               |
+| Report property values in bulk       | Пристрій отримує масову відповідь на повідомлену властивість. | tylink/${deviceId}/thing/data/batch_report_response |
+| Report events                        | Пристрій отримує відповідь на повідомлення про подію.        | tylink/${deviceId}/thing/event/trigger_response     |
+| Perform actions                      | Пристрій отримує команду на виконання дії.                   | tylink/${deviceId}/thing/action/execute             |
+| Bind sub-devices                     | Пристрій отримує відповідь на прив’язку допоміжного пристрою. Зауважте, що підпристрою не потрібно підписуватися на цю тему. | tylink/${deviceId}/device/sub/bind_response         |
 | Establish topological relationship   | The device receives a response to topological relationship  establishment. Note that the sub-device does not need to subscribe to  this topic. | tylink/${deviceId}/device/topo/add_response         |
 | Delete topological relationship      | The device receives a response to topological relationship deletion. Note that the sub-device does not need to subscribe to this topic. | tylink/${deviceId}/device/topo/delete_response      |
 | Query topological relationship       | The device receives a response to a topological relationship query.  Note that the sub-device does not need to subscribe to this topic. | tylink/${deviceId}/device/topo/get_response         |

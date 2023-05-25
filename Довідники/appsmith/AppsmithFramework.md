@@ -94,11 +94,11 @@ Example:
 fullPath:"https://app.appsmith.com/app/demo-app/page1-6324031aa"
 ```
 
-In the preceding example, `6324031aa` represents the **id** of the page named `page1`. The current page slug in the URL is created by combining `$pageName-$pageId`. Each page has a unique page id that is assigned to it.
+У попередньому прикладі `6324031aa` представляє **id** сторінки під назвою `page1`. Поточний слаг сторінки в URL-адресі створюється комбінуванням `$pageName-$pageId`. Кожна сторінка має унікальний ідентифікатор сторінки, який їй присвоюється.
 
 #### pathName
 
-It is a string made up of a collection of path segments, each of which has the `/` character prefixed to it. The empty string will be the value of the pathname property if the URL has no path segments.
+Це рядок, що складається з набору сегментів шляху, перед кожним з яких є символ `/`. Порожній рядок буде значенням властивості pathname, якщо URL-адреса не має сегментів шляху.
 
 Example:
 
@@ -155,7 +155,7 @@ queryParams:"?name=value&variable=value"
 
 ### User
 
-This object contains the data of the currently authenticated user.
+Цей об’єкт містить дані поточного автентифікованого користувача.
 
 ```javascript
 {

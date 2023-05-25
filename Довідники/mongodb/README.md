@@ -11,6 +11,7 @@ https://www.mongodb.com/docs/manual/
 У цьому розділі надається загальна інформація по MongoDB. Також Ви можете почитати про різні функції за наступними посиланнями в цьому репозиторії:
 
 - [Пошук через find](collection_find.md)
+- [Оновлення через update](collection_update.md)
 - [Cloud MongoDB Atlas](cloudmongo.md)
 - [Time Series - часові ряди](timeseries.md)
 - [Query and Projection Operators](QueryandProjectionOperators.md)

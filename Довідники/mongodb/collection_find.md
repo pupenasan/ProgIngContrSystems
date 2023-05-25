@@ -8,13 +8,13 @@ https://www.mongodb.com/docs/manual/reference/method/db.collection.find/
 
 | Parameter                                                    | Type     | Description                                                  |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| [query](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-query) | document | Додатково. Визначає фільтр вибору за допомогою [операторів запиту](https://www.mongodb.com/docs/manual/reference/operator/). Щоб повернути всі документи в колекції, пропустіть цей параметр або передайте порожній документ (`{}`). |
-| [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-projection) | document | Опціонально. Визначає поля для повернення в документах, які відповідають фільтру запиту. Щоб повернути всі поля у відповідних документах, пропустіть цей параметр. For details, see [Projection.](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-find-projection) |
-| [options](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-options) | document | Додатково. Визначає додаткові параметри для запиту. Ці параметри змінюють поведінку запиту та спосіб повернення результатів. Щоб переглянути доступні параметри, перегляньте [FindOptions.](https://mongodb.github.io/node-mongodb-native/4.0//interfaces/findoptions.html) |
+| [query](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-query) | document | Опціонально. Означує фільтр вибору за допомогою [операторів запиту](QueryandProjectionOperators.md). Щоб повернути всі документи в колекції, пропустіть цей параметр або передайте порожній документ (`{}`). |
+| [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-projection) | document | Опціонально. Означує поля для повернення в документах, які відповідають фільтру запиту. Щоб повернути всі поля у відповідних документах, пропустіть цей параметр. Детально див нижче |
+| [options](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-method-find-options) | document | Опціонально. Означує додаткові параметри для запиту. Ці параметри змінюють поведінку запиту та спосіб повернення результатів. Щоб переглянути доступні параметри, перегляньте [FindOptions.](https://mongodb.github.io/node-mongodb-native/4.0//interfaces/findoptions.html) |
 
 ## Projection
 
-Параметр `projection` визначає, які поля повертаються у відповідних документах. Параметр `projection` приймає документ такої форми:
+Параметр `projection` означує, які поля повертаються у відповідних документах. Параметр `projection` приймає документ такої форми:
 
 ```
 { <field1>: <value>, <field2>: <value> ... }
@@ -22,8 +22,8 @@ https://www.mongodb.com/docs/manual/reference/method/db.collection.find/
 
 | Projection                          | Description                                                  |
 | ----------------------------------- | ------------------------------------------------------------ |
-| `<field>: <1 or true>`              | Визначає включення поля. Ненульові цілі числа також розглядаються як  `true`. |
-| `<field>: <0 or false>`             | Визначає виключення поля.                                    |
+| `<field>: <1 or true>`              | Означує включення поля. Ненульові цілі числа також розглядаються як  `true`. |
+| `<field>: <0 or false>`             | Означує виключення поля.                                     |
 | `"<field>.$": <1 or true>`          | За допомогою оператора проекції масиву [`$`](https://www.mongodb.com/docs/manual/reference/operator/projection/positional/#mongodb-projection-proj.-) ви можете вказати проекція для повернення **першого** елемента, який відповідає умові запиту в полі масиву; напр. `"arrayField.$" : 1`. (Недоступно для [views](https://www.mongodb.com/docs/manual/core/views/).) Ненульові цілі числа також розглядаються як `true`. |
 | `<field>: <array projection>`       | Using the array projection operators [`$elemMatch`](https://www.mongodb.com/docs/manual/reference/operator/projection/elemMatch/#mongodb-projection-proj.-elemMatch), [`$slice`](https://www.mongodb.com/docs/manual/reference/operator/projection/slice/#mongodb-projection-proj.-slice), specifies the array element(s) to include, thereby excluding those elements that do not meet the expressions. (Not available for [views](https://www.mongodb.com/docs/manual/core/views/).) |
 | `<field>: <$meta expression>`       | Using the [`$meta`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/meta/#mongodb-expression-exp.-meta) operator expression, specifies the inclusion of available [`per-document metadata`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/meta/#mongodb-expression-exp.-meta). (Not available for [views](https://www.mongodb.com/docs/manual/core/views/).) |
@@ -353,23 +353,23 @@ For a list of array specific query operators, see [Array.](https://www.mongodb.c
 
 ### Projections
 
-The [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-find-projection) parameter specifies which fields to return. The parameter contains either include or exclude specifications, not both, unless the exclude is for the `_id` field.
+Параметр [projection](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#std-label-find-projection) означує, які поля повертати. Параметр містить специфікації включення або виключення, але не обидва, якщо виключення не стосується поля `_id`.
 
-Unless the `_id` field is explicitly excluded in the projection document `_id: 0`, the `_id` field is returned.
+Якщо поле `_id` явно не виключено в документі проекції `_id: 0`, повертається поле `_id`.
 
-#### Specify the Fields to Return
+#### Означення полів для повернення
 
-The following operation finds all documents in the [bios collection](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) and returns only the `name` field, `contribs` field and `_id` field:
+Наступна операція знаходить усі документи в [колекції bios](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) і повертає лише поле `name`, поле `contribs` і Поле `_id`:
 
-```
+```js
 db.bios.find( { }, { name: 1, contribs: 1 } )
 ```
 
-Unless the `_id` field is explicitly excluded in the projection document `_id: 0`, the `_id` field is returned.
+Якщо поле `_id` явно не виключено в документі проекції `_id: 0`, повертається поле `_id`.
 
-#### Explicitly Excluded Fields
+#### Явне виключення полів
 
-The following operation queries the [bios collection](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) and returns all fields *except* the `first` field in the `name` embedded document and the `birth` field:
+Наступна операція запитує [колекцію bios](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) і повертає всі поля *окрім* поля `first` в `name` вбудований документ і поле `birth`:
 
 ```
 db.bios.find(
@@ -378,11 +378,11 @@ db.bios.find(
 )
 ```
 
-#### Explicitly Exclude the `_id` Field
+#### Явне виключення поля `_id`
 
-Unless the `_id` field is explicitly excluded in the projection document `_id: 0`, the `_id` field is returned.
+Якщо поле `_id` явно не виключено в документі проекції `_id: 0`, повертається поле `_id`.
 
-The following operation finds documents in the [bios collection](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) and returns only the `name` field and the `contribs` field:
+Наступна операція знаходить документи в [колекції bios](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) і повертає лише поля `name` і `contribs`:
 
 ```
 db.bios.find(
@@ -391,9 +391,9 @@ db.bios.find(
 )
 ```
 
-#### On Arrays and Embedded Documents
+#### Про масиви та вбудовані документи
 
-The following operation queries the [bios collection](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) and returns the `last` field in the `name` embedded document and the first two elements in the `contribs` array:
+Наступна операція запитує [колекцію bios](https://www.mongodb.com/docs/manual/reference/bios-example-collection/) і повертає поле `last` у вбудованому документі `name` і перше два елементи в масиві contribs:
 
 ```
 db.bios.find(
@@ -401,7 +401,7 @@ db.bios.find(
    { _id: 0, 'name.last': 1, contribs: { $slice: 2 } } )
 ```
 
-Starting in MongoDB 4.4, you can also specify embedded fields using the nested form, e.g.
+Починаючи з MongoDB 4.4, ви також можете вказати вбудовані поля за допомогою вкладеної форми, наприклад.
 
 ```
 db.bios.find(
@@ -410,13 +410,11 @@ db.bios.find(
 )
 ```
 
-#### Use Aggregation Expression
+#### Використовуйте вираз агрегації
 
-Starting in MongoDB 4.4, [`db.collection.find()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#mongodb-method-db.collection.find) projection can accept [aggregation expressions and syntax.](https://www.mongodb.com/docs/manual/meta/aggregation-quick-reference/#std-label-aggregation-expressions)
+Починаючи з MongoDB 4.4, [`db.collection.find()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.find/#mongodb-method-db.collection. знайти) проекція може приймати [вирази агрегування та синтаксис.](https://www.mongodb.com/docs/manual/meta/aggregation-quick-reference/#std-label-aggregation-expressions) З використанням виразів агрегування і синтаксису, ви можете проектувати нові поля або проектувати існуючі поля з новими значеннями. Наприклад, наступна операція використовує агрегаційні вирази для заміни значення полів `name` і `awards`, а також для включення нових полів `reportDate`, `reportBy` і `reportNumber`.
 
-With the use of aggregation expressions and syntax, you can project new fields or project existing fields with new values. For example, the following operation uses aggregation expressions to override the value of the `name` and `awards` fields as well as to include new fields `reportDate`, `reportBy`, and `reportNumber`.
-
-```
+```js
 db.bios.find(
    { },
    {
@@ -438,7 +436,7 @@ db.bios.find(
 )
 ```
 
-To set the `reportRun` field to the value `1` The operation returns the following documents:
+Щоб встановити для поля `reportRun` значення `1` Операція повертає такі документи:
 
 ```
 { "birth" : ISODate("1924-12-03T05:00:00Z"), "contribs" : [ "Fortran", "ALGOL", "Backus-Naur Form", "FP" ], "name" : "John Backus", "awards" : 4, "reportDate" : "2020-06-05", "reportBy" : "hellouser123", "reportNumber" : 1 }
@@ -452,10 +450,6 @@ To set the `reportRun` field to the value `1` The operation returns the followin
 { "birth" : ISODate("1955-05-19T04:00:00Z"), "contribs" : [ "Java" ], "name" : "James Gosling", "awards" : 2, "reportDate" : "2020-06-05", "reportBy" : "hellouser123", "reportNumber" : 1 }
 { "contribs" : [ "Scala" ], "name" : "Martin Odersky", "awards" : 0, "reportDate" : "2020-06-05", "reportBy" : "hellouser123", "reportNumber" : 1 }
 ```
-
-See also: 
-
-[Project Fields to Return from Query](https://www.mongodb.com/docs/manual/tutorial/project-fields-from-query-results/)
 
 ### Iterate the Returned Cursor
 

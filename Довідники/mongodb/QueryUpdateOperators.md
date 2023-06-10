@@ -47,7 +47,7 @@ https://www.mongodb.com/docs/manual/reference/operator/update/
 | Name                                                         | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [`$`](https://www.mongodb.com/docs/manual/reference/operator/update/positional/#mongodb-update-up.-) | Діє як заповнювач для оновлення першого елемента, який відповідає умові запиту. |
-| [`$[\]`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-all/#mongodb-update-up.---) | Діє як заповнювач для оновлення всіх елементів у масиві для документів, які відповідають умові запиту. |
+| [`$[<identifier>]`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-all/#mongodb-update-up.---) | Діє як заповнювач для оновлення всіх елементів у масиві для документів, які відповідають умові запиту. |
 | [`$[\]`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-filtered/#mongodb-update-up.---identifier--) | Діє як заповнювач для оновлення всіх елементів, які відповідають умові `arrayFilters` для документів, які відповідають умові запиту. |
 | [`$addToSet`](https://www.mongodb.com/docs/manual/reference/operator/update/addToSet/#mongodb-update-up.-addToSet) | Додає елементи до масиву, лише якщо вони ще не існують у наборі. |
 | [`$pop`](https://www.mongodb.com/docs/manual/reference/operator/update/pop/#mongodb-update-up.-pop) | Видаляє перший або останній елемент масиву.                  |

@@ -44,9 +44,9 @@ MongoDB забезпечує високу продуктивність збер�
 
 MongoDB Query API підтримує [операції читання та запису (CRUD)](https://www.mongodb.com/docs/manual/crud/), а також: 
 
-- [Data Aggregation](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)
-- [Text Search](https://www.mongodb.com/docs/manual/text-search/) 
-- [Geospatial Queries.](https://www.mongodb.com/docs/manual/tutorial/geospatial-tutorial/)
+- [Агрегації даних](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)
+- [Текстовий пошук](https://www.mongodb.com/docs/manual/text-search/) 
+- [Геопросторові запити](https://www.mongodb.com/docs/manual/tutorial/geospatial-tutorial/)
 
 Засіб реплікації MongoDB під назвою [набір реплік](https://www.mongodb.com/docs/manual/replication/) забезпечує:
 
@@ -128,7 +128,7 @@ MongoDB зберігає записи даних як документи BSON. B
 }
 ```
 
-Значення поля може бути будь-яким із [типів даних  BSON ](https://www.mongodb.com/docs/manual/reference/bson-types/), включаючи інші документи, масиви та масиви документів. Наприклад, такий документ містить значення різних типів:
+Значення поля може бути будь-яким із [типів даних  BSON ](BSONTypes.md), включаючи інші документи, масиви та масиви документів. Наприклад, такий документ містить значення різних типів:
 
 ```json
 var mydoc = {
@@ -201,11 +201,11 @@ MongoDB використовує *крапкову нотацію* для дос
 
 Дивись також:
 
-- [`$[\]`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-all/#mongodb-update-up.---) all positional operator for update operations,
-- [`$[\]`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-filtered/#mongodb-update-up.---identifier--) filtered positional operator for update operations,
-- [`$`](https://www.mongodb.com/docs/manual/reference/operator/update/positional/#mongodb-update-up.-) positional operator for update operations,
-- [`$`](https://www.mongodb.com/docs/manual/reference/operator/projection/positional/#mongodb-projection-proj.-) projection operator when array index position is unknown
-- [Query an Array](https://www.mongodb.com/docs/manual/tutorial/query-arrays/#std-label-read-operations-arrays) for dot notation examples with arrays.
+- [`$[]`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-all/#mongodb-update-up.---) всі позиційні оператори для операцій оновлення,
+- [`$[<identifier>]`](https://www.mongodb.com/docs/manual/reference/operator/update/positional-filtered/#mongodb-update-up.---identifier--) відфільтрований позиційний оператор для операцій оновлення,
+- [`$`](https://www.mongodb.com/docs/manual/reference/operator/update/positional/#mongodb-update-up.-) позиційний оператор для операцій оновлення,
+- [`$`](https://www.mongodb.com/docs/manual/reference/operator/projection/positional/#mongodb-projection-proj.-) оператор проекції, коли позиція індексу масиву невідома
+- [Query an Array](https://www.mongodb.com/docs/manual/tutorial/query-arrays/#std-label-read-operations-arrays) для прикладів точкової нотації з масивами.
 
 ### Вбудовані документи
 
@@ -283,25 +283,6 @@ MongoDB використовує *крапкову нотацію* для дос
 - Поле `_id` може містити значення будь-якого [типу даних BSON](https://www.mongodb.com/docs/manual/reference/bson-types/), крім `array`, `regex` або `undefined`.
 
 **Увага**. Щоб забезпечити функціонування реплікації, не зберігайте у полі `_id` значення типу регулярного виразу BSON 
-
-The following are common options for storing values for `_id`:
-
-- Use an [ObjectId.](https://www.mongodb.com/docs/manual/reference/bson-types/#std-label-objectid)
-
-- Use a natural unique identifier, if available. This saves space and avoids an additional index.
-
-- Generate an auto-incrementing number.
-
-- Generate a UUID in your application code. For a more efficient storage of the UUID values in the collection and in the `_id` index, store the UUID as a value of the BSON `BinData` type.
-
-  Index keys that are of the `BinData` type are more efficiently stored in the index if:
-
-  - the binary subtype value is in the range of 0-7 or 128-135, and
-  - the length of the byte array is: 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 20, 24, or 32.
-
-- Use your driver's BSON UUID facility to generate UUIDs. Be aware that driver implementations may implement UUID serialization and deserialization logic differently, which may not be fully compatible with other drivers. See your [driver documentation](https://api.mongodb.com/)
-
--  for information concerning UUID interoperability.
 
 Нижче наведено загальні варіанти збереження значень для `_id`:
 

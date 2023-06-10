@@ -289,7 +289,13 @@ sudo reboot
 
 #### 2.1. Завантаження Fritzing
 
-- [ ] Завантажте на ПК безкоштовну бета-версію середовища проектування Fritzing [за даним посиланням](https://www.electroschematics.com/fritzing-software-download/) або офіційну платну версію [з офіційного сайту](https://fritzing.org/download/) 
+- [ ] Завантажте на ПК безкоштовну бета-версію середовища проектування Fritzing за одним із посилань нижче або платну версію [з офіційного сайту](https://fritzing.org/download/)
+
+- [Windows 64bit](https://web.archive.org/web/20210415140938/https://fritzing.fra1.cdn.digitaloceanspaces.com/adc8999ea0de8eb4afa12cecec80473d.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LHATV5BDBXOYWUQGNV66%2F20210415%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20210415T140938Z&X-Amz-Expires=1200&X-Amz-SignedHeaders=host&X-Amz-Signature=300d43da9d6baf1c608504eb0f91a5a44969487e8127b990c9583ee4f71786c1)
+- [Windows 32bit](https://web.archive.org/web/20210415140938/https://fritzing.fra1.cdn.digitaloceanspaces.com/adc8999ea0de8eb4afa12cecec80473d.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LHATV5BDBXOYWUQGNV66%2F20210415%2Ffra1%2Fs3%2Faws4_request&X-Amz-Date=20210415T140938Z&X-Amz-Expires=1200&X-Amz-SignedHeaders=host&X-Amz-Signature=300d43da9d6baf1c608504eb0f91a5a44969487e8127b990c9583ee4f71786c1)
+- [Linux 64bit](https://web.archive.org/web/20170107142927/http://fritzing.org/media/downloads/fritzing-0.9.3b.linux.AMD64.tar.bz2)
+- [Linux 32bit](https://web.archive.org/web/20170106114244/http://fritzing.org/media/downloads/fritzing-0.9.3b.linux.i386.tar.bz2)
+- [Mac OS X 10.7](https://web.archive.org/web/20171026063218/http://fritzing.org/media/downloads/Fritzing0.9.3b.dmg)
 
 #### 2.2. Завантаження бібліотеки зображень RPI3
 

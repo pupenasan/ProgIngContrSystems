@@ -89,7 +89,7 @@ For [`db.collection.aggregate()`](https://www.mongodb.com/docs/manual/reference/
 
 Starting in MongoDB 4.2, if the client that issued [`db.collection.aggregate()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/#mongodb-method-db.collection.aggregate) disconnects before the operation completes, MongoDB marks [`db.collection.aggregate()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/#mongodb-method-db.collection.aggregate) for termination using [`killOp`.](https://www.mongodb.com/docs/manual/reference/command/killOp/#mongodb-dbcommand-dbcmd.killOp)
 
-## Examples 
+## Приклади
 
 У наведених нижче прикладах використовується колекція `orders`, яка містить такі документи:
 
@@ -101,9 +101,9 @@ Starting in MongoDB 4.2, if the client that issued [`db.collection.aggregate()`]
 { _id: 5, cust_id: "abc1", ord_date: ISODate("2013-11-12T17:04:11.102Z"), status: "A", amount: 25 }
 ```
 
-### Group by and Calculate a Sum 
+### Групування та обчислення суми
 
-The following aggregation operation selects documents with status equal to `"A"`, groups the matching documents by the `cust_id` field and calculates the `total` for each `cust_id` field from the sum of the `amount` field, and sorts the results by the `total` field in descending order:
+Наступна операція агрегування вибирає документи зі статусом `status == "A"`, групує відповідні документи за полем `cust_id` і обчислює `total` для кожного поля `cust_id` із суми поля `amount` і сортує результати за полем `total` в порядку спадання:
 
 ```js
 db.orders.aggregate([
@@ -113,18 +113,18 @@ db.orders.aggregate([
                    ])
 ```
 
-The operation returns a cursor with the following documents:
+Операція повертає курсор із такими документами:
 
 ```js
 { "_id" : "xyz1", "total" : 100 }
 { "_id" : "abc1", "total" : 75 }
 ```
 
-[`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) iterates the returned cursor automatically to print the results. See [Iterate a Cursor in `mongosh`](https://www.mongodb.com/docs/manual/tutorial/iterate-a-cursor/) for handling cursors manually in [`mongosh`.](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh)
+[`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) автоматично повторює повернутий курсор, щоб надрукувати результати. Перегляньте [Ітерація курсору в `mongosh`](https://www.mongodb.com/docs/manual/tutorial/iterate-a-cursor/) для обробки курсорів вручну в [`mongosh`.](https:// www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh)
 
-### Return Information on Aggregation Pipeline Operation 
+### Повернення інформації про роботу конвеєра агрегації 
 
-The following example uses [`db.collection.explain()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.explain/#mongodb-method-db.collection.explain) to view detailed information regarding the execution plan of the aggregation pipeline.
+У наступному прикладі використовується [`db.collection.explain()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.explain/#mongodb-method-db.collection.explain ), щоб переглянути детальну інформацію щодо плану виконання конвеєра агрегації.
 
 ```js
 db.orders.explain().aggregate([
@@ -134,34 +134,32 @@ db.orders.explain().aggregate([
 ])
 ```
 
-The operation returns a document that details the processing of the aggregation pipeline. For example, the document may show, among other details, which index, if any, the operation used. [[1\]](https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/#footnote-agg-index-filters) If the `orders` collection is a sharded collection, the document would also show the division of labor between the shards and the merge operation, and for targeted queries, the targeted shards.
+Операція повертає документ із детальною інформацією про обробку конвеєра агрегації. Наприклад, документ може показувати, серед інших деталей, який індекс, якщо такий є, використаної операції. [[1\]](https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/#footnote-agg-index-filters) Якщо колекція `orders` є сегментованою колекцією , документ також показуватиме розподіл праці між шардами та операцією злиття, а для цільових запитів — цільові шарди.
 
-The intended readers of the `explain` output document are humans, and not machines, and the output format is subject to change between releases.
+Передбачувані читачі вихідного документа `explain` — це люди, а не машини, і вихідний формат може змінюватися між випусками.
 
-You can view more verbose explain output by passing the `executionStats` or `allPlansExecution` explain modes to the [`db.collection.explain()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.explain/#mongodb-method-db.collection.explain) method.
+Ви можете переглянути докладніші пояснювальні виводи, передавши режими пояснення `executionStats` або `allPlansExecution` до [`db.collection.explain()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.explain/#mongodb-method-db.collection.explain) метод.
 
+### Взаємодія з `allowDiskUseByDefault` 
 
+Починаючи з MongoDB 6.0, етапи конвеєра, які вимагають більше 100 мегабайт пам’яті для виконання, записують тимчасові файли на диск за замовчуванням. У попередніх версіях MongoDB ви повинні передати `{ allowDiskUse: true }` окремим командам `find` і `aggregate`, щоб увімкнути цю поведінку.
 
-### Interaction with `allowDiskUseByDefault` 
+Окремі команди `find` і `aggregate` можуть замінити параметр [`allowDiskUseByDefault`](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.allowDiskUseByDefault) одним із:
 
-Starting in MongoDB 6.0, pipeline stages that require more than 100 megabytes of memory to execute write temporary files to disk by default. In earlier verisons of MongoDB, you must pass `{ allowDiskUse: true }` to individual `find` and `aggregate` commands to enable this behavior.
+- Використання `{ allowDiskUse: true }`, щоб дозволити записувати тимчасові файли на диск, коли `allowDiskUseByDefault` має значення `false`
+- Використання `{ allowDiskUse: false }` для заборони запису тимчасових файлів на диск, якщо `allowDiskUseByDefault` має значення `true`
 
-Individual `find` and `aggregate` commands may override the [`allowDiskUseByDefault`](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.allowDiskUseByDefault) parameter by either:
+Починаючи з MongoDB 4.2, [повідомлення журналу профайлера](https://www.mongodb.com/docs/manual/tutorial/manage-the-database-profiler/) і [повідомлення журналу діагностики](https://www. mongodb.com/docs/manual/reference/log-messages/) містить індикатор `usedDisk`, якщо будь-який етап агрегації записував дані до тимчасових файлів через [обмеження пам’яті.](https://www.mongodb.com/docs/ manual/core/aggregation-pipeline-limits/#std-label-agg-memory-restrictions)
 
-- Using `{ allowDiskUse: true }` to allow writing temporary files out to disk when `allowDiskUseByDefault` is set to `false`
-- Using `{ allowDiskUse: false }` to prohibit writing temporary files out to disk when `allowDiskUseByDefault` is set to `true`
+### Вкажіть початковий розмір партії
 
-Starting in MongoDB 4.2, the [profiler log messages](https://www.mongodb.com/docs/manual/tutorial/manage-the-database-profiler/) and [diagnostic log messages](https://www.mongodb.com/docs/manual/reference/log-messages/) includes a `usedDisk` indicator if any aggregation stage wrote data to temporary files due to [memory restrictions.](https://www.mongodb.com/docs/manual/core/aggregation-pipeline-limits/#std-label-agg-memory-restrictions)
-
-### Specify an Initial Batch Size 
-
-To specify an initial batch size for the cursor, use the following syntax for the `cursor` option:
+Щоб указати початковий розмір пакету для курсора, використовуйте такий синтаксис для параметра `cursor`:
 
 ```
 cursor: { batchSize: <int> }
 ```
 
-For example, the following aggregation operation specifies the *initial* batch size of `0` for the cursor:
+Наприклад, наступна операція агрегування вказує *початковий* розмір пакета `0` для курсора:
 
 ```
 db.orders.aggregate(
@@ -177,42 +175,40 @@ db.orders.aggregate(
                    )
 ```
 
-A `batchSize` of `0` means an empty first batch and is useful for quickly returning a cursor or failure message without doing significant server-side work. Specify subsequent batch sizes to [OP_GET_MORE](https://www.mongodb.com/docs/manual/legacy-opcodes/#std-label-wire-op-get-more) operations as with other MongoDB cursors.
+`batchSize`, який має значення `0`, означає порожній перший пакет і корисний для швидкого повернення курсору або повідомлення про помилку без виконання значної роботи на стороні сервера. Укажіть наступні розміри пакетів для операцій [OP_GET_MORE](https://www.mongodb.com/docs/manual/legacy-opcodes/#std-label-wire-op-get-more), як і з іншими курсорами MongoDB.
 
-[`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) iterates the returned cursor automatically to print the results. See [Iterate a Cursor in `mongosh`](https://www.mongodb.com/docs/manual/tutorial/iterate-a-cursor/) for handling cursors manually in [`mongosh`.](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh)
+[`mongosh`](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh) автоматично повторює повернутий курсор, щоб надрукувати результати. Перегляньте [Ітерація курсору в `mongosh`](https://www.mongodb.com/docs/manual/tutorial/iterate-a-cursor/) для обробки курсорів вручну в [`mongosh`.](https:// www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh)
 
-### Specify a Collation 
+### Вказівка сортування
 
-[Collation](https://www.mongodb.com/docs/manual/reference/collation/) allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.
+[Collation](https://www.mongodb.com/docs/manual/reference/collation/) дозволяє користувачам вказувати правила порівняння рядків для певної мови, наприклад правила для літер і знаків наголосу.
 
-A collection `myColl` has the following documents:
+Колекція `myColl` містить такі документи:
 
-```
+```js
 { _id: 1, category: "café", status: "A" }
 { _id: 2, category: "cafe", status: "a" }
 { _id: 3, category: "cafE", status: "a" }
 ```
 
-The following aggregation operation includes the [collation](https://www.mongodb.com/docs/manual/reference/collation/#std-label-collation) option:
+Наступна операція агрегування включає параметр [collation](https://www.mongodb.com/docs/manual/reference/collation/#std-label-collation):
 
-```
+```js
 db.myColl.aggregate(
    [ { $match: { status: "A" } }, { $group: { _id: "$category", count: { $sum: 1 } } } ],
    { collation: { locale: "fr", strength: 1 } }
 );
 ```
 
+Якщо виконується агрегування, яке включає кілька переглядів, наприклад [`$lookup`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/#mongodb-pipeline-pipe.-lookup ) або [`$graphLookup`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/graphLookup/#mongodb-pipeline-pipe.-graphLookup), перегляди повинні мати однакові [collation .](https://www.mongodb.com/docs/manual/reference/collation/)
 
-
-If performing an aggregation that involves multiple views, such as with [`$lookup`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/#mongodb-pipeline-pipe.-lookup) or [`$graphLookup`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/graphLookup/#mongodb-pipeline-pipe.-graphLookup), the views must have the same [collation.](https://www.mongodb.com/docs/manual/reference/collation/)
-
-For descriptions on the collation fields, see [Collation Document.](https://www.mongodb.com/docs/manual/reference/collation/#std-label-collation-document-fields)
+Опис полів зіставлення див. у [Collation Document.](https://www.mongodb.com/docs/manual/reference/collation/#std-label-collation-document-fields)
 
 ### Hint an Index 
 
-Create a collection `foodColl` with the following documents:
+Створіть колекцію `foodColl` з такими документами:
 
-```
+```js
 db.foodColl.insertMany( [
    { _id: 1, category: "cake", type: "chocolate", qty: 10 },
    { _id: 2, category: "cake", type: "ice cream", qty: 25 },
@@ -221,16 +217,16 @@ db.foodColl.insertMany( [
 ] )
 ```
 
-Create the following indexes:
+Створіть такі індекси:
 
-```
+```js
 db.foodColl.createIndex( { qty: 1, type: 1 } );
 db.foodColl.createIndex( { qty: 1, category: 1 } );
 ```
 
-The following aggregation operation includes the `hint` option to force the usage of the specified index:
+Наступна операція агрегації включає опцію `hint` для примусового використання вказаного індексу:
 
-```
+```js
 db.foodColl.aggregate(
    [ { $sort: { qty: 1 }}, { $match: { category: "cake", qty: 10  } }, { $sort: { type: -1 } } ],
    { hint: { qty: 1, category: 1 } }
@@ -244,8 +240,6 @@ Use the `readConcern` option to specify the read concern for the operation.
 You cannot use the [`$out`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/out/#mongodb-pipeline-pipe.-out) or the [`$merge`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/merge/#mongodb-pipeline-pipe.-merge) stage in conjunction with read concern [`"linearizable"`](https://www.mongodb.com/docs/manual/reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable-). That is, if you specify [`"linearizable"`](https://www.mongodb.com/docs/manual/reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable-) read concern for [`db.collection.aggregate()`](https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/#mongodb-method-db.collection.aggregate), you cannot include either stages in the pipeline.
 
 The following operation on a replica set specifies a [Read Concern](https://www.mongodb.com/docs/manual/reference/read-concern/) of [`"majority"`](https://www.mongodb.com/docs/manual/reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority-) to read the most recent copy of the data confirmed as having been written to a majority of the nodes.
-
-
 
 - To ensure that a single thread can read its own writes, use [`"majority"`](https://www.mongodb.com/docs/manual/reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority-) read concern and [`"majority"`](https://www.mongodb.com/docs/manual/reference/write-concern/#mongodb-writeconcern-writeconcern.-majority-) write concern against the primary of the replica set.
 - Starting in MongoDB 4.2, you can specify [read concern](https://www.mongodb.com/docs/manual/reference/read-concern/) level [`"majority"`](https://www.mongodb.com/docs/manual/reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority-) for an aggregation that includes an [`$out`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/out/#mongodb-pipeline-pipe.-out) stage.
@@ -310,15 +304,11 @@ This will return a set of profiler results in the following format:
 
 An application can encode any arbitrary information in the comment in order to more easily trace or identify specific operations through the system. For instance, an application might attach a string comment incorporating its process ID, thread ID, client hostname, and the user who issued the command.
 
-
-
 ### Use Variables in `let` 
 
 *New in version 5.0*.
 
 To define variables that you can access elsewhere in the command, use the [let](https://www.mongodb.com/docs/manual/reference/method/db.collection.aggregate/#std-label-db.collection.aggregate-let-option) option.
-
-
 
 To filter results using a variable in a pipeline [`$match`](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/#mongodb-pipeline-pipe.-match) stage, you must access the variable within the [`$expr`](https://www.mongodb.com/docs/manual/reference/operator/query/expr/#mongodb-query-op.-expr) operator.
 

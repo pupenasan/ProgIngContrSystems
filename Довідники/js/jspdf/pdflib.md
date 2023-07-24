@@ -45,6 +45,16 @@ There are [other](https://github.com/Hopding/pdf-lib#prior-art) good open source
 
 Є [інші](https://github.com/Hopding/pdf-lib#prior-art) доступні хороші бібліотеки PDF з відкритим кодом. Однак більшість із них можуть лише *створювати* документи, вони не можуть *модифікувати* існуючі. І багато з них працюють лише в певних умовах.
 
+## PDFPage
+
+https://pdf-lib.js.org/docs/api/classes/pdfpage
+
+## PDFDocument
+
+https://pdf-lib.js.org/docs/api/classes/pdfdocument
+
+
+
 ## Приклади використання
 
 ### Створення документу

@@ -1,0 +1,1 @@
+- [втягування рисунків](https://stackoverflow.com/questions/70737205/extract-images-from-pdf-file-with-jspdf-or-other-npm-package)

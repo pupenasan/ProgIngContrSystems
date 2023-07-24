@@ -12,8 +12,6 @@ Ghostscript складається з рівня інтерпретатора Po
 
 GhostPDF - це інтерпретатор, побудований поверх Ghostscript для обробки файлів PDF. В даний час GhostPDF покладається на розширення до мови мови/моделі обробки зображень, тому не може використовуватися незалежно від компонента інтерпретатора Ghostscript PostScript. Таким чином, GhostPDF - загальний термін, що використовується як для цих розширень, так і для коду інтерпретатора.
 
-Binaries for Ghostscript and GhostPDF (included in the Ghostscript binaries) for various systems can be downloaded from [here](http://www.ghostscript.com/download). The source can be found in both the Ghostscript and GhostPDL downloads from the same site.
-
 Бінарні файли для Ghostscript та GhostPDF (включені до бінарних файлів Ghostscript) для різних систем можна завантажити з [тут](http://www.ghostscript.com/download). Джерело можна знайти як у Ghostscript, так і в GhostPDL із того самого сайту.
 
 ## GhostPDL

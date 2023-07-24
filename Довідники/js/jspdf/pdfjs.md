@@ -1,4 +1,4 @@
-# pdfjs (pdfjs-dist)
+# pdfjs 
 
 
 

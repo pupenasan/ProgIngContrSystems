@@ -159,9 +159,9 @@ Each page object within `Pages` array describes page elements and attributes wit
 
 - `Height`: висота сторінки в одиниці сторінки
 - `HLines`: horizontal line array, each line has `x`, `y` in relative  coordinates for positioning, and 'w' for width, plus `l` for length.  Both width and length are in page unit
-- `Vline`: vertical line array, each line has 'x', 'y' in relative  coordinates for positioning, and 'w' for width, plus 'l' for length.  Both width and length are in page unit;
-  - v0.4.3 added Line color support. Default is 'black', other wise set  in 'clr' if found in color dictionary, or 'oc' field if not found in  dictionary;
-  - v0.4.4 added dashed line support. Default is 'solid', if line style is dashed line, {dsh:1} is added to line object;
+- `Vline`: масив вертикальних ліній, кожна лінія має 'x', 'y' у відносних координатах для позиціонування та 'w' для ширини, плюс 'l' для довжини. І ширина, і довжина виражені в одиницях виміру сторінки;
+  - У v0.4.3 додано підтримку кольору лінії. Типовим є «чорний», інакше встановлюється в «clr», якщо знайдено в словнику кольорів, або в поле «oc», якщо не знайдено в словнику;
+  - v0.4.4 додано підтримку пунктирної лінії. За замовчуванням — «суцільний», якщо стиль лінії — пунктирна лінія, {dsh:1} додається до об’єкта лінії;
 - `Fills`: масив прямокутної області із суцільними кольоровими заливками, однаковий із лініями, кожен об'єкт 'fill' має 'x', 'y' у відносних координатах для позиціонування, 'w' та 'h' для ширини та висоти в одиниці сторінки, плюс ' clr 'для посилання на колір з індексом у словнику кольорів. Більше інформації про "кольоровий словник" можна знайти в розділі "Довідник словника".
 - `Texts`: масив текстових блоків з інформацією про положення, фактичний текст та стиль:
   - `x` та `y`: відносні координати для позиціонування

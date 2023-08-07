@@ -509,7 +509,7 @@ http://www.example.com
 
 `n^{22}` -> $n^{22}$
 
-`f(n) = n^5 + 4n^2 + 2 |_{n=17}` -> $f(n) = n^5 + 4n^2 + 2 |_{n=17}$
+`f(n) = n^5 + 4n^2 + 2 |_{n=17}` -> $f(n) = n^5 + 4n^2 + 2 \|_{n=17}$
 
 `\frac{n!}{k!(n-k)!} = \binom{n}{k}` -> $\frac{n!}{k!(n-k)!} = \binom{n}{k}$
 
@@ -607,11 +607,11 @@ $$
 
 `\left(\frac{x^2}{y^3}\right)` -> $\left(\frac{x^2}{y^3}\right)$
 
-`P\left(A=2\middle|\frac{A^2}{B}>4\right)` -> $P\left(A=2\middle|\frac{A^2}{B}>4\right)$
+`P\left(A=2\middle|\frac{A^2}{B}>4\right)` -> $P\left(A=2\middle\|\frac{A^2}{B}>4\right)$
 
-`\left\{\frac{x^2}{y^3}\right\}` -> $\left\{\frac{x^2}{y^3}\right\}$
+`\left\{\frac{x^2}{y^3}\right\}` -> $\left\\{\frac\{x^2\}\{y^3\}\right\\}$
 
-`\left.\frac{x^3}{3}\right|_0^1` -> $\left.\frac{x^3}{3}\right|_0^1$
+`\left.\frac{x^3}{3}\right|_0^1` -> $\left.\frac{x^3}{3}\right\|_0^1$
 
 `( \big( \Big( \bigg( \Bigg(` -> $( \big( \Big( \bigg( \Bigg($
 
@@ -636,30 +636,6 @@ $$
 $$
 
 ```
-\begin{matrix}
-  -1 & 3 \\
-  2 & -4
- \end{matrix}
- =
- \begin{matrix*}[r]
-  -1 & 3 \\
-  2 & -4
- \end{matrix*}
-```
-
-$$
-\begin{matrix}
-  -1 & 3 \\
-  2 & -4
- \end{matrix}
- =
- \begin{matrix*}[r]
-  -1 & 3 \\
-  2 & -4
- \end{matrix*}
-$$
-
-```
 A_{m,n} = 
  \begin{pmatrix}
   a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
@@ -739,7 +715,7 @@ $$
 \boldsymbol{\beta} = (\beta_1,\beta_2,\dotsc,\beta_n)
 $$
 
-![image-20220629230244493](E:\san\AKIT\ДИСЦИП\Програмна інженерія\GitVersion\Довідники\markdown_latex\media\image-20220629230244493.png)
+![image-20220629230244493](\Довідники\markdown_latex\media\image-20220629230244493.png)
 
 ```
 k = {\color{red}x} \mathbin{\color{blue}-} 2
@@ -854,7 +830,7 @@ $$
 | Sym          | Script                                | Sym          | Script       | Sym       | Script    | Sym       | Script    |
 | ------------ | ------------------------------------- | ------------ | ------------ | --------- | --------- | --------- | --------- |
 | $\mid$       | `|` or `\mid` (difference in spacing) | $\|$         |              |           |           |           |           |
-| $\{$         | `\{`                                  | $\}$         | `\}`         | $\langle$ | `\langle` | $\rangle$ | `\rangle` |
+| $\\{$        | `\{`                                  | $\\}$        | `\}`         | $\langle$ | `\langle` | $\rangle$ | `\rangle` |
 | $\uparrow$   | `\uparrow`                            | $\Uparrow$   | `\Uparrow`   | $\lceil$  | `\lceil`  | $\rceil$  | `\rceil`  |
 | $\downarrow$ | `\downarrow`                          | $\Downarrow$ | `\Downarrow` | $\lfloor$ | `\lfloor` | $\rfloor$ | `\rfloor` |
 
@@ -892,7 +868,7 @@ $$
 | $\sin$ | `\sin` |      | $\arcsin$ | `\arcsin` |      | $\sinh$ | `\sinh` |      | $\sec$ | `\sec` |
 | $\cos$ | `\cos` |      | $\arccos$ | `\arccos` |      | $\cosh$ | `\cosh` |      | $\csc$ | `\csc` |
 | $\tan$ | `\tan` |      | $\arctan$ | `\arctan` |      | $\tanh$ | `\tanh` |      |        |        |
-| $\cot$ | `\cot` |      | $\arccot$ | `\arccot` |      | $\coth$ | `\coth` |      |        |        |
+| $\cot$ | `\cot` |      |           |           |      | $\coth$ | `\coth` |      |        |        |
 
 ### Mermaid
 

@@ -8,8 +8,6 @@
 
 На екрані нижче показано об’єкт JS, доданий до сторінки. Шаблон коду за замовчуванням, який підтримує [export default](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export)
 
-![When you add a new JS Object](https://docs.appsmith.com/assets/images/JavaScript_Editor__New_JS_Object-1f2fa4590005410fd50df382b907d29f.png)
-
 1. Дайте значущу назву JSObject
 2. Редактор коду, де можна писати код JavaScript
 3. Налаштування доступні лише для [асинхронних функцій](https://docs.appsmith.com/core-concepts/writing-code/#asynchronous).
@@ -28,8 +26,6 @@
 ## Calling a JS Object function
 
 Ви можете викликати функції, визначені в об’єкті JS, використовуючи нотацію `{{ JS_OBJECT_NAME.Function_Name }}`, вбудовану в знак вуса, як показано на малюнку нижче:
-
-![How to call a function defined in a JS Object?](https://docs.appsmith.com/assets/images/call_JS_object-14c7623c117c761fe81ec7385f225388.png)
 
 Визначені об’єкти JS доступні в API, запитах або інших об’єктах JS, визначених для **конкретної сторінки**, мають **доступ на рівні сторінки** і **не** доступні **на інших сторінках** .
 
@@ -89,8 +85,6 @@ export default {
 
 Ви можете натиснути **Execute ** у верхньому правому куті, щоб виконати функцію JS. Якщо ваш об’єкт JS має лише одну визначену функцію, редактор за замовчуванням використовує назву функції. Але якщо у вашому об’єкті JS визначено більше однієї функції, ви можете вибрати функцію, яку хочете виконати, а потім натиснути **Run**.
 
-![Response Tab](https://docs.appsmith.com/assets/images/JavaScript_Editor__Response_Tab-c6645b49fcc3a6467b45793536ad832f.png)
-
 Якщо ваш код містить синтаксичні помилки, кнопка **Run** вимикається та блокує виконання. Ви можете усунути помилки, а потім виконати функцію за допомогою **Run**.
 
 Ви можете перевірити відповідь, згенеровану `hello()` на вкладці Відповідь, як показано на знімку екрана.
@@ -101,7 +95,7 @@ export default {
 
 Редактор JavaScript автоматично перевіряє вихідний код на наявність програмних помилок. Якщо код програмно неправильний, помилка виділяється за допомогою червоного волокна під помилковим кодом. Наприклад, синтаксична помилка, коли `return` неправильно написана як `retu`, також фіксується лінтом.
 
-![Linting also captures the Syntax error and highlights it with a red line below it.](https://docs.appsmith.com/assets/images/JavaScript_Editor__Linting_Errors-65e09ec0a2677f092195b4eaa105924a.png)
+
 
 Ви можете детально перевірити `error` на вкладці **Errors**.
 
@@ -109,13 +103,11 @@ export default {
 
 На вкладці помилок відображаються всі типи помилок, спричинених виконанням коду. Помилки можуть складатися з **Syntax Errors**, **Run time errors**, таких як **Parsing Errors** тощо.
 
-![Errors Tab](https://docs.appsmith.com/assets/images/JavaScript_Editor__Error_Tab-d1521301e8fee336ed46e3f35c7589ed.png)
-
 ### Вкладка журналів
 
 Вкладка «Журнали» показує виконання функцій із міткою часу. Ви також можете відкрити вкладку «Журнали», натиснувши піктограму налагодження в правій нижній частині консолі (як показано на знімку екрана нижче).
 
-![Logs Tab](https://docs.appsmith.com/assets/images/JavaScript_Editor__Logs_Tab-55eda51e1f7aef43816b367da8cac82f.png)
+
 
 Вкладка «Журнали» дає вам можливість фільтрувати журнали, записуючи ключові слова в **Filter box** або вибираючи **type of log** зі **dropdown**.
 

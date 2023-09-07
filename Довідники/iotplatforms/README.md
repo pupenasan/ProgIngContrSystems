@@ -1,6 +1,7 @@
 # Платформи для Інтернету речей
 
 - [iot.tuya.com](tuya.md)
+- https://blynk.cloud/
 - Amazon Web Services (AWS) IoT
 - Google Cloud IoT
 - Microsoft Azure IoT 

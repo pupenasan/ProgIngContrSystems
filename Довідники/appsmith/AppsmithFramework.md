@@ -455,7 +455,7 @@ If you're experiencing issues, please go through the [JS Errors](https://docs.ap
 
 ## run()
 
-Виклик функції `run()` запиту виконує цей запит. `run()` є асинхронним і повертає обіцянку, тому ви можете використовувати його з асинхронним синтаксисом, таким як ланцюжки `.then()` і `async/await`. Його не можна використовувати в synchronous fields](https://docs.appsmith.com/core-concepts/writing-code/workflows#display-data-from-async-js-function)
+Виклик функції `run()` запиту виконує цей запит. `run()` є асинхронним і повертає обіцянку, тому ви можете використовувати його з асинхронним синтаксисом, таким як ланцюжки `.then()` і `async/await`. Його не можна використовувати в [synchronous fields](https://docs.appsmith.com/core-concepts/writing-code/workflows#display-data-from-async-js-function)
 
 ### Signature
 

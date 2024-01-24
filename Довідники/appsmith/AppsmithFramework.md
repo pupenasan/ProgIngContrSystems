@@ -251,8 +251,6 @@ A console method is a function executed on a console object that logs  different
 - error
 - warn
 
-
-
 info
 
 The console object **only** supports **log**, **error**, and **warn** methods. You can also use the **info** and **debug** methods. However, these methods offer the same feature as the **log** method.
@@ -288,8 +286,6 @@ To troubleshoot the error, you would want to log some messages: at the start of 
 
 The `console.log()` method outputs a message to the logs tab. The message could be a single string value, multiple string values, or JavaScript object.
 
-
-
 note
 
 Console methods **don’t** support **string substitutions**.
@@ -321,8 +317,6 @@ export default {
 
 The method entry, exit, and parameter supplied to the method can be logged and viewed in the [logs tab](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta#logs-tab).
 
-![img](https://docs.appsmith.com/assets/images/Appsmith_Framework__Console_Object__Console.log_messages-ce783dc37a8855503d336ea84da6fbc5.png)
-
 For logging a single string, multiple strings, or JavaScript objects, use  the code snippet in the for loop to print the task object as below:
 
 ```javascript
@@ -334,8 +328,6 @@ You can examine the task object and its attributes that are part of the  respons
 ### Error
 
 The `console.error()` method outputs an error message to the [logs tab](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta#logs-tab). It can log a string, written as-is - with a custom error object, - or  with a function that returns either a string or prints a custom object.
-
-
 
 note
 

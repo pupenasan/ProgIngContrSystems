@@ -107,21 +107,15 @@ export default {
 
 Вкладка «Журнали» показує виконання функцій із міткою часу. Ви також можете відкрити вкладку «Журнали», натиснувши піктограму налагодження в правій нижній частині консолі (як показано на знімку екрана нижче).
 
-
-
 Вкладка «Журнали» дає вам можливість фільтрувати журнали, записуючи ключові слова в **Filter box** або вибираючи **type of log** зі **dropdown**.
 
 ### Фрагменти
 
 У правій верхній частині редактора ви побачите кнопку «Snippets ». Натисніть на нього, щоб відкрити бібліотеку фрагментів Appsmith.
 
-![Snippets Button](https://docs.appsmith.com/assets/images/JavaScript_Editor__Snippets-bd53f96db7a3b7e1f613694a2b17beaf.png)
-
 #### Бібліотека фрагментів Appsmith
 
 Ви можете шукати та копіювати фрагменти з бібліотеки фрагментів Appsmith і використовувати їх у редакторі JavaScript. Потім ви можете створювати фрагмент коду, щоб додати свій код або використовувати його як є.
-
-![Appsmith snippet library](https://docs.appsmith.com/assets/images/JavaScript_Editor__Snippets__Appsmith_Snippet_Library-2fc528b884f484e19f511da59fd8992c.png)
 
 Appsmith активно працює над розширенням **Snippets Library**. Будь ласка, зверніться до [ Discord](https://discord.com/invite/rBTTVJp) або [Форми спільноти](https://community.appsmith.com/), якщо ви хочете зробити внесок у бібліотеку.
 

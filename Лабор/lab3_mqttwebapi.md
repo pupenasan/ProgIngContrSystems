@@ -299,13 +299,21 @@ Node-RED  може представляти як бік клієнта так і
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/k6bArrJbxTQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-#### 4.2. Робота з онлайн утилітами для API-тестування
+#### 4.2. Робота з утилітами для API-тестування
 
-Для тестування API Ви можете користуватися будь якою утилітою, наприклад <https://reqbin.com/> (у відео використовується <https://apitester.com> який застарів)
+Для тестування API Ви можете користуватися будь якою онлайн або офлайн утилітою (у [відео](https://youtu.be/v9aAontbP88) використовується <https://apitester.com> який застарів). У даній лабораторній роботі пропонується скористатися доповненням до браузерів `FireFox`  або `Chrome` з назвою RESTED.
 
-- [ ] Відкрийте сторінку однієї з утиліт наприклад <https://reqbin.com/>  
+- [ ] Встановіть розширення для браузера RESTED, або аналогічне, яке можна знайти за посиланнями:
+
+- https://addons.mozilla.org/en-US/firefox/addon/rested/
+- https://chrome.google.com/webstore/detail/rested/eelcnbccaccipfolokglfhhmapdchbfg
+
 - [ ] Для перевірки роботи API  https://www.myip.com введіть в поле адреси https://api.myip.com у метод – «GET», і натисніть «SEND» або "TEST" в залежності від вибраного програми. 
+
+![image-20240316111417728](WEBAPIMedia/image-20240316111417728.png)
+
 - [ ] Проаналізуйте відповідь
+
 - [ ] Повторіть те саме з адресою <http://ip-api.com/json/8.8.8.8/> . 
 - [ ] Повторіть те саме зі своєю білою IP-адресою, або просто відправивши http://ip-api.com/json/. Порівняйте отримані результати з тими, що показані на сторінці https://ip-api.com 
 

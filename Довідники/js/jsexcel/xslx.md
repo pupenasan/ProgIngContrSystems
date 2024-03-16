@@ -899,7 +899,7 @@ XXX| A | B | C | D | E | F | G |
 
 This worksheet can be built up in the order `A1:G1, A2:B4, E2:G4, A5:G5`:
 
-```
+```js
 /* Initial row */
 var ws = XLSX.utils.json_to_sheet([
   { A: "S", B: "h", C: "e", D: "e", E: "t", F: "J", G: "S" }
@@ -1004,7 +1004,7 @@ If header is not `1`, the row object will contain the non-enumerable property `_
 
 Для прикладу аркуша:
 
-```
+```js
 > XLSX.utils.sheet_to_json(ws);
 [ { S: 1, h: 2, e: 3, e_1: 4, t: 5, J: 6, S_1: 7 },
   { S: 2, h: 3, e: 4, e_1: 5, t: 6, J: 7, S_1: 8 } ]
@@ -1027,7 +1027,7 @@ If header is not `1`, the row object will contain the non-enumerable property `_
 
 Example showing the effect of `raw`:
 
-```
+```js
 > ws['A2'].w = "3";                          // set A2 formatted string value
 
 > XLSX.utils.sheet_to_json(ws, {header:1, raw:false});

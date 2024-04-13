@@ -1,1 +1,1 @@
-yur64n Anoshyn Yurii AK-1-1
+github: yur64n

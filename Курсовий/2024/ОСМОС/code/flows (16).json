@@ -1,0 +1,867 @@
+[
+    {
+        "id": "dec713eb38085a9e",
+        "type": "tab",
+        "label": "MQTT_OCMOC",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5e4b2f59ebf57f8b",
+        "type": "mqtt in",
+        "z": "dec713eb38085a9e",
+        "name": "Стан мотору",
+        "topic": "MOTOR_S",
+        "qos": "1",
+        "datatype": "buffer",
+        "broker": "b98fe49d64bea783",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "6486fd08fc320251"
+            ]
+        ]
+    },
+    {
+        "id": "175253ed010f57b6",
+        "type": "debug",
+        "z": "dec713eb38085a9e",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6486fd08fc320251",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "Обробка вх. сигн.-Двигун",
+        "func": "\nvar status = \"none\"\nif (msg.payload == 1) { \n    status = 'on';\n\n }\nelse { \n    status = 'of';}\nmsg.payload= status;\nflow.set (\"motorstatus_l\", status);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "175253ed010f57b6"
+            ]
+        ]
+    },
+    {
+        "id": "098f16ac996eff40",
+        "type": "mqtt in",
+        "z": "dec713eb38085a9e",
+        "name": "Верхній датчик рівня",
+        "topic": "LEVEL_S",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "b98fe49d64bea783",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "52445ca5370232e8"
+            ]
+        ]
+    },
+    {
+        "id": "a356e53ca7433eac",
+        "type": "debug",
+        "z": "dec713eb38085a9e",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "52445ca5370232e8",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "Обробка вх. сигн.-Рівень",
+        "func": "\nvar status = \"none\"\n\n//var motorstatus = 'of';\nif (msg.payload == 1) {\n    status = 'on';\n  \n}\nelse {\n    status = 'of';\n}\nmsg.payload = status;\nflow.set(\"levelstatus\", status);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "a356e53ca7433eac"
+            ]
+        ]
+    },
+    {
+        "id": "1d9a7192652d0251",
+        "type": "inject",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "matrix_g",
+        "payloadType": "flow",
+        "x": 180,
+        "y": 860,
+        "wires": [
+            [
+                "f24ea21cc6bf413b"
+            ]
+        ]
+    },
+    {
+        "id": "d64e4c600ae6497a",
+        "type": "debug",
+        "z": "dec713eb38085a9e",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "5e732e1689208e3b",
+        "type": "mqtt in",
+        "z": "dec713eb38085a9e",
+        "name": "Тиск після фітьтрів ",
+        "topic": "PRESURE_S",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "b98fe49d64bea783",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "691ee6d7f0ca92f1"
+            ]
+        ]
+    },
+    {
+        "id": "073986589282dbfb",
+        "type": "debug",
+        "z": "dec713eb38085a9e",
+        "name": "debug 19",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "691ee6d7f0ca92f1",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "Обробка вх. сигн.-Тиск",
+        "func": "\nvar status = \"none\"\n\n//var motorstatus = 'of';\nif (msg.payload == 1) {\n    status = 'on'; \n}\nelse {\n    status = 'of';\n}\nmsg.payload = status;\nflow.set(\"PRESURE_S\", status);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 320,
+        "wires": [
+            [
+                "073986589282dbfb"
+            ]
+        ]
+    },
+    {
+        "id": "cf455c802b8484ac",
+        "type": "mqtt in",
+        "z": "dec713eb38085a9e",
+        "name": "Авар.Контр. Фаз.",
+        "topic": "RKF_S",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "b98fe49d64bea783",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 380,
+        "wires": [
+            [
+                "220c2029bdda3c76"
+            ]
+        ]
+    },
+    {
+        "id": "1c851f2af30f5de0",
+        "type": "debug",
+        "z": "dec713eb38085a9e",
+        "name": "debug 20",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "220c2029bdda3c76",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "Обробка вх. сигн.-РКФ",
+        "func": "\nvar status = \"none\"\n\n//var motorstatus = 'of';\nif (msg.payload == 1) {\n    status = 'on'; \n}\nelse {\n    status = 'of';\n}\nmsg.payload = status;\nflow.set(\"RKF_S\", status);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "1c851f2af30f5de0"
+            ]
+        ]
+    },
+    {
+        "id": "bd23dbb361908f6f",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "генерація трвог",
+        "func": "let now = new Date();//сьогодні\nlet motorstatus = flow.get(\"motorstatus_l\")// Змінна Двигуна\nlet levelstatus = flow.get(\"levelstatus\")// Змінна рівня\nlet PRESURE = flow.get(\"PRESURE_S\")// Змінна тиску\nlet RKF = flow.get(\"RKF_S\")//// Змінна аварії контролю фаз\nlet matrix = flow.get(\"matrix_g\")// Змінна масиву\nvar s_alarm = flow.get(\"s_alarm\") ;// змінна аварії з \nvar s_alarm_f = flow.get(\"s_alarm_f\");// передній фронт аварії\nvar s_alarm_e = flow.get(\"s_alarm_e\");// задній фронт аварії\nvar alarm_time = flow.get(\"alarm_time\");// для виведення часу що тривала аварія\nvar status = flow.get(\"status\");//для виведення в телеграм команди статус\nvar status_a ;// для переводу в текст стану аварії\nvar control = flow.get(\"control\");//для запуску і зупинки  на час технічного регламенту установки\n//var on_msg = flow.get(\"on_msg\");//\nlet message \nvar on_msg = flow.get(\"on_msg\");//\n////let message\n//let matrix = flow.get(\"matrix_g\")\nlet meseg   ;\n\n\nif (RKF == \"on\" || motorstatus == \"on\" && PRESURE == \"of\" || motorstatus == \"of\" && levelstatus == \"of\") {\n  s_alarm = true;\n  status_a = \"Аварія\";\n} else {\n  s_alarm = false;\n  status_a = \"Нормальний стан\";\n}\n\n\n\n\n//flow.set(\"s_alarm_f\", s_alarm_f);\n\nif (s_alarm && !s_alarm_f ) {\n // s_alarm = true;\n  s_alarm_f = true;\n  s_alarm_e = true;\n  matrix.unshift([\"Початок аварії\", now, motorstatus, levelstatus, PRESURE, RKF,\"\"]);\n  \n\n  meseg =  matrix[0][0] + \"||  Двигун  \" + matrix[0][2]\n    + \"||  Рівень  \" + matrix[0][3] + \"||  тиск  \" + matrix[0][4]\n    + \"||  РКФ  \" + matrix[0][5];\n  msg.payload = {\n    chatId: -4175884895, //   тут має бути ваш ідентифікатор  1149989044 особистий\n    type: 'message',\n    content: meseg,\n\n  }\n  //return msg;\n  \n} \nif (s_alarm ) {\n  /*setInterval(\n    () => alarm_time = alarm_time ++ ,\n    1000\n  );*/\n  alarm_time = alarm_time +2 ;\n\n}\nif (!s_alarm && s_alarm_e) {\n  //s_alarm = false;\n  s_alarm_e = false;\n  s_alarm_f = false;\n  matrix.unshift([\"Кінець аварії\", now, motorstatus, levelstatus, PRESURE, RKF, alarm_time /60 ]);\n  alarm_time = 0;\n\n  meseg =  matrix[0][0] + \"||  Двигун  \" + matrix[0][2]\n    + \"||  Рівень  \" + matrix[0][3] + \"||  тиск  \" + matrix[0][4]\n    + \"||  РКФ  \" + matrix[0][5];\n  msg.payload = {\n    chatId: -4175884895, //   тут має бути ваш ідентифікатор  1149989044 особистий\n    type: 'message',\n    content: meseg,\n\n  }\n\n} \nstatus = \"Статус:  \" + status_a + \"   ||      Стан мотору:  \" + motorstatus + \"   ||      Верхній датчик рівня:  \" + \n  levelstatus + \"   ||      Тиск після насосу норма:  \" + PRESURE + \"   ||      Аварія контролю фаз:  \" + RKF ;\n\nflow.set(\"matrix_g\", matrix);\nflow.set(\"s_alarm\", s_alarm);\nflow.set(\"s_alarm_f\", s_alarm_f);\nflow.set(\"s_alarm_e\", s_alarm_e);\nflow.set(\"alarm_time\", alarm_time);\nflow.set(\"status\", status);\nflow.set(\"status_a\", status_a);\nflow.set(\"control\", control);\n\n\n  if (matrix.length >100){\n    matrix.pop ();//вилучаємо останній елемент\n    //matrix.length = 10;\n   }\n \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar s_alarm = false;\nvar s_alarm_f = false;\nvar s_alarm_e = false;\nlet now = new Date();//сьогодні\nlet motorstatus = flow.get(\"motorstatus_l\")\nlet levelstatus = flow.get(\"levelstatus\")\nlet PRESURE = flow.get(\"PRESURE_S\")\nlet RKF = flow.get(\"RKF_S\")\nvar alarm_time = 0;\n//let levelstatus = flow.get(\"levelstatus\")\n\n//let matrix = [\n  //  [\"Статус аварії\", \"Час аварії\", \"Стан мотору\", \"Рівень\", \"тиск\", \"РКФ\"],\n    /* [\"1\", \"3\", \"3\", \"3\", \"3\"],\n     [\"dr\", \"gf\", \"gf\", \"f\", \"f\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n [\"\", \"\", \"\", \"\", \"\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n     [\"\", \"\", \"\", \"\", \"\"],\n    [\"\", \"\", \"\", \"\", \"\"],\n    [\"\", \"\", \"\", \"\", \"\"],\n  [\"\", \"\", \"\", \"\", \"\"],\n    [\"\", \"\", \"\", \"\", \"\"],\n    [\"\", \"\", \"\", \"\", \"\"],\n  [\"\", \"\", \"\", \"\", \"\"],\n     [\"3\", \"\", \"\", \"\", \"\"],\n     [\"2\", \"\", \"\", \"\", \"\"]*/\n//];\nvar matrix_l = 10;//matrix.trend[0].length;    //довжина мавису\n\n\n\n\n\n//flow.set(\"matrix_g\", matrix);\n\nflow.set(\"s_alarm\", s_alarm);\nflow.set(\"s_alarm_f\", s_alarm_f);\nflow.set(\"s_alarm_e\", s_alarm_e);\nflow.set(\"alarm_time\", alarm_time);\n\n",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "99afcd0f2b1436aa"
+            ]
+        ]
+    },
+    {
+        "id": "94889972e76e5f52",
+        "type": "inject",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 500,
+        "wires": [
+            [
+                "bd23dbb361908f6f"
+            ]
+        ]
+    },
+    {
+        "id": "a4fb66c5e274b061",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "function 15",
+        "func": "/*let txtmsg = \"/start - показати базові команди\\r\\n\";\ntxtmsg += \"/sp - виставлення уставок\\r\\n\";\ntxtmsg += \"/pv - отримання плинних значень\\r\\n\";\ntxtmsg += \"/alm - список активних тривог\\r\\n\";\ntxtmsg += \"/rprt - сформувати звіт\\r\\n\";\nmsg.payload.content = txtmsg;\nreturn msg;*/\n\n\ncontext.global.keyboard = { pending: true };\nlet opts = {\n    reply_to_message_id: msg.payload.messageId,\n    reply_markup: JSON.stringify({\n        keyboard: [\n            ['/status'],\n            ['/alarm'],\n            ['відміна']],\n        'resize_keyboard': true,\n        'one_time_keyboard': true\n    })\n};\nmsg.payload.content = 'Виберіть змінну';\nmsg.payload.options = opts;\nreturn [msg];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1060,
+        "wires": [
+            [
+                "c00bc892ac2e2141"
+            ]
+        ]
+    },
+    {
+        "id": "5297ddb8824a2627",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "function 16",
+        "func": "context.global.keyboard = { pending: true };\nlet matrix = flow.get(\"matrix_g\")\nlet ct_2 \nif (matrix.length ==1)\n{\n    ct_2=\"\";\n}else{\n    ct_2 =\"||  Попередній запис   \" + matrix[1][0] + \"||  Двигун  \" + matrix[1][2]\n    + \"||  Рівень  \" + matrix[1][3] + \"||  тиск  \" + matrix[1][4]\n    + \"||  РКФ  \" + matrix[1][5];\n}\n\n\n\nlet meseg = \"Останній запис   \" + matrix[0][0] + \"||  Двигун  \" + matrix[0][2] \n    + \"||  Рівень  \" + matrix[0][3] + \"||  тиск  \" + matrix[0][4] \n    + \"||  РКФ  \" + matrix[0][5] \n+ct_2 ;\nmsg.payload = {\n    chatId: -4175884895, //  2075928021 тут має бути ваш ідентифікатор  1149989044 особистий\n    type: 'message',\n    content: meseg, \n   \n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 1200,
+        "wires": [
+            [
+                "0b122e6659140e42"
+            ]
+        ]
+    },
+    {
+        "id": "ca1f921344154a89",
+        "type": "change",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "global.keybord.pending",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 1240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02ec0d1ec4402e5c",
+        "type": "change",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.content",
+                "pt": "msg",
+                "to": "status",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 1280,
+        "wires": [
+            [
+                "0b122e6659140e42"
+            ]
+        ]
+    },
+    {
+        "id": "7e1ad550bb55fb73",
+        "type": "change",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alm.sp.radHI",
+                "pt": "global",
+                "to": "payload.content",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f24ea21cc6bf413b",
+        "type": "GSheet",
+        "z": "dec713eb38085a9e",
+        "creds": "f49d4d78fae3a438",
+        "method": "update",
+        "action": "",
+        "sheet": "1cJ1D2zmW6LJqMmvd6HLdYOjrJu1SWMnDWA9hVepfVXs",
+        "cells": "L1!R2C1:R101C7",
+        "flatten": false,
+        "name": "",
+        "x": 390,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a94fced098ac4781",
+        "type": "telegram command",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "command": "/start",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "a4f26c3be3a9bbe5",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 130,
+        "y": 1060,
+        "wires": [
+            [
+                "a4fb66c5e274b061",
+                "d64e4c600ae6497a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b35e680f58f6c68b",
+        "type": "telegram command",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "command": "/alarm",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "a4f26c3be3a9bbe5",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 110,
+        "y": 1220,
+        "wires": [
+            [
+                "5297ddb8824a2627"
+            ],
+            [
+                "ca1f921344154a89"
+            ]
+        ]
+    },
+    {
+        "id": "2814f554b46824ef",
+        "type": "telegram command",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "command": "/status",
+        "description": "",
+        "registercommand": false,
+        "language": "",
+        "scope": "default",
+        "bot": "a4f26c3be3a9bbe5",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 110,
+        "y": 1300,
+        "wires": [
+            [
+                "02ec0d1ec4402e5c"
+            ],
+            [
+                "7e1ad550bb55fb73"
+            ]
+        ]
+    },
+    {
+        "id": "c00bc892ac2e2141",
+        "type": "telegram sender",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "bot": "a4f26c3be3a9bbe5",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 570,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0b122e6659140e42",
+        "type": "telegram sender",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "bot": "a4f26c3be3a9bbe5",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 610,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8df6307cb2eecde5",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "function 17",
+        "func": "context.global.keyboard = { pending: true };\nlet matrix = flow.get(\"matrix_g\")\nlet ct_2 \nif (matrix.length ==1)\n{\n    ct_2=\"\";\n}else{\n    ct_2 =\"||  Попередній запис   \" + matrix[1][0] + \"||  Двигун  \" + matrix[1][2]\n    + \"||  Рівень  \" + matrix[1][3] + \"||  тиск  \" + matrix[1][4]\n    + \"||  РКФ  \" + matrix[1][5];\n}\n\n\n\nlet meseg = \"Останній запис   \" + matrix[0][0] + \"||  Двигун  \" + matrix[0][2] \n    + \"||  Рівень  \" + matrix[0][3] + \"||  тиск  \" + matrix[0][4] \n    + \"||  РКФ  \" + matrix[0][5] \n+ct_2 ;\nmsg.payload = {\n    chatId: 1149989044, //   тут має бути ваш ідентифікатор  1149989044 особистий\n    type: 'message',\n    content: meseg, \n   \n}\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 1160,
+        "wires": [
+            [
+                "0b122e6659140e42"
+            ]
+        ]
+    },
+    {
+        "id": "99afcd0f2b1436aa",
+        "type": "telegram sender",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "bot": "a4f26c3be3a9bbe5",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 670,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cac75e482c65481a",
+        "type": "function",
+        "z": "dec713eb38085a9e",
+        "name": "Тривога кожні 10 хвилин",
+        "func": "let motorstatus = flow.get(\"motorstatus_l\")\nlet levelstatus = flow.get(\"levelstatus\")\nlet PRESURE = flow.get(\"PRESURE_S\")\nlet RKF = flow.get(\"RKF_S\")\nlet matrix = flow.get(\"matrix_g\")\nvar s_alarm = flow.get(\"s_alarm\") ;// змінна аварії з \nvar s_alarm_f = flow.get(\"s_alarm_f\");// передній фронт аварії\nvar s_alarm_e = flow.get(\"s_alarm_e\");// задній фронт аварії\nvar alarm_time = flow.get(\"alarm_time\");// для виведення часу що тривала аварія\nvar status = flow.get(\"status\");//для виведення в телеграм команди статус\nvar status_a ;// для переводу в текст стану аварії\nvar control = flow.get(\"control\");//для запуску і зупинки  на час технічного регламенту установки\n//var on_msg = flow.get(\"on_msg\");//\nlet message \nvar on_msg = flow.get(\"on_msg\");//\n\nlet meseg   ;\n\nif (s_alarm == true){\n  /*meseg = \"Останній запис   \" + matrix[0][0] + \"||  Двигун  \" + matrix[0][2]\n    + \"||  Рівень  \" + matrix[0][3] + \"||  тиск  \" + matrix[0][4]\n    + \"||  РКФ  \" + matrix[0][5];\n  meseg = \"Статус:  \" + status_a + \"   ||      Стан мотору:  \" + motorstatus + \"   ||      Верхній датчик рівня:  \" +\n    levelstatus + \"   ||      Тиск після насосу норма:  \" + PRESURE + \"   ||      Аварія контролю фаз:  \" + RKF;*/\n\n    meseg =\"Аварія, перезавантажте осмос\";\n  msg.payload = {\n    chatId: -4175884895, //   тут має бути ваш ідентифікатор  1149989044 особистий\n    type: 'message',\n    content: meseg,\n\n  }\n\n }\n\n\n\nflow.set(\"matrix_g\", matrix);\nflow.set(\"s_alarm\", s_alarm);\nflow.set(\"alarm_time\", alarm_time);\nflow.set(\"status\", status);\nflow.set(\"status_a\", status_a);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 620,
+        "wires": [
+            [
+                "368e756277d8664a"
+            ]
+        ]
+    },
+    {
+        "id": "139ce022760d6160",
+        "type": "inject",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 620,
+        "wires": [
+            [
+                "cac75e482c65481a"
+            ]
+        ]
+    },
+    {
+        "id": "368e756277d8664a",
+        "type": "telegram sender",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "bot": "a4f26c3be3a9bbe5",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 670,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d1b72486abeef959",
+        "type": "mqtt out",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "topic": "s_alarm",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "b98fe49d64bea783",
+        "x": 640,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "36a5d21d8568c6b6",
+        "type": "inject",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 740,
+        "wires": [
+            [
+                "5a5603f910b78b48"
+            ]
+        ]
+    },
+    {
+        "id": "5a5603f910b78b48",
+        "type": "change",
+        "z": "dec713eb38085a9e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "s_alarm",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 740,
+        "wires": [
+            [
+                "d1b72486abeef959"
+            ]
+        ]
+    },
+    {
+        "id": "5d3135a922501527",
+        "type": "comment",
+        "z": "dec713eb38085a9e",
+        "name": "запис в таблицю",
+        "info": "Циклічно записує в табльцю  масив",
+        "x": 180,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "33ccf35d11370b23",
+        "type": "comment",
+        "z": "dec713eb38085a9e",
+        "name": "Аварія для Iot MQTT",
+        "info": "Відсилає сповіщення про стан системи в тег s_alarm",
+        "x": 200,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "2d57f294a035fdd6",
+        "type": "comment",
+        "z": "dec713eb38085a9e",
+        "name": "Сповіщення при активній тривозі",
+        "info": "Кожні 10 хв посилає в телеграм повідомлення \nmeseg =\"Аварія, перезавантажте осмос\";",
+        "x": 240,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "bfb1c78f677effbc",
+        "type": "comment",
+        "z": "dec713eb38085a9e",
+        "name": "Обробка стану контактів",
+        "info": "Функція отримує значення входів.\nВідслідковує початок та кінець аварійного стану.\nФормує сповіщення в телеграм Про початок або кінець аварії.\nРахує час аварії та записує його при кінці. \n",
+        "x": 210,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3e4acc3993d5e271",
+        "type": "comment",
+        "z": "dec713eb38085a9e",
+        "name": "Вивід пунктів команд",
+        "info": "",
+        "x": 180,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "08c5cac95423c28c",
+        "type": "comment",
+        "z": "dec713eb38085a9e",
+        "name": "ВІдповіді на запит",
+        "info": "",
+        "x": 150,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "b98fe49d64bea783",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "45JXbLfUyX9YEGTcBruu3HQ3hm2tKXEY",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f49d4d78fae3a438",
+        "type": "gauth",
+        "name": "rpi-servis-ak@methodical-ace-420910.iam.gserviceaccount.com"
+    },
+    {
+        "id": "a4f26c3be3a9bbe5",
+        "type": "telegram bot",
+        "botname": "Ocmoc_2_MQTT_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    }
+]

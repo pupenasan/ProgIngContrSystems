@@ -2,12 +2,12 @@
 #include <PubSubClient.h>
 
 // Определяем переменные
-String _ssid     = "TP-Link_1F20";                       // Название WiFi
-String _password = "60354341";                    // Пароль от WiFi 
+String _ssid     = "TP-Link";                       // Название WiFi
+String _password = "";                    // Пароль от WiFi 
 
 const char *mqtt_server = "broker.hivemq.com"; // Имя сервера MQTT
 const int mqtt_port =   1883; // Порт для подключения к серверу MQTT
-const char *mqtt_user = "4d78899845734a858cdfc2e436f22b29.s1.eu.hivemq.cloud"; // Логи от сервер
+const char *mqtt_user = ""; // Логи от сервер
 const char *mqtt_pass = ""; // Пароль от сервера
 int sum_led = 0;
 int time_send = millis();

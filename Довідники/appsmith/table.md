@@ -53,12 +53,8 @@ If the retrieved data is not in the desired format, you can use JavaScript to **
 *Example:*
 
 ```js
-{{fetchData.data.users.map((user) => {
-  return {
-    name: user.name,
-    email: user.email
-    };
-  });
+{{ fetchData.data.users.map((user) => {
+  return {name: user.name, email: user.email}})
 }}
 ```
 

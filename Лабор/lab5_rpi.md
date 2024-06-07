@@ -44,7 +44,7 @@
 
 #### 1.1. Встановлення ОС та налаштування Raspberry PI
 
-Виконайте встановлення та налаштування образу карти відповідно до  https://github.com/asu-in-ua/atpv/blob/main/micropc/rpiinstall/lab.md . Є також інший спосіб описаний за [цим посиланням](oldinstallrpi.md)
+Виконайте встановлення та налаштування образу карти відповідно до [цього посилання](https://github.com/asu-in-ua/atpv/blob/main/micropc/rpiinstall/lab.md). Є також інший спосіб описаний за [цим посиланням](oldinstallrpi.md)
 
 #### 1.2. Встановлення Node-RED 
 

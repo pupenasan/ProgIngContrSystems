@@ -1,16 +1,16 @@
+[<- До підрозділу](README.md)		[Коментувати](#feedback)
+
 # A practical introduction to Docker containers
 
-https://developers.redhat.com/blog/2014/05/15/practical-introduction-to-docker-containers#
+Це переклад статті [A practical introduction to Docker containers](https://developers.redhat.com/blog/2014/05/15/practical-introduction-to-docker-containers#)
 
 ## Background
 
 ### Чому
 
-Про [Docker](https://www.docker.io/) сьогодні чимало галасу, оскільки він полегшує багато речей, які були складними з віртуальними машинами.
+Про [Docker](https://www.docker.io/) сьогодні чимало галасу, оскільки він полегшує багато речей, які були складними з віртуальними машинами. Контейнери Docker дозволяють розробникам, системним адміністраторам, архітекторам, консультантам та іншим швидко тестувати частину програмного забезпечення в [контейнері](https://linuxcontainers.org/), бо це набагато швидше, ніж віртуальна машина, і використовує менше ресурсів. Середня команда в Docker виконується менше секунди.
 
-Контейнери Docker дозволяють розробникам, системним адміністраторам, архітекторам, консультантам та іншим швидко тестувати частину програмного забезпечення в [контейнері](https://linuxcontainers.org/); набагато швидше, ніж віртуальна машина, і використовує менше ресурсів. Середня команда в Docker виконується менше секунди.
-
-```
+```shell
 [root@keith]# time docker run fedora cat /etc/redhat-release
 Fedora release 20 (Heisenbug)
 real 0m0.715s
@@ -36,9 +36,9 @@ sys 0m0.004s
 
 Інструменти Docker досягли версії 1.0 у червні 2014 року, і [з деякими застереженнями](http://crunchtools.com/docker-in-production/) можна використовувати у Production. Є над чим подумати під час розгортання production, і я пропоную підготувати [Architecting Containers](http://rhelblog.redhat.com/2015/07/29/architecting-containers-part-1-user-space-vs-kernel-space/), якщо ви серйозно розглядаєте production розгортання.
 
-### CentOS and Red Hat Enterprise Linux
+### CentOS та Red Hat Enterprise Linux
 
-This tutorial will focus on integration with [Red Hat technologies](https://www.redhat.com/en/about/our-community-contributions) including [CentOS](http://www.centos.org/) and [Red Hat Enterprise Linux](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux). The Docker tooling (daemon and client) is available in Red Hat  Enterprise Linux, CentOS, and Fedora. Also, base Docker images are  available for [Red Hat Enterprise Linux](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) (6 and 7), [CentOS](https://hub.docker.com/_/centos/) and [Fedora](https://hub.docker.com/_/fedora/).
+Цей навчальний матеріал зосереджується на інтеграції з технологіями [Red Hat technologies](https://www.redhat.com/en/about/our-community-contributions), зокрема [CentOS](http://www.centos.org/) та [Red Hat Enterprise Linux](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux). Інструменти Docker (демон і клієнт) доступні у Red Hat Enterprise Linux, CentOS та Fedora. Також доступні базові Docker-образи для Red Hat Enterprise Linux (версії 6 та 7), CentOS і Fedora.
 
 ## Architecture
 
@@ -333,3 +333,20 @@ docker rm `docker ps --no-trunc -a -q`
 - [Architecting Containers Part 1: Why Understanding User Space vs. Kernel Space Matters](http://rhelblog.redhat.com/2015/07/29/architecting-containers-part-1-user-space-vs-kernel-space/)
 - [Red Hat Enterprise Linux Atomic Host 7 Getting Started Guide](https://access.redhat.com/documentation/en/red-hat-enterprise-linux-atomic-host/version-7/getting-started-guide/)
 - [Running systemd within a docker container](https://developers.redhat.com/blog/2014/05/05/running-systemd-within-docker-container)
+
+## Автори
+
+Scott McCarty (fatherlinux) - [Посилання на оригінал](https://developers.redhat.com/blog/2014/05/15/practical-introduction-to-docker-containers#) 					
+
+
+Переклав [Олександр Пупена](https://github.com/pupenasan). 
+
+## Feedback
+
+Якщо Ви хочете залишити коментар у Вас є наступні варіанти:
+
+- [Обговорення у WhatsApp](https://chat.whatsapp.com/BRbPAQrE1s7BwCLtNtMoqN)
+- [Обговорення в Телеграм](https://t.me/+GA2smCKs5QU1MWMy)
+- [Група у Фейсбуці](https://www.facebook.com/groups/asu.in.ua)
+
+Про проект і можливість допомогти проекту написано [тут](https://asu-in-ua.github.io/atpv/)

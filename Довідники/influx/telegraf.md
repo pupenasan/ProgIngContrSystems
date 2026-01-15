@@ -655,11 +655,11 @@ In order to pass additional environment variables to Telegraf service, run [regi
 
 Create a Multi-String Value registry with the name Environment:
 
-![Nulti-String Value Registry - Telegraf](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\influx\telegraph\multi-string-value-registry-telegraf.png)
+![Nulti-String Value Registry - Telegraf](telegraph/multi-string-value-registry-telegraf.png)
 
 Next, edit the values for the registry, setting each line to a **Key=Value** format, where **Key** is environment variable name and **Value** is its value — such as:
 
-![Edit registry values - Telegraf](G:\san\AKIT\ДИСЦИП\I40\GitVersion\довідн\influx\telegraph\edit-registry-values-telegraf.png)
+![Edit registry values - Telegraf](telegraph/edit-registry-values-telegraf.png)
 
 After that the Telegraf service will have the required environment variables set.
 

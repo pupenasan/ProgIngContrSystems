@@ -423,15 +423,9 @@ The [logs tab](https://docs.appsmith.com/core-concepts/writing-code/javascript-e
 
 It also displays the message origin ([JS Object](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta)/[Widget](https://docs.appsmith.com/reference/widgets)), so you can navigate to the [widget](https://docs.appsmith.com/reference/widgets) or [JS Object](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta).
 
-![img](https://docs.appsmith.com/assets/images/Appsmith_Framework__Console_Object__Viewing_logged_messages-13ee44cc82cf219de3a24cab1b34b3fd.png)
-
-
-
 info
 
 When you're in the logs tab, you can filter them by console logs which are user-generated messages.
-
-![img](https://docs.appsmith.com/assets/images/Appsmith_Framework__Console_Object__Viewing_logged_messages_Filter-1a1cb34c72de1da4873ec0e24e55e642.png)
 
 Debugging with the console object is more efficient, faster, and easier than  using a debugger directly in the Appsmith Editor. There is no need to  worry if you have complex API logic, multiple [JS Objects](https://docs.appsmith.com/core-concepts/writing-code/javascript-editor-beta), or complicated queries to debug.
 

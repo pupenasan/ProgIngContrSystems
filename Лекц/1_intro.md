@@ -276,12 +276,14 @@
 
 16. Які стадії можете виділити з життєвого циклу ПЗ? Поясніть призначення цих стадій.
 
-    
+
+
+
+## Відеозапис лекції 
+
+[Частина 1](https://youtu.be/q602wNUgcDc)
 
 | [<- до лекцій](README.md) | [на основну сторінку курсу](../README.md) |
 | ------------------------- | ----------------------------------------- |
 |                           |                                           |
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XQjvTaF9Ros" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ukOoPhnOPUo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -51,6 +51,9 @@
 
 Лек 6. Хмарні сервіси, віртуальні машини.
 
+- 6.1. [Вступ до хмарних технологій: теоретична частина](https://github.com/asu-in-ua/atpv/blob/main/vm/cloudsintro/teor.md)
+- 6.2. [Основи віртуалізації з використанням Virtual Box](https://github.com/asu-in-ua/atpv/blob/main/vm/vbox/teor.md)
+
 Лаб 5. [Основи роботи з Raspberry PI](Лабор/v2lab5.md) (4 год)
 
 Лаб 6. [Основи роботи з віртуальними машинами](Лабор/v2lab6.md) (4 год)
@@ -61,11 +64,9 @@
 
 Лек 7. [Контейнери Docker](https://github.com/asu-in-ua/atpv/blob/main/vm/docker/teor.md).
 
-Лаб 7. [Основи роботи з контейнерами](Лабор/v2lab7.md)
-
-
-
 Лек 8. Основи роботи з HTTP 
+
+Лаб 7. [Основи роботи з контейнерами](Лабор/v2lab7.md)
 
 Лаб 8. [Основи роботи з HTTP](Лабор/v2lab8.md)
 

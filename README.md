@@ -64,7 +64,7 @@
 
 Лек 7. [Контейнери Docker](https://github.com/asu-in-ua/atpv/blob/main/vm/docker/teor.md).
 
-Лек 8. Основи роботи з HTTP 
+Лек 8. [Основи роботи з HTTP](https://github.com/asu-in-ua/atpv/blob/main/nets/http/teor.md) 
 
 Лаб 7. [Основи роботи з контейнерами](Лабор/v2lab7.md)
 
@@ -74,7 +74,7 @@
 
 ### Тиждень 9-10 (30.03-12.04)
 
-Лек 9. Основи HTTP API
+Лек 9. [Основи HTTP API](https://github.com/asu-in-ua/atpv/blob/main/nets/http/webapi.md)
 
 Лек 10. Веб-автентифікація
 

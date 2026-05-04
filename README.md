@@ -76,7 +76,7 @@
 
 Лек 9. [Основи HTTP API](https://github.com/asu-in-ua/atpv/blob/main/nets/http/webapi.md)
 
-Лек 10. Веб-автентифікація
+Лек 10. [Веб-автентифікація](https://github.com/asu-in-ua/atpv/blob/main/nets/security/authentication.md)
 
 Лаб 9. [Основи роботи з HTTP API](Лабор/v2lab9.md)
 
@@ -84,9 +84,9 @@
 
 ### Тиждень 11-12 (13.04-26.04)
 
-Лек 11. Протоколи IoT: MQTT
+Лек 11. [Протоколи IoT: MQTT](https://github.com/asu-in-ua/atpv/blob/d92ee615ce4eb6ca9565fcfb4b097d655d113525/scadahmi/iomqtt/teor.md)
 
-Лек 12. Бази даних та систем керування базами даних  
+Лек 12. [Бази даних та систем керування базами даних](https://github.com/asu-in-ua/atpv/blob/d92ee615ce4eb6ca9565fcfb4b097d655d113525/dbbasic/intro/teor.md)  
 
 Лаб 10. [Протоколи IoT: MQTT](Лабор/v2lab10.md) 
 

@@ -94,9 +94,12 @@
 
 ### Тиждень 13-14 (27.04-10.05)
 
-Лек 13. Мова SQL.
+Лек 13. Основи SQL
 
-Лек 14. Основи Java Script
+- [Основи SQL: теоретична частина](https://github.com/asu-in-ua/atpv/blob/main/sql/sqlbasic/teor.md)
+- [Знайомство з SQL: онлайн посібник від SQLBolt](https://github.com/asu-in-ua/atpv/blob/main/sql/sqlbasic/sqlbolt.md)
+
+Лек 14. [Основи Java Script](https://github.com/asu-in-ua/atpv/blob/main/js/jsbasic/teor.md)
 
 Лаб 11. [Основи роботи з базами даних та SQL](Лабор/v2lab11.md) 
 

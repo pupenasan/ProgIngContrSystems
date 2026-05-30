@@ -10,7 +10,7 @@
 
 - [ ] Виконайте [Основи SQL: практична частина]()
 
-### 2. Основи SQL
+### 2. Робота з SQL в Node-RED
 
 - [ ] Виконайте [Робота з SQL в Node-RED: практична частина](https://github.com/asu-in-ua/atpv/blob/main/nodered/sql/lab.md)
 

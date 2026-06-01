@@ -8,7 +8,7 @@
 
 ### 1. Основи SQL
 
-- [ ] Виконайте [Основи SQL: практична частина]()
+- [ ] Виконайте [Основи SQL: практична частина](https://github.com/asu-in-ua/atpv/blob/main/sql/sqlbasic/lab.md)
 
 ### 2. Робота з SQL в Node-RED
 
